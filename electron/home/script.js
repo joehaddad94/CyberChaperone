@@ -40,7 +40,7 @@ async function startVideo() {
     setInterval(async () =>{
         const detections = await faceapi.detectAllFaces(video,
             new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-            console.log(detections)
+            // console.log(detections)
 
             if (detections.length > 0) {
                 const emotions = detections[0].expressions;

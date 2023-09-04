@@ -1,7 +1,7 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const homeButton = document.getElementById('login');
-  
-    homeButton.addEventListener('click', () => {
-      window.location.href = '../home/index.html'; // Redirect to the home.html page
-    });
+const loginButton = document.getElementById('login');
+
+loginButton.addEventListener('click', () => {
+    // console.log('login button clicked')
+    ipcRenderer.send('login');
+    ipcRenderer.send('close-login-window');
 });
