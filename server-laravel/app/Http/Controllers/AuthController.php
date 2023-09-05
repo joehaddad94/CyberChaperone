@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\API;
-
-use App\Models\User;
+namespace App\Http\Controllers;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
 
 class AuthController extends Controller
 {
+
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        $this->middleware('auth:api', ['except' => ['login','register']]);
     }
 
     public function login(Request $request)
@@ -22,26 +21,29 @@ class AuthController extends Controller
             'password' => 'required|string',
         ]);
         $credentials = $request->only('email', 'password');
+
         $token = Auth::attempt($credentials);
 
         if (!$token) {
             return response()->json([
+                'status' => 'error',
                 'message' => 'Unauthorized',
             ], 401);
         }
 
         $user = Auth::user();
         return response()->json([
-            'user' => $user,
-            'authorization' => [
-                'token' => $token,
-                'type' => 'bearer',
-            ]
-        ]);
+                'status' => 'success',
+                'user' => $user,
+                'authorisation' => [
+                    'token' => $token,
+                    'type' => 'bearer',
+                ]
+            ]);
+
     }
 
-    public function register(Request $request)
-    {
+    public function register(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
@@ -55,11 +57,14 @@ class AuthController extends Controller
         ]);
 
         $token = Auth::login($user);
-
         return response()->json([
+            'status' => 'success',
             'message' => 'User created successfully',
             'user' => $user,
-            'token' => $token
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
         ]);
     }
 
@@ -67,6 +72,7 @@ class AuthController extends Controller
     {
         Auth::logout();
         return response()->json([
+            'status' => 'success',
             'message' => 'Successfully logged out',
         ]);
     }
@@ -74,6 +80,7 @@ class AuthController extends Controller
     public function refresh()
     {
         return response()->json([
+            'status' => 'success',
             'user' => Auth::user(),
             'authorisation' => [
                 'token' => Auth::refresh(),
@@ -81,4 +88,5 @@ class AuthController extends Controller
             ]
         ]);
     }
+
 }
