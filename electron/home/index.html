@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
+    <title>Home</title>
+    <script defer src="../face-api.min.js"></script>
+    <script defer src="./script.js"></script>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="video-container">
+      <video id="video" width="720" height="560" autoplay muted></video>
+      <!-- <canvas id="canvas"></canvas> -->
+    </div>
+    <div id="emotion-progress">
+      <div id="anger" class="emotion-bar">Angry: 0%</div>
+      <div id="disgust" class="emotion-bar">Disgusted: 0%</div>
+      <div id="fear" class="emotion-bar">Fearful: 0%</div>
+      <div id="happy" class="emotion-bar">Happy: 0%</div>
+      <div id="neutral" class="emotion-bar">Neutral: 0%</div>
+      <div id="sad" class="emotion-bar">Sad: 0%</div>
+      <div id="surprise" class="emotion-bar">Surprised: 0%</div>
+    </div>
+  </body>
+</html>
