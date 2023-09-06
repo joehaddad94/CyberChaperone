@@ -45,11 +45,19 @@ async function startVideo() {
             if (detections.length > 0) {
                 const emotions = detections[0].expressions;
           
+                // for (const emotion in emotions) {
+                //   if (emotionBars[emotion]) {
+                //     const percentage = (emotions[emotion] * 100).toFixed(2);
+                //     emotionBars[emotion].textContent = `${emotion.charAt(0).toUpperCase() +
+                //       emotion.slice(1)}: ${percentage}%`;
+                //   }
+                // }
+
                 for (const emotion in emotions) {
                   if (emotionBars[emotion]) {
                     const percentage = (emotions[emotion] * 100).toFixed(2);
-                    emotionBars[emotion].textContent = `${emotion.charAt(0).toUpperCase() +
-                      emotion.slice(1)}: ${percentage}%`;
+                    const capitalizedEmotion = emotion.charAt(0).toUpperCase() + emotion.slice(1);
+                    emotionBars[emotion].textContent = `${capitalizedEmotion}: ${percentage}%`;
                   }
                 }
               }

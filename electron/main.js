@@ -13,6 +13,7 @@ function createMainWindow() {
         title: 'CyberChaperone',
         width: isDev ? 1000 : 500,
         height: 600,
+        frame: false,
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,
