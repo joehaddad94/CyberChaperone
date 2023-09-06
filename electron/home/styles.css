@@ -10,13 +10,11 @@ body {
 
 .video-container {
   position: relative;
-  width: 720px;
-  height: 560px;
 }
 
 canvas {
   position: absolute;
-  top: 50%; /* Position the canvas vertically at the center of the container */
-  left: 50%; /* Position the canvas horizontally at the center of the container */
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
