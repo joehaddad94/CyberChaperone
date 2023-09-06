@@ -37,7 +37,7 @@ function createHomeWindow() {
     const homeWindow = new BrowserWindow({
         title: 'CyberChaperone',
         width: isDev ? 1500 : 1000,
-        height: 800,
+        height: 900,
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,

@@ -14,6 +14,16 @@ const emotionBars = {
     surprised: document.getElementById('surprise'),
   };
 
+  const emotionToId = {
+    angry: 'anger',
+    disgusted: 'disgust',
+    fearful: 'fear',
+    happy: 'happy',
+    neutral: 'neutral',
+    sad: 'sad',
+    surprised: 'surprise'
+  };
+
 // Promise.all([
 //     faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
 //     faceapi.nets.faceLandmark68Net.loadFromUri('../models'),
@@ -90,11 +100,31 @@ Promise.all([
             if (detections.length > 0) {
                 const emotions = detections[0].expressions;
           
+                // for (const emotion in emotions) {
+                //   if (emotionBars[emotion]) {
+                //     const percentage = (emotions[emotion] * 100).toFixed(2);
+                //     emotionBars[emotion].textContent = `${emotion.charAt(0).toUpperCase() +
+                //       emotion.slice(1)}: ${percentage}%`;
+                //   }
+                // }
+
                 for (const emotion in emotions) {
                   if (emotionBars[emotion]) {
                     const percentage = (emotions[emotion] * 100).toFixed(2);
-                    emotionBars[emotion].textContent = `${emotion.charAt(0).toUpperCase() +
-                      emotion.slice(1)}: ${percentage}%`;
+                    const capitalizedEmotion = emotion.charAt(0).toUpperCase() + emotion.slice(1);
+                    // emotionBars[emotion].textContent = `${capitalizedEmotion}: ${percentage}%`;
+
+                    const emotionId = emotionToId[emotion];
+
+                    const percentageSpan = document.querySelector(`#${emotionId} .percentage`)
+                    if (percentageSpan) {
+                      percentageSpan.textContent = `${percentage}%`;
+                    }
+
+                    const progressBar = emotionBars[emotion].querySelector('.progress-fill');
+                    if (progressBar) {
+                      progressBar.style.width = `${percentage}%`;
+                    }
                   }
                 }
               }
