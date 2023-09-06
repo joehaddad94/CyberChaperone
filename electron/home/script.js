@@ -1,4 +1,8 @@
 const video = document.getElementById('video');
+const videoContainer = document.getElementById('videoContainer');
+const detectionToggleButton = document.getElementById('startDetection');
+
+let isVideoRunning = false;
 
 const emotionBars = {
     angry: document.getElementById('anger'),
@@ -10,19 +14,60 @@ const emotionBars = {
     surprised: document.getElementById('surprise'),
   };
 
-Promise.all([
-    faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
-    faceapi.nets.faceLandmark68Net.loadFromUri('../models'),
-    faceapi.nets.faceRecognitionNet.loadFromUri('../models'),
-    faceapi.nets.faceExpressionNet.loadFromUri('../models')
-  ]).then(startVideo)
+// Promise.all([
+//     faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
+//     faceapi.nets.faceLandmark68Net.loadFromUri('../models'),
+//     faceapi.nets.faceRecognitionNet.loadFromUri('../models'),
+//     faceapi.nets.faceExpressionNet.loadFromUri('../models')
+//   ]).then(startVideo)
 
-async function startVideo() {
-    try {
-      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-      video.srcObject = stream;
-    } catch (error) {
-      console.error('Error accessing webcam:', error);
+// async function startVideo() {
+//     try {
+//       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+//       video.srcObject = stream;
+//     } catch (error) {
+//       console.error('Error accessing webcam:', error);
+//     }
+//   }
+
+Promise.all([
+  faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
+  faceapi.nets.faceLandmark68Net.loadFromUri('../models'),
+  faceapi.nets.faceRecognitionNet.loadFromUri('../models'),
+  faceapi.nets.faceExpressionNet.loadFromUri('../models')
+]).then(() => {
+  detectionToggleButton.addEventListener('click', () => {
+    toggleVideo();
+  });
+});
+
+  
+  async function toggleVideo() {
+    if (!isVideoRunning) {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+        video.srcObject = stream;
+        isVideoRunning = true;
+        detectionToggleButton.textContent = 'Stop Detection';
+      } catch (error) {
+        console.error('Error accessing webcam:', error);
+      }
+    } else {
+      const stream = video.srcObject;
+      if (stream) {
+        const tracks = stream.getTracks();
+        tracks.forEach((track) => track.stop());
+        video.srcObject = null;
+        isVideoRunning = false;
+
+        const canvasElements = document.getElementsByTagName('canvas');
+        console.log(canvasElements)
+        for (let i = canvasElements.length - 1; i >= 0; i--) {
+          canvasElements[i].remove();
+        }
+
+        detectionToggleButton.textContent = 'Start Detection';
+      }
     }
   }
 
@@ -30,7 +75,7 @@ async function startVideo() {
 
     const canvas = faceapi.createCanvasFromMedia(video);
     canvas.willReadFrequently = true;
-    document.body.append(canvas);
+    videoContainer.appendChild(canvas)
     const displaySize = { 
         width: video.width,
         height: video.height
