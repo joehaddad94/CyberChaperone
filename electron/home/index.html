@@ -10,67 +10,98 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <div class="main-container">
-      <button id="startDetection">Start Detection</button>
+    <div class="header-container">
+      <div class="header-left-side">
+        <img src="../assets/images/header-logo.svg" alt="CyChap Logo" />
+        <h3>Hello User</h3>
+      </div>
+      <div class="header-right-side">
+        <button id="logOut">Log Out</button>
+      </div>
+    </div>
 
-      <div id="videoContainer" class="video-container">
-        <video id="video" width="720" height="560" autoplay muted></video>
+    <div class="main-container">
+      <div class="left-main-container">
+        <div id="videoContainer" class="video-container">
+          <video id="video" width="720" height="560" autoplay muted></video>
+          <!-- <img
+            src="../assets/images/placeholder-image.jpg"
+            alt="Placeholder Image"
+            class="placeholder-image"
+          /> -->
+          <div class="empty-state-text">
+            Press Start to begin emotion detection
+          </div>
+        </div>
       </div>
 
-      <div id="emotion-progress" class="emotion-progress-container">
-        <div id="anger" class="emotion-bar">
-          <span class="emotion-label">Angry:</span>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%">
+      <div class="right-main-container">
+        <div class="right-main-container-logo">
+          <img src="../assets/images/Logo.svg" alt="CyChap Logo" />
+        </div>
+        <button id="startDetection">Start Detection</button>
+        <div id="emotion-progress" class="emotion-progress-container">
+          <div id="anger" class="emotion-bar">
+            <div class="label-percentage">
+              <span class="emotion-label">Angry:</span>
               <span class="percentage">0%</span>
             </div>
-          </div>
-        </div>
-        <div id="disgust" class="emotion-bar">
-          <span class="emotion-label">Disgusted:</span>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%">
-              <span class="percentage">0%</span>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
             </div>
           </div>
-        </div>
-        <div id="fear" class="emotion-bar">
-          <span class="emotion-label">Fearful:</span>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%">
+          <div id="disgust" class="emotion-bar">
+            <div class="label-percentage">
+              <span class="emotion-label">Disgusted:</span>
               <span class="percentage">0%</span>
             </div>
-          </div>
-        </div>
-        <div id="happy" class="emotion-bar">
-          <span class="emotion-label">Happy:</span>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%">
-              <span class="percentage">0%</span>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
             </div>
           </div>
-        </div>
-        <div id="neutral" class="emotion-bar">
-          <span class="emotion-label">Neutral:</span>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%">
+          <div id="fear" class="emotion-bar">
+            <div class="label-percentage">
+              <span class="emotion-label">Fearful:</span>
               <span class="percentage">0%</span>
             </div>
-          </div>
-        </div>
-        <div id="sad" class="emotion-bar">
-          <span class="emotion-label">Sad:</span>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%">
-              <span class="percentage">0%</span>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
             </div>
           </div>
-        </div>
-        <div id="surprise" class="emotion-bar">
-          <span class="emotion-label">Surprised:</span>
-          <div class="progress-bar">
-            <div class="progress-fill" style="width: 0%">
+          <div id="happy" class="emotion-bar">
+            <div class="label-percentage">
+              <span class="emotion-label">Happy:</span>
               <span class="percentage">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+          </div>
+          <div id="neutral" class="emotion-bar">
+            <div class="label-percentage">
+              <span class="emotion-label">Neutral:</span>
+              <span class="percentage">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+          </div>
+          <div id="sad" class="emotion-bar">
+            <div class="label-percentage">
+              <span class="emotion-label">Sad:</span>
+              <span class="percentage">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
+            </div>
+          </div>
+          <div id="surprise" class="emotion-bar">
+            <div class="label-percentage">
+              <span class="emotion-label">Surprised:</span>
+              <span class="percentage">0%</span>
+            </div>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 0%"></div>
             </div>
           </div>
         </div>

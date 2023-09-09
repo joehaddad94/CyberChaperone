@@ -8,6 +8,7 @@ const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
 
 let loginWindow;
+let homeWindow;
 
 function createMainWindow() {
     loginWindow = new BrowserWindow({
@@ -37,8 +38,8 @@ function createMainWindow() {
 function createHomeWindow() {
     const homeWindow = new BrowserWindow({
         title: 'CyberChaperone',
-        width: isDev ? 1500 : 1100,
-        height: 900,
+        width: isDev ? 1500 : 1300,
+        height: 725,
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,
@@ -64,6 +65,15 @@ ipcMain.on('close-login-window', () => {
     if (loginWindow) {
         loginWindow.close();
         loginWindow = null;
+    }
+});
+
+ipcMain.on('logout', () => {
+    console.log('Ipc main entered')
+    if (homeWindow) {
+        homeWindow.close();
+        homeWindow = null;
+        createMainWindow();
     }
 });
 

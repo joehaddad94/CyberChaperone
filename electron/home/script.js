@@ -1,6 +1,10 @@
 const video = document.getElementById('video');
 const videoContainer = document.getElementById('videoContainer');
 const detectionToggleButton = document.getElementById('startDetection');
+const emptyStateText = document.querySelector('.empty-state-text');
+const placeholderImage = document.querySelector('.placeholder-image');
+const logOutButton = document.getElementById('logOut');
+
 
 let isVideoRunning = false;
 
@@ -24,22 +28,6 @@ const emotionBars = {
     surprised: 'surprise'
   };
 
-// Promise.all([
-//     faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
-//     faceapi.nets.faceLandmark68Net.loadFromUri('../models'),
-//     faceapi.nets.faceRecognitionNet.loadFromUri('../models'),
-//     faceapi.nets.faceExpressionNet.loadFromUri('../models')
-//   ]).then(startVideo)
-
-// async function startVideo() {
-//     try {
-//       const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-//       video.srcObject = stream;
-//     } catch (error) {
-//       console.error('Error accessing webcam:', error);
-//     }
-//   }
-
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('../models'),
@@ -50,15 +38,16 @@ Promise.all([
     toggleVideo();
   });
 });
-
   
   async function toggleVideo() {
     if (!isVideoRunning) {
       try {
+        detectionToggleButton.textContent = 'Stop Detection';
         const stream = await navigator.mediaDevices.getUserMedia({ video: true });
         video.srcObject = stream;
         isVideoRunning = true;
-        detectionToggleButton.textContent = 'Stop Detection';
+        emptyStateText.style.display = 'none';
+        placeholderImage.style.display = 'none';
       } catch (error) {
         console.error('Error accessing webcam:', error);
       }
@@ -77,6 +66,9 @@ Promise.all([
         }
 
         detectionToggleButton.textContent = 'Start Detection';
+        emptyStateText.style.display = 'block';
+        placeholderImage.style.display = 'block';
+        resetProgressBars()
       }
     }
   }
@@ -135,4 +127,26 @@ Promise.all([
             faceapi.draw.drawFaceLandmarks(canvas, resizedDetections)
             faceapi.draw.drawFaceExpressions(canvas, resizedDetections)
     },100)
+})
+
+function resetProgressBars() {
+  for (const emotion in emotionBars) {
+    if (emotionBars[emotion]) {
+      const percentageSpan = emotionBars[emotion].querySelector('.percentage');
+      if (percentageSpan) {
+        percentageSpan.textContent = '0%';
+      }
+
+      const progressBar = emotionBars[emotion].querySelector('.progress-fill');
+      if (progressBar) {
+        progressBar.style.width = '0%';
+      }
+    }
+  }
+}
+
+logOutButton.addEventListener('click', () => {
+  console.log(logOutButton)
+  console.log('clicked')
+  ipcRenderer.send('logout');
 })
