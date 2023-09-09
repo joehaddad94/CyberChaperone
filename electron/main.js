@@ -1,7 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = 'production';
+// process.env.NODE_ENV = 'development';
 
 const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
@@ -11,8 +12,8 @@ let loginWindow;
 function createMainWindow() {
     loginWindow = new BrowserWindow({
         title: 'CyberChaperone',
-        width: isDev ? 1000 : 500,
-        height: 600,
+        width: isDev ? 1000 : 450,
+        height: 650,
         frame: false,
         webPreferences: {
             contextIsolation: true,
@@ -36,7 +37,7 @@ function createMainWindow() {
 function createHomeWindow() {
     const homeWindow = new BrowserWindow({
         title: 'CyberChaperone',
-        width: isDev ? 1500 : 1000,
+        width: isDev ? 1500 : 1100,
         height: 900,
         webPreferences: {
             contextIsolation: true,

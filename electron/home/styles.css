@@ -9,6 +9,10 @@ body {
   /* background-color: grey; */
 }
 
+.title-bar {
+  -webkit-app-region: drag;
+}
+
 .main-container {
   display: flex;
   flex-direction: column;
