@@ -19,7 +19,7 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
             // console.log('ipcrenderer: ', channel, data)
         } else {
             ipcRenderer.send(channel);
-            // console.log('ipcrenderer: ', channel)
+            console.log('ipcrenderer: ', channel)
         }
     },
 });

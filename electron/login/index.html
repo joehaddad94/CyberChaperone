@@ -4,11 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="Content-Security-Policy" content="script-src 'self'" />
-    <title>Cyber Chaperone</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="./styles.css" />
+    <title class="title-bar">Cyber Chaperone</title>
   </head>
   <body>
-    <h1>Hello World</h1>
-    <button id="login">Login</button>
+    <div class="login-form-container">
+      <div class="logo-img">
+        <img src="../assets/images/Logo.svg" alt="CyChap Logo" />
+      </div>
+
+      <div class="inputs">
+        <div class="input-data">
+          <input type="text" required />
+          <label>Email</label>
+        </div>
+
+        <div class="input-data">
+          <input type="password" required />
+          <label>Password</label>
+        </div>
+      </div>
+
+      <div class="login-form-buttons">
+        <button id="login">Login</button>
+        <button id="close">Close</button>
+      </div>
+    </div>
   </body>
   <script src="./script.js"></script>
 </html>

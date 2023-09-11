@@ -1,18 +1,21 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
-process.env.NODE_ENV = 'development'
+process.env.NODE_ENV = 'production';
+// process.env.NODE_ENV = 'development';
 
 const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
 
 let loginWindow;
+let homeWindow;
 
 function createMainWindow() {
     loginWindow = new BrowserWindow({
         title: 'CyberChaperone',
-        width: isDev ? 1000 : 500,
-        height: 600,
+        width: isDev ? 1000 : 450,
+        height: 650,
+        frame: false,
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,
@@ -35,8 +38,8 @@ function createMainWindow() {
 function createHomeWindow() {
     const homeWindow = new BrowserWindow({
         title: 'CyberChaperone',
-        width: isDev ? 1500 : 1000,
-        height: 800,
+        width: isDev ? 1500 : 1300,
+        height: 725,
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,
@@ -62,6 +65,15 @@ ipcMain.on('close-login-window', () => {
     if (loginWindow) {
         loginWindow.close();
         loginWindow = null;
+    }
+});
+
+ipcMain.on('logout', () => {
+    console.log('Ipc main entered')
+    if (homeWindow) {
+        homeWindow.close();
+        homeWindow = null;
+        createMainWindow();
     }
 });
 
