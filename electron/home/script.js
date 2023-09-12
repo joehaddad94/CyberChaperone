@@ -46,7 +46,7 @@ Promise.all([
         video.srcObject = stream;
         isVideoRunning = true;
         emptyStateText.style.display = 'none';
-        placeholderImage.style.display = 'none';
+        // placeholderImage.style.display = 'none';
       } catch (error) {
         console.error('Error accessing webcam:', error);
       }
@@ -66,7 +66,7 @@ Promise.all([
 
         detectionToggleButton.textContent = 'Start Detection';
         emptyStateText.style.display = 'block';
-        placeholderImage.style.display = 'block';
+        // placeholderImage.style.display = 'block';
         resetProgressBars()
       }
     }
@@ -86,11 +86,12 @@ Promise.all([
     setInterval(async () =>{
         const detections = await faceapi.detectAllFaces(video,
             new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-            console.log(detections)
+            // console.log(detections[0].expressions)
 
             if (detections.length > 0) {
                 const emotions = detections[0].expressions;
-          
+
+                
                 // for (const emotion in emotions) {
                 //   if (emotionBars[emotion]) {
                 //     const percentage = (emotions[emotion] * 100).toFixed(2);
@@ -104,6 +105,8 @@ Promise.all([
                     const percentage = (emotions[emotion] * 100).toFixed(2);
                     const capitalizedEmotion = emotion.charAt(0).toUpperCase() + emotion.slice(1);
                     // emotionBars[emotion].textContent = `${capitalizedEmotion}: ${percentage}%`;
+                    
+                    ipcRenderer.send('emotion-data', emotions);
 
                     const emotionId = emotionToId[emotion];
 
@@ -151,6 +154,5 @@ logOutButton.addEventListener('click', () => {
 })
 
 ipcRenderer.on('console-log', (event, message) => {
-  // Display the console message in the renderer process
   console.log(message);
 });

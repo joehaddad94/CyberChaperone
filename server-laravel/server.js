@@ -12,11 +12,13 @@ const io = new Server(httpServer, {
 io.on("connection", (socket) => {
     console.log('A user connected');
 
-    // Add event listener for receiving data from the client
-    socket.on("custom-event", (data) => {
-        console.log("Received data from client:", data);
-        // Handle the received data as needed
-    });
+    socket.on("hello", (arg) => {
+        console.log(arg);
+      });
+
+      socket.on("emotions-data", (emotions) => {
+        console.log(emotions);
+      });
 });
 
 httpServer.listen(3000, () => {

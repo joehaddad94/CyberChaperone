@@ -76,6 +76,8 @@ ipcMain.on('logout', () => {
     }
 });
 
+
+
 app.whenReady().then(() => {
     createMainWindow();
 
@@ -92,4 +94,22 @@ app.on('window-all-closed', () => {
     }
   })
 
- 
+  const io = require('socket.io-client');
+//   console.log(io);
+  
+  const serverURL = 'http://localhost:3000';
+  
+  const socket = io(serverURL);
+  
+  socket.on('connect', () => {
+    console.log('Connected to the Socket.IO server', socket.connected);
+    
+    ipcMain.on('emotion-data', (event, emotions) => {
+        console.log('Received emotion data in the renderer process:', emotions);
+        socket.emit('emotions-data', emotions);
+    });
+  });
+  
+  socket.on('disconnect', () => {
+    console.log('Disconnected from the Socket.IO server');
+  });
