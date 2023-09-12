@@ -5,7 +5,6 @@ const emptyStateText = document.querySelector('.empty-state-text');
 const placeholderImage = document.querySelector('.placeholder-image');
 const logOutButton = document.getElementById('logOut');
 
-
 let isVideoRunning = false;
 
 const emotionBars = {
@@ -150,3 +149,8 @@ logOutButton.addEventListener('click', () => {
   console.log('clicked')
   ipcRenderer.send('logout');
 })
+
+ipcRenderer.on('console-log', (event, message) => {
+  // Display the console message in the renderer process
+  console.log(message);
+});

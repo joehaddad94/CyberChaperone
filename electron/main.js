@@ -1,8 +1,8 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
 
-process.env.NODE_ENV = 'production';
-// process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 
 const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';
@@ -53,7 +53,6 @@ function createHomeWindow() {
     }
 
     homeWindow.loadFile(path.join(__dirname, './home/index.html'));
-
     
 }
 
@@ -92,3 +91,5 @@ app.on('window-all-closed', () => {
         app.quit()
     }
   })
+
+ 
