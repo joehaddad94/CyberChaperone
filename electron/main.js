@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const axios = require('axios');
 const io = require('socket.io-client');
 
 // process.env.NODE_ENV = 'production';
@@ -10,6 +11,22 @@ const isMac = process.platform === 'darwin';
 
 let loginWindow;
 let homeWindow;
+
+async function makeRequest(method, url, data = null) {
+    try {
+        let response;
+
+        if (method === 'GET') {
+            response = await axios.get(url);
+        } else if (method === 'POST') {
+            response = await axios.post(url, data);
+        } else {
+            throw  new Error('Unsopported HTTP Method')
+        }
+    }catch(error) {
+        throw(error);
+    }
+}
 
 function createMainWindow() {
     loginWindow = new BrowserWindow({
@@ -58,8 +75,9 @@ function createHomeWindow() {
     
 }
 
-ipcMain.on('login', () => {
-    createHomeWindow();
+ipcMain.on('login', (event, credentials) => {
+    console.log(credentials)
+    // createHomeWindow();
 });
 
 ipcMain.on('close-login-window', () => {
