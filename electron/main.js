@@ -21,6 +21,7 @@ function createMainWindow() {
             contextIsolation: true,
             nodeIntegration: true,
             hardwareAcceleration: false,
+            enableRemoteModule: true,
             preload: path.join(__dirname, './preload.js'),
         }
     });
@@ -43,6 +44,7 @@ function createHomeWindow() {
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,
+            enableRemoteModule: true,
             preload: path.join(__dirname, './preload.js'),
         }
     })
