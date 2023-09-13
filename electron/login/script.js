@@ -4,9 +4,11 @@ const usernameInput = document.getElementById('username');
 const passwordInput  = document.getElementById('password');
 
 let loginResponse;
+let localStorageData;
 
-function saveToLocalStorage(key, data) {
-    localStorage.setItem(key, JSON.stringify(data));
+
+function saveToLocalStorage(key, { type_id, username, email, token }) {
+    localStorage.setItem(key, JSON.stringify({ type_id, username, email, token }));
 }
 
 function getFromLocalStorage(key) {
@@ -29,8 +31,10 @@ loginButton.addEventListener('click', () => {
         loginResponse = response
         saveToLocalStorage('loginResponse', loginResponse);
         console.log('loginResponse', loginResponse)
+        localStorageData = getFromLocalStorage('loginResponse')
+        // console.log(localStorageData.token)
+        
     });
-
 
     // ipcRenderer.send('close-login-window');
 });
