@@ -46,6 +46,50 @@ class AuthController extends Controller
         ]);
     }
 
+    public function electronAppLogin(Request $request)
+{
+    $request->validate([
+        'username' => 'required|string',
+        'password' => 'required|string',
+    ]);
+
+    $credentials = $request->only('username', 'password');
+
+    if (!Auth::attempt($credentials)) {
+        return response()->json([
+            'status' => 'error',
+            'message' => 'Wrong Username or Password',
+        ], 401);
+    }
+
+    $user = Auth::user();
+
+
+    if ($user->type_id !== 3) {
+        Auth::logout();
+        return response()->json([
+            'status' => 'Error Unauthorized User Type',
+            'message' => 'Unauthorized Access',
+        ], 401);
+    }
+
+    $token = Auth::attempt($credentials);
+
+    if (!$token) {
+        return response()->json([
+            'message' => 'Unauthorized',
+        ], 401);
+    }
+
+    return response()->json([
+        'user' => $user,
+        'authorization' => [
+            'token' => $token,
+            'type' => 'bearer',
+        ]
+    ]);
+}
+
     public function register(Request $request) {
 
         $validator = Validator::make($request->all(), [

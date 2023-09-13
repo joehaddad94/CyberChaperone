@@ -9,4 +9,5 @@ Route::group(["middleware" => "auth:api"], function () {
 });
 
 Route::post("login", [AuthController::class, "login"]);
+Route::post("app_login", [AuthController::class, "electronAppLogin"]);
 Route::post("register", [AuthController::class, "register"]);
