@@ -46,8 +46,8 @@ class AuthController extends Controller
         ]);
     }
 
-    public function electronAppLogin(Request $request)
-{
+    public function electronAppLogin(Request $request) {
+
     $request->validate([
         'username' => 'required|string',
         'password' => 'required|string',
@@ -81,13 +81,14 @@ class AuthController extends Controller
         ], 401);
     }
 
-    return response()->json([
-        'user' => $user,
-        'authorization' => [
-            'token' => $token,
-            'type' => 'bearer',
-        ]
-    ]);
+    $responseData = [
+        'type_id' => $user->type_id,
+        'username' => $user->username,
+        'email' => $user->email,
+        'token' => $token,
+    ];
+
+    return response()->json($responseData);
 }
 
     public function register(Request $request) {
