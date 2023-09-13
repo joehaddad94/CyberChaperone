@@ -15,22 +15,46 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
-        $credentials = $request->only('email', 'password');
-        $token = Auth::attempt($credentials);
+    // public function login(Request $request)
+    // {
+    //     $request->validate([
+    //         'email' => 'required|string|email',
+    //         'password' => 'required|string',
+    //     ]);
+    //     $credentials = $request->only('email', 'password');
+    //     $token = Auth::attempt($credentials);
 
-        if (!$token) {
-            return response()->json([
-                'message' => 'Unauthorized',
-            ], 401);
-        }
+    //     if (!$token) {
+    //         return response()->json([
+    //             'message' => 'Unauthorized',
+    //         ], 401);
+    //     }
 
+    //     $user = Auth::user();
+    //     return response()->json([
+    //         'user' => $user,
+    //         'authorization' => [
+    //             'token' => $token,
+    //             'type' => 'bearer',
+    //         ]
+    //     ]);
+    // }
+
+    public function login(Request $request) {
+
+    $request->validate([
+        'username_or_email' => 'required|string',
+        'password' => 'required|string',
+    ]);
+
+    $credentials = $request->only('username_or_email', 'password');
+
+    $field = filter_var($credentials['username_or_email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
+
+    if (Auth::attempt([$field => $credentials['username_or_email'], 'password' => $credentials['password']])) {
         $user = Auth::user();
+        $token = $user->createToken('YourAppNameToken')->plainTextToken;
+
         return response()->json([
             'user' => $user,
             'authorization' => [
@@ -40,28 +64,61 @@ class AuthController extends Controller
         ]);
     }
 
+    return response()->json([
+        'message' => 'Unauthorized',
+    ], 401);
+}
+
+    // public function register(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string|max:255',
+    //         'email' => 'required|string|email|max:255|unique:users',
+    //         'password' => 'required|string|min:6',
+    //     ]);
+
+    //     $user = User::create([
+    //         'name' => $request->name,
+    //         'email' => $request->email,
+    //         'password' => Hash::make($request->password),
+    //     ]);
+
+    //     $token = Auth::login($user);
+
+    //     return response()->json([
+    //         'message' => 'User created successfully',
+    //         'user' => $user,
+    //         'token' => $token
+    //     ]);
+    // }
+
     public function register(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+{
+    $validator = Validator::make($request->all(), [
+        'username' => 'required|string|max:255',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6',
+    ]);
 
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $token = Auth::login($user);
-
-        return response()->json([
-            'message' => 'User created successfully',
-            'user' => $user,
-            'token' => $token
-        ]);
+    if ($validator->fails()) {
+        return response()->json($validator->errors(), 400);
     }
+
+    $user = User::create([
+        'type_id' => 2,
+        'username' => $request->username,
+        'email' => $request->email,
+        'password' => Hash::make($request->password),
+    ]);
+
+    Auth::login($user);
+
+    return response()->json([
+        'message' => 'User created successfully',
+        'user' => $user,
+        'token' => $token
+    ]);
+}
 
     public function logout()
     {
