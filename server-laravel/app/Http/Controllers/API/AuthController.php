@@ -11,45 +11,6 @@ use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
-    }
-
-    // public function login(Request $request) {
-
-    //     $request->validate([
-    //         'username' => 'required|string',
-    //         'password' => 'required|string',
-    //     ]);
-
-    //     $credentials = $request->only('username', 'password');
-    //     $field = filter_var($credentials['username'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-    //         // dd($field);
-    //     if (Auth::attempt([$field => $credentials['username'], 'password' => $credentials['password']])) {
-    //         $user = Auth::user();
-
-    //         $token = Auth::attempt($credentials);
-    //         // dd($field);
-
-    //         // dd($credentials);
-    //         // dd($token);
-    //     }
-
-    //     if (!$token) {
-    //         return response()->json([
-    //             'message' => 'Unauthorized',
-    //         ], 401);
-    //     }
-
-    //     return response()->json([
-    //         'user' => $user,
-    //         'authorization' => [
-    //             'token' => $token,
-    //             'type' => 'bearer',
-    //         ]
-    //     ]);
-    // }
 
     public function login(Request $request) {
 
@@ -84,35 +45,6 @@ class AuthController extends Controller
             ]
         ]);
     }
-
-//     public function login(Request $request) {
-
-//     $request->validate([
-//         'username_or_email' => 'required|string',
-//         'password' => 'required|string',
-//     ]);
-
-//     $credentials = $request->only('username_or_email', 'password');
-
-//     $field = filter_var($credentials['username_or_email'], FILTER_VALIDATE_EMAIL) ? 'email' : 'username';
-
-//     if (Auth::attempt([$field => $credentials['username_or_email'], 'password' => $credentials['password']])) {
-//         $user = Auth::user();
-//         $token = $user->createToken('YourAppNameToken')->plainTextToken;
-
-//         return response()->json([
-//             'user' => $user,
-//             'authorization' => [
-//                 'token' => $token,
-//                 'type' => 'bearer',
-//             ]
-//         ]);
-//     }
-
-//     return response()->json([
-//         'message' => 'Unauthorized',
-//     ], 401);
-// }
 
     public function register(Request $request) {
 
