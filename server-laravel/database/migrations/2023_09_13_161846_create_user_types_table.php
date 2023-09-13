@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use App\Models\UserType;
 
 return new class extends Migration
 {
@@ -15,6 +16,10 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
         });
+
+        UserType::create(['type_name' => 'admin']);
+        UserType::create(['type_name' => 'guardian']);
+        UserType::create(['type_name' => 'general user']);
     }
 
     /**
