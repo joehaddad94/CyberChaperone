@@ -14,19 +14,30 @@ let homeWindow;
 
 async function makeRequest(method, url, data = null) {
     try {
-        let response;
-
-        if (method === 'GET') {
-            response = await axios.get(url);
-        } else if (method === 'POST') {
-            response = await axios.post(url, data);
-        } else {
-            throw  new Error('Unsopported HTTP Method')
-        }
-    }catch(error) {
-        throw(error);
+      let response;
+  
+      if (method === 'GET') {
+        response = await axios.get(url);
+      } else if (method === 'POST') {
+        response = await axios.post(url, data);
+      } else {
+        throw new Error('Unsupported HTTP Method');
+      }
+  
+      return response.data;
+    } catch (error) {
+      if (error.response) {
+        console.error('Server error:', error.response.status, error.response.data);
+        throw new Error('Server error');
+      } else if (error.request) {
+        console.error('No response from server');
+        throw new Error('No response from server');
+      } else {
+        console.error('Request error:', error.message);
+        throw new Error('Request error');
+      }
     }
-}
+  }
 
 function createMainWindow() {
     loginWindow = new BrowserWindow({
@@ -75,8 +86,20 @@ function createHomeWindow() {
     
 }
 
-ipcMain.on('login', (event, credentials) => {
+ipcMain.on('login', async (event, credentials) => {
     console.log(credentials)
+    const URL = 'http://127.0.0.1:8000/api/app_login'
+
+    try {
+        const response = await makeRequest('POST', URL, {
+            username: credentials.usernameValue,
+            password: credentials.passwordValue,
+        });
+        console.log('Response:', response);
+        event.sender.send('login-response', response);
+      } catch (error) {
+        console.error('Error:', error.message);
+      }
     // createHomeWindow();
 });
 
