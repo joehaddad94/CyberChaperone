@@ -10,7 +10,7 @@ const io = new Server(httpServer, {
 });
 
 io.on("connection", (socket) => {
-    console.log('A user connected');
+    console.log('Electron App is connected');
 
     socket.on("hello", (arg) => {
         console.log(arg);

@@ -100,13 +100,28 @@ Promise.all([
                 //   }
                 // }
 
+                let emotionsObject = {
+                  'emotions': [],
+                  'timestamp': new Date()
+                }
+
                 for (const emotion in emotions) {
                   if (emotionBars[emotion]) {
                     const percentage = (emotions[emotion] * 100).toFixed(2);
                     const capitalizedEmotion = emotion.charAt(0).toUpperCase() + emotion.slice(1);
                     // emotionBars[emotion].textContent = `${capitalizedEmotion}: ${percentage}%`;
                     
-                    ipcRenderer.send('emotion-data', emotions);
+                    let emotionsData = {
+                      'emotion': capitalizedEmotion,
+                      'percentage': percentage,
+                    }
+                    
+                    emotionsObject.emotions.push(emotionsData);
+
+                    
+
+                    // ipcRenderer.send('emotion-data', emotionsObject);
+                    ipcRenderer.send('emotion-data', emotionsObject);
 
                     const emotionId = emotionToId[emotion];
 
