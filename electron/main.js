@@ -1,5 +1,6 @@
 const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+const io = require('socket.io-client');
 
 // process.env.NODE_ENV = 'production';
 process.env.NODE_ENV = 'development';
@@ -30,7 +31,6 @@ function createMainWindow() {
     }
 
     loginWindow.loadFile(path.join(__dirname, './login/index.html'));
-
     
 }
 
@@ -94,11 +94,8 @@ app.on('window-all-closed', () => {
     }
   })
 
-  const io = require('socket.io-client');
-//   console.log(io);
-  
+  //Socket.io Client Server Connection
   const serverURL = 'http://localhost:3000';
-  
   const socket = io(serverURL);
   
   socket.on('connect', () => {
