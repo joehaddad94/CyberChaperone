@@ -70,13 +70,23 @@ class AuthController extends Controller
     ], 401);
 }
 
-    public function register(Request $request)
-    {
-        $request->validate([
-            'username' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6',
-        ]);
+    public function register(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+        'username' => 'required|string|max:255|unique:users',
+        'email' => 'required|string|email|max:255|unique:users',
+        'password' => 'required|string|min:6',
+    ]);
+
+    if ($validator->fails()) {
+        if ($validator->errors()->has('username')) {
+            return response()->json([
+                'message' => 'Username is already taken.',
+            ], 400);
+        }
+
+        return response()->json($validator->errors(), 400);
+    }
 
         $user = User::create([
             'type_id' => 2,
