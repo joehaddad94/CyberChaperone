@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
 {
@@ -69,56 +70,57 @@ class AuthController extends Controller
     ], 401);
 }
 
-    // public function register(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required|string|max:255',
-    //         'email' => 'required|string|email|max:255|unique:users',
-    //         'password' => 'required|string|min:6',
-    //     ]);
-
-    //     $user = User::create([
-    //         'name' => $request->name,
-    //         'email' => $request->email,
-    //         'password' => Hash::make($request->password),
-    //     ]);
-
-    //     $token = Auth::login($user);
-
-    //     return response()->json([
-    //         'message' => 'User created successfully',
-    //         'user' => $user,
-    //         'token' => $token
-    //     ]);
-    // }
-
     public function register(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'username' => 'required|string|max:255',
-        'email' => 'required|string|email|max:255|unique:users',
-        'password' => 'required|string|min:6',
-    ]);
+    {
+        $request->validate([
+            'username' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6',
+        ]);
 
-    if ($validator->fails()) {
-        return response()->json($validator->errors(), 400);
+        $user = User::create([
+            'type_id' => 2,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+        $token = Auth::login($user);
+
+        return response()->json([
+            'message' => 'User created successfully',
+            'user' => $user,
+            'token' => $token
+        ]);
     }
 
-    $user = User::create([
-        'type_id' => 2,
-        'username' => $request->username,
-        'email' => $request->email,
-        'password' => Hash::make($request->password),
-    ]);
+//     public function register(Request $request) {
 
-    Auth::login($user);
+//     $validator = Validator::make($request->all(), [
+//         'username' => 'required|string|max:255',
+//         'email' => 'required|string|email|max:255|unique:users',
+//         'password' => 'required|string|min:6',
+//     ]);
 
-    return response()->json([
-        'message' => 'User created successfully',
-        'user' => $user,
-        'token' => $token
-    ]);
-}
+//     if ($validator->fails()) {
+//         return response()->json($validator->errors(), 400);
+//     }
+
+//     $user = User::create([
+//         'type_id' => 2,
+//         'username' => $request->username,
+//         'email' => $request->email,
+//         'password' => Hash::make($request->password),
+//     ]);
+
+//     $token = Auth::login($user);
+
+//     return response()->json([
+//         'message' => 'User created successfully',
+//         'user' => $user,
+//         'token' => $token
+//     ]);
+// }
 
     public function logout()
     {
