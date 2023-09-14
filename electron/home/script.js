@@ -27,6 +27,59 @@ const emotionBars = {
     surprised: 'surprise'
   };
 
+  function getFromLocalStorage(key) {
+    const data = localStorage.getItem(key);
+    return data ? JSON.parse(data) : null;
+}
+
+  async function toggleVideo() {
+  if (!isVideoRunning) {
+    try {
+      detectionToggleButton.textContent = 'Stop Detection';
+      const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+      video.srcObject = stream;
+      isVideoRunning = true;
+      emptyStateText.style.display = 'none';
+    } catch (error) {
+      console.error('Error accessing webcam:', error);
+    }
+  } else {
+    const stream = video.srcObject;
+    if (stream) {
+      const tracks = stream.getTracks();
+      tracks.forEach((track) => track.stop());
+      video.srcObject = null;
+      isVideoRunning = false;
+
+      const canvasElements = document.getElementsByTagName('canvas');
+      console.log(canvasElements)
+      for (let i = canvasElements.length - 1; i >= 0; i--) {
+        canvasElements[i].remove();
+      }
+      
+      detectionToggleButton.textContent = 'Start Detection';
+      emptyStateText.style.display = 'block';
+      resetProgressBars()
+    }
+  }
+}
+
+  function resetProgressBars() {
+  for (const emotion in emotionBars) {
+    if (emotionBars[emotion]) {
+      const percentageSpan = emotionBars[emotion].querySelector('.percentage');
+      if (percentageSpan) {
+        percentageSpan.textContent = '0%';
+      }
+
+      const progressBar = emotionBars[emotion].querySelector('.progress-fill');
+      if (progressBar) {
+        progressBar.style.width = '0%';
+      }
+    }
+  }
+}
+
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
   faceapi.nets.faceLandmark68Net.loadFromUri('../models'),
@@ -38,39 +91,6 @@ Promise.all([
   });
 });
   
-  async function toggleVideo() {
-    if (!isVideoRunning) {
-      try {
-        detectionToggleButton.textContent = 'Stop Detection';
-        const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-        video.srcObject = stream;
-        isVideoRunning = true;
-        emptyStateText.style.display = 'none';
-        // placeholderImage.style.display = 'none';
-      } catch (error) {
-        console.error('Error accessing webcam:', error);
-      }
-    } else {
-      const stream = video.srcObject;
-      if (stream) {
-        const tracks = stream.getTracks();
-        tracks.forEach((track) => track.stop());
-        video.srcObject = null;
-        isVideoRunning = false;
-
-        const canvasElements = document.getElementsByTagName('canvas');
-        console.log(canvasElements)
-        for (let i = canvasElements.length - 1; i >= 0; i--) {
-          canvasElements[i].remove();
-        }
-
-        detectionToggleButton.textContent = 'Start Detection';
-        emptyStateText.style.display = 'block';
-        // placeholderImage.style.display = 'block';
-        resetProgressBars()
-      }
-    }
-  }
 
   video.addEventListener('play', () => {
 
@@ -78,7 +98,7 @@ Promise.all([
     canvas.willReadFrequently = true;
     videoContainer.appendChild(canvas)
     const displaySize = { 
-        width: video.width,
+      width: video.width,
         height: video.height
     }
     faceapi.matchDimensions(canvas, displaySize)
@@ -86,20 +106,10 @@ Promise.all([
     setInterval(async () =>{
         const detections = await faceapi.detectAllFaces(video,
             new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-            // console.log(detections[0].expressions)
 
             if (detections.length > 0) {
                 const emotions = detections[0].expressions;
-
                 
-                // for (const emotion in emotions) {
-                //   if (emotionBars[emotion]) {
-                //     const percentage = (emotions[emotion] * 100).toFixed(2);
-                //     emotionBars[emotion].textContent = `${emotion.charAt(0).toUpperCase() +
-                //       emotion.slice(1)}: ${percentage}%`;
-                //   }
-                // }
-
                 let emotionsObject = {
                   'emotions': [],
                   'timestamp': new Date()
@@ -118,9 +128,6 @@ Promise.all([
                     
                     emotionsObject.emotions.push(emotionsData);
 
-                    
-
-                    // ipcRenderer.send('emotion-data', emotionsObject);
                     ipcRenderer.send('emotion-data', emotionsObject);
 
                     const emotionId = emotionToId[emotion];
@@ -146,28 +153,8 @@ Promise.all([
     },100)
 })
 
-function resetProgressBars() {
-  for (const emotion in emotionBars) {
-    if (emotionBars[emotion]) {
-      const percentageSpan = emotionBars[emotion].querySelector('.percentage');
-      if (percentageSpan) {
-        percentageSpan.textContent = '0%';
-      }
-
-      const progressBar = emotionBars[emotion].querySelector('.progress-fill');
-      if (progressBar) {
-        progressBar.style.width = '0%';
-      }
-    }
-  }
-}
-
 logOutButton.addEventListener('click', () => {
   console.log(logOutButton)
   console.log('clicked')
   ipcRenderer.send('logout');
 })
-
-ipcRenderer.on('console-log', (event, message) => {
-  console.log(message);
-});

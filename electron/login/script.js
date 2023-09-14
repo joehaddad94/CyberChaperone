@@ -22,8 +22,6 @@ function handleLogin() {
         'passwordValue': passwordInput.value
     };
 
-    // console.log(credentials);
-
     // Send Credentials to main.js
     ipcRenderer.send('login', credentials);
 
@@ -47,16 +45,14 @@ function handleLogin() {
 
         loginResponse = response;
         saveToLocalStorage('loginResponse', loginResponse);
-        // console.log('loginResponse', loginResponse);
         localStorageData = getFromLocalStorage('loginResponse');
-        // console.log(localStorageData.token);
+
     });
     
 }
 
 loginButton.addEventListener('click', handleLogin);
 
-// Listen for Enter key press on the password input field
 passwordInput.addEventListener('keydown', (event) => {
     if (event.key === 'Enter' || event.keyCode === 13) {
         handleLogin();
