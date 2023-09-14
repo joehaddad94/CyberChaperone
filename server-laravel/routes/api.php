@@ -4,7 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 
 Route::group(["middleware" => "auth:api"], function () {
-    Route::post("logout", [AuthController::class, "logout"]);
+    //General user Apis
+    Route::group(["middleware" => "auth.general_user"], function () {
+        Route::post("logout", [AuthController::class, "logout"]);
+    });
+
     Route::post("refresh", [AuthController::class, "refresh"]);
 });
 
