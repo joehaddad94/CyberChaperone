@@ -4,8 +4,10 @@ const detectionToggleButton = document.getElementById('startDetection');
 const emptyStateText = document.querySelector('.empty-state-text');
 const placeholderImage = document.querySelector('.placeholder-image');
 const logOutButton = document.getElementById('logOut');
+const welcomeUser = document.getElementById('welcomeUser');
 
 let isVideoRunning = false;
+let localStorageData;
 
 const emotionBars = {
     angry: document.getElementById('anger'),
@@ -79,6 +81,14 @@ const emotionBars = {
     }
   }
 }
+
+function setWelcomeMessage(username) {
+  const welcomeMessage = username ? `Hello ${username}` : 'Hello';
+  welcomeUser.textContent = welcomeMessage;
+}
+
+const savedUsername = getFromLocalStorage('loginResponse')?.username;
+setWelcomeMessage(savedUsername);
 
 Promise.all([
   faceapi.nets.tinyFaceDetector.loadFromUri('../models'),
