@@ -3,11 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\DetectionResult;
 
 class emotionsResultsController extends Controller {
     public function store(Request $request) {
+        try {
 
-        $token = $request->header('Authorization');
+        $authUser = Auth::user();
+
+        if (!$authUser) {
+            return response()->json(['error' => 'User is not authenticated.'], 401);
+        }
 
         $request->validate([
             'emotions' => 'required|array',
@@ -15,9 +21,14 @@ class emotionsResultsController extends Controller {
         ]);
 
         $emotionData = new EmotionData();
-        $emotionData->emotions = json_encode($request->input('emotions'));
-        $emotionData->timestamp = $request->input('timestamp');
-        $emotionData->user_token = $token;
+        $emotionData->user_id = $authUser->id;
+        $emotionData->emotions_percentage = $request->input('emotions');
+        $emotionData->detection_time = $request->input('timestamp');
+
+            $emotionData->save();
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Failed to save emotion data.'], 500);
+        }
 
         return response()->json(['message' => 'Emotion data saved successfully']);
     }

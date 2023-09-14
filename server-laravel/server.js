@@ -1,5 +1,6 @@
 import { createServer } from "http";
 import { Server } from "socket.io";
+import axios from "axios";
 
 let userToken;
 
@@ -14,13 +15,25 @@ const io = new Server(httpServer, {
 io.on("connection", (socket) => {
     console.log('Electron App is connected');
 
-      socket.on("emotions-data", (emotions) => {
-        console.log(emotions);
-      });
-
-      socket.on("token", (token) => {
+    socket.on("token", (token) => {
         userToken = token;
       });
+
+      socket.on("emotions-data", async (emotions) => {
+        try {
+            const apiUrl = "";
+
+            const headers = {
+                Authorization: `Bearer ${userToken}`,
+            };
+
+            const response = await axios.post(apiUrl, emotions, { headers });
+
+            console.log("Emotion data sent successfully:", response.data);
+        } catch (error) {
+            console.error("Error sending emotion data:", error);
+        }
+    });
 
 });
 
