@@ -7,7 +7,7 @@ const logOutButton = document.getElementById('logOut');
 const welcomeUser = document.getElementById('welcomeUser');
 
 let isVideoRunning = false;
-let localStorageData;
+let localStorageData = getFromLocalStorage('loginResponse')
 
 const emotionBars = {
     angry: document.getElementById('anger'),
@@ -87,7 +87,7 @@ function setWelcomeMessage(username) {
   welcomeUser.textContent = welcomeMessage;
 }
 
-const savedUsername = getFromLocalStorage('loginResponse')?.username;
+const savedUsername = localStorageData?.username;
 setWelcomeMessage(savedUsername);
 
 Promise.all([
@@ -164,7 +164,7 @@ Promise.all([
 })
 
 logOutButton.addEventListener('click', () => {
-  console.log(logOutButton)
-  console.log('clicked')
-  ipcRenderer.send('logout');
+  const token = localStorageData?.token;
+  console.log(token)
+  ipcRenderer.send('logout-btn', token);
 })

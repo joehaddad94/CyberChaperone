@@ -9,8 +9,11 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
 
         if (data !== undefined) {
             ipcRenderer.send(channel, data);
+            console.log('channel, data',channel, data)
         } else {
             ipcRenderer.send(channel);
+            console.log('channel', channel)
+
         }
     },
     on: (channel, listener) => {

@@ -54,7 +54,7 @@ function createMainWindow() {
 
 //Create Home Window
 function createHomeWindow() {
-    const homeWindow = new BrowserWindow({
+    homeWindow = new BrowserWindow({
         title: 'CyberChaperone',
         width: isDev ? 1500 : 1300,
         height: 725,
@@ -77,14 +77,14 @@ function createHomeWindow() {
 
 ipcMain.on('login', async (event, credentials) => {
     console.log(credentials)
-    const URL = `${baseUrl}/api/app_login`
+    const URL = `${baseUrl}/api/app_login`;
 
     try {
         const response = await makeRequest('POST', URL, {
             username: credentials.usernameValue,
             password: credentials.passwordValue,
         });
-        // console.log('Response:', response);
+
         event.sender.send('login-response', response);
         createHomeWindow();
         if (loginWindow) {
@@ -111,14 +111,7 @@ ipcMain.on('close-login-window', () => {
     }
 });
 
-ipcMain.on('logout', () => {
-    console.log('Ipc main entered')
-    if (homeWindow) {
-        homeWindow.close();
-        homeWindow = null;
-        createMainWindow();
-    }
-});
+
 
 app.whenReady().then(() => {
     createMainWindow();
@@ -135,6 +128,15 @@ app.on('window-all-closed', () => {
         app.quit()
     }
   })
+
+  ipcMain.on('logout-btn', (event, token) => {
+    console.log(token)
+    if (homeWindow) {
+        homeWindow.close();
+        homeWindow = null;
+        createMainWindow();
+    }
+});
 
   //Socket.io Client Server Connection
   const serverURL = 'http://localhost:3000';
