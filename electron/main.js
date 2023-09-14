@@ -3,6 +3,8 @@ const path = require('path');
 const axios = require('axios');
 const io = require('socket.io-client');
 
+const baseUrl = 'http://127.0.0.1:8000'
+
 // process.env.NODE_ENV = 'production';
 process.env.NODE_ENV = 'development';
 
@@ -75,7 +77,7 @@ function createHomeWindow() {
 
 ipcMain.on('login', async (event, credentials) => {
     console.log(credentials)
-    const URL = 'http://127.0.0.1:8000/api/app_login'
+    const URL = `${baseUrl}/api/app_login`
 
     try {
         const response = await makeRequest('POST', URL, {
