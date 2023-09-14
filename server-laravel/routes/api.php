@@ -6,7 +6,7 @@ use App\Http\Controllers\API\AuthController;
 Route::group(["middleware" => "auth:api"], function () {
     //General user Apis
     Route::group(["middleware" => "auth.general_user"], function () {
-        Route::post("logout", [AuthController::class, "logout"]);
+        Route::get("logout", [AuthController::class, "logout"]);
     });
 
     Route::post("refresh", [AuthController::class, "refresh"]);

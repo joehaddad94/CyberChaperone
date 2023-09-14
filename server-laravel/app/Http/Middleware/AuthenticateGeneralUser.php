@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
+use Illuminate\Support\Facades\Auth;
+
 class AuthenticateGeneralUser
 {
     /**
@@ -17,7 +19,7 @@ class AuthenticateGeneralUser
     {
         $user = Auth::user();
 
-        if ($user->user_type_id == 3) {
+        if ($user->type_id == 3) {
             return $next($request);
         }
 
