@@ -13,7 +13,6 @@ let loginWindow;
 let homeWindow;
 
 async function makeRequest(method, url, data = null) {
-    try {
       let response;
   
       if (method === 'GET') {
@@ -25,18 +24,6 @@ async function makeRequest(method, url, data = null) {
       }
   
       return response.data;
-    } catch (error) {
-      if (error.response) {
-        console.error('Server error:', error.response.status, error.response.data);
-        throw new Error('Server error');
-      } else if (error.request) {
-        console.error('No response from server');
-        throw new Error('No response from server');
-      } else {
-        console.error('Request error:', error.message);
-        throw new Error('Request error');
-      }
-    }
   }
 
 function createMainWindow() {
@@ -95,12 +82,24 @@ ipcMain.on('login', async (event, credentials) => {
             username: credentials.usernameValue,
             password: credentials.passwordValue,
         });
-        console.log('Response:', response);
+        // console.log('Response:', response);
         event.sender.send('login-response', response);
-      } catch (error) {
-        console.error('Error:', error.message);
+        createHomeWindow();
+        if (loginWindow) {
+          loginWindow.close();
+          loginWindow = null;
       }
-    // createHomeWindow();
+      } catch (error) {
+        if (error.response) {
+            console.error('Server error:', error.response.status, error.response.data);
+          } else if (error.request) {
+            console.error('No response from server'); 
+          } else {
+            console.error('Request error:', error.message);
+          }
+          event.sender.send('login-response', error.response.status);
+      }
+    
 });
 
 ipcMain.on('close-login-window', () => {
@@ -118,8 +117,6 @@ ipcMain.on('logout', () => {
         createMainWindow();
     }
 });
-
-
 
 app.whenReady().then(() => {
     createMainWindow();
