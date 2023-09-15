@@ -9,6 +9,12 @@ const welcomeUser = document.getElementById('welcomeUser');
 let isVideoRunning = false;
 let localStorageData = getFromLocalStorage('loginResponse')
 
+let token = localStorageData.token
+ipcRenderer.send('token', token);
+
+const accumulatedEmotionData = [];
+const dispatchThreshold = 10;
+
 const emotionBars = {
     angry: document.getElementById('anger'),
     disgusted: document.getElementById('disgust'),
@@ -28,6 +34,13 @@ const emotionBars = {
     sad: 'sad',
     surprised: 'surprise'
   };
+
+  function dispatchEmotionData() {
+    if (accumulatedEmotionData.length >= dispatchThreshold) {
+      ipcRenderer.send('emotion-data', accumulatedEmotionData);
+      accumulatedEmotionData.length = 0;
+    }
+  }
 
   function getFromLocalStorage(key) {
     const data = localStorage.getItem(key);
@@ -137,8 +150,9 @@ Promise.all([
                     }
                     
                     emotionsObject.emotions.push(emotionsData);
-
-                    ipcRenderer.send('emotion-data', emotionsObject);
+                    accumulatedEmotionData.push(emotionsObject);
+                    dispatchEmotionData();
+                    // ipcRenderer.send('emotion-data', emotionsObject);
 
                     const emotionId = emotionToId[emotion];
 
@@ -165,6 +179,6 @@ Promise.all([
 
 logOutButton.addEventListener('click', () => {
   const token = localStorageData?.token;
-  console.log(token)
+  // console.log(token)
   ipcRenderer.send('logout-btn', token);
 })

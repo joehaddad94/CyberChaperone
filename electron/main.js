@@ -14,6 +14,7 @@ const isMac = process.platform === 'darwin';
 let loginWindow;
 let homeWindow;
 
+
 async function makeRequest(method, url, data = null) {
       let response;
   
@@ -111,32 +112,49 @@ ipcMain.on('close-login-window', () => {
     }
 });
 
-
-
-app.whenReady().then(() => {
-    createMainWindow();
-
-    app.on('activate', () => {
-        if (BrowserWindow.getAllWindows().length === 0) {
-            createMainWindow()
-        }
-      })
-})
-
 app.on('window-all-closed', () => {
     if (!isMac) {
         app.quit()
     }
   })
 
-  ipcMain.on('logout-btn', (event, token) => {
-    console.log(token)
-    if (homeWindow) {
-        homeWindow.close();
-        homeWindow = null;
-        createMainWindow();
+  ipcMain.on('logout-btn', async (event, token) => {
+    const url = `${baseUrl}/api/logout`;
+    
+    try {
+      const response = await makeRequest('GET', url, {
+        headers: {
+          'Authorization': `Bearer ${token}`
+        }
+      });
+      console.log(response)
+    //   if (homeWindow) {
+    //     localStorage.clear()
+    //     homeWindow.close();
+    //     homeWindow = null;
+    //     createMainWindow();
+    // }
+    
+    } catch (error) {
+      if (error.response) {
+        console.error('Server error:', error.response.status, error.response.data);
+      } else if (error.request) {
+        console.error('No response from server'); 
+      } else {
+        console.error('Request error:', error.message);
+      }
     }
 });
+
+app.whenReady().then(() => {
+  createMainWindow();
+
+  app.on('activate', () => {
+      if (BrowserWindow.getAllWindows().length === 0) {
+          createMainWindow()
+      }
+    })
+})
 
   //Socket.io Client Server Connection
   const serverURL = 'http://localhost:3000';
@@ -144,9 +162,13 @@ app.on('window-all-closed', () => {
   
   socket.on('connect', () => {
     console.log('Connected to the Socket.IO server', socket.connected);
+
+    ipcMain.on('token', (event, token) => {
+      // console.log(token)
+      socket.emit('token',token);
+    })
     
     ipcMain.on('emotion-data', (event, emotions) => {
-        console.log('Received emotion data in the renderer process:', emotions);
         socket.emit('emotions-data', emotions);
     });
   });
