@@ -1,6 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
 export default function LoginScreen() {
+
     return (
     <View style={styles.container}>
       <Text>Hello, React Native with TypeScript!</Text>
@@ -14,6 +16,5 @@ export default function LoginScreen() {
       backgroundColor: '#fff',
       alignItems: 'center',
       justifyContent: 'center',
-      fontFamily: 'Urbanist'
     },
   });

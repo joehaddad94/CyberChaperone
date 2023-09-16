@@ -11,7 +11,6 @@ const globalStyles = StyleSheet.create({
       fontSize: 16,
       color: '#333333',
     },
-    // Add more global styles as needed
   });
   
   export default globalStyles;
