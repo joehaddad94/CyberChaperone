@@ -1,20 +1,43 @@
+import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
+import globalStyles from '../styles';
+
+const bgImage = require("../assets/images/DarkBG.png");
+const Logo = require("../assets/images/Logo.png");
 
 export default function LoginScreen() {
 
-    return (
-    <View style={styles.container}>
-      <Text>Hello, React Native with TypeScript!</Text>
-    </View>
-    );
-  }
+  return (
+    <ImageBackground
+      source={bgImage}
+      style={globalStyles.backgroundImage}
+      resizeMode='cover'
+    >
+      <View style={[globalStyles.container, globalStyles.center]}>
+        <Image
+          source={Logo}
+          resizeMode='cover'
+          style={styles.logo}
+        />
+        <Text style={styles.text}>Hello, React Native with TypeScript!</Text>
+        <StatusBar style="auto"/>
+      </View>
+    </ImageBackground>
+  );
+}
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#fff',
-      alignItems: 'center',
-      justifyContent: 'center',
+    text: {
+      color: 'white',
+      fontSize: 42,
+      lineHeight: 84,
+      fontWeight: 'bold',
+      textAlign: 'center',
+      backgroundColor: '#000000c0',
     },
+    logo: {
+    width: 150,
+    height: 150,
+    }
   });
