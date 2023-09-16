@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useEffect, useState } from 'react';
+ import React, { useEffect, useState } from 'react';
 import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
 import globalStyles from '../styles';
 
@@ -21,7 +20,6 @@ export default function LoginScreen() {
           style={styles.logo}
         />
         <Text style={styles.text}>Hello, React Native with TypeScript!</Text>
-        <StatusBar style="auto"/>
       </View>
     </ImageBackground>
   );
