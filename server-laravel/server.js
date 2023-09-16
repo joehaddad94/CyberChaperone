@@ -20,19 +20,20 @@ io.on("connection", (socket) => {
       });
 
       socket.on("emotions-data", async (emotions) => {
-        try {
-            const apiUrl = "";
+        console.log(emotions)
+    //     try {
+    //         const apiUrl = "";
 
-            const headers = {
-                Authorization: `Bearer ${userToken}`,
-            };
+    //         const headers = {
+    //             Authorization: `Bearer ${userToken}`,
+    //         };
 
-            const response = await axios.post(apiUrl, emotions, { headers });
+    //         const response = await axios.post(apiUrl, emotions, { headers });
 
-            console.log("Emotion data sent successfully:", response.data);
-        } catch (error) {
-            console.error("Error sending emotion data:", error);
-        }
+    //         console.log("Emotion data sent successfully:", response.data);
+    //     } catch (error) {
+    //         console.error("Error sending emotion data:", error);
+    //     }
     });
 
 });
