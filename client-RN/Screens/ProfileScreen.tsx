@@ -1,6 +1,6 @@
 import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
 
-export default function SettingsScreen() {
+export default function ProfileScreen() {
     return(
         <View>
             <Text>
