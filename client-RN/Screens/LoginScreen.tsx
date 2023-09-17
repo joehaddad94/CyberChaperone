@@ -3,6 +3,7 @@ import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
 import globalStyles from '../styles';
 import TextInput from '../Components/TextInput'
 import Button from '../Components/Button'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const bgImage = require("../assets/images/DarkBG.png");
 const Logo = require("../assets/images/Logo.png");
@@ -20,6 +21,7 @@ export default function LoginScreen() {
   }
 
   return (
+    
     <ImageBackground
       source={bgImage}
       style={globalStyles.backgroundImage}
@@ -48,6 +50,7 @@ export default function LoginScreen() {
             />
       </View>
     </ImageBackground>
+
   );
 }
 

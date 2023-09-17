@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+
 
 import LoginScreen from './Screens/LoginScreen';
 import RegisterScreen from './Screens/RegisterScreen';
@@ -12,19 +14,28 @@ import { StackParamList } from './ParamTypes';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
+SplashScreen.preventAutoHideAsync();
+
+
 export default function App() {
 
-  // const [fontsLoaded] = useFonts({
-  //   'Urbanist': require('./assets/fonts/Urbanist.ttf'),
-  // });
+  const [fontsLoaded] = useFonts({
+    'Urbanist Regular': require('./assets/fonts/Urbanist-Regular.ttf'),
+  });
 
-  // if (!fontsLoaded) {
-  //   console.log('not loaded')
-  //   return null;
-  // }
+  const onLayoutRootView = useCallback(async () => {
+    if (fontsLoaded) {
+      await SplashScreen.hideAsync();
+    }
+  }, [fontsLoaded]);
+
+  if (!fontsLoaded) {
+    console.log('not loaded')
+    return null;
+  }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer onReady={onLayoutRootView}>
       {/* <Text style={styles.text}>Hello, React Native with TypeScript!</Text> */}
       <Stack.Navigator>
       <Stack.Screen
@@ -50,6 +61,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#000000c0',
-    // fontFamily: 'Urbanist'
+    fontFamily: 'Urbanist Regular'
   }
 })
