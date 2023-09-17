@@ -21,36 +21,35 @@ export default function LoginScreen() {
   }
 
   return (
-    
-    <ImageBackground
-      source={bgImage}
-      style={globalStyles.backgroundImage}
-      resizeMode='cover'
-    >
-      <View style={[globalStyles.container, globalStyles.center, styles.containerGap]}>
-        <Image
-          source={Logo}
-          resizeMode='cover'
-          style={styles.logo}
-        />
-        {/* <Text style={styles.text}>Hello, React Native with TypeScript!</Text> */}
-        <TextInput 
-          label="Username" 
-          placeholder="Enter your username"
-          onChangeText={handleUsernameChange}
-          inputStyle= {styles.inputStyle}
+    <SafeAreaView style={globalStyles.container}>
+      <ImageBackground
+        source={bgImage}
+        style={globalStyles.backgroundImage}
+        resizeMode='cover'
+      >
+        <View style={[globalStyles.container, globalStyles.center, styles.containerGap]}>
+          <Image
+            source={Logo}
+            resizeMode='cover'
+            style={styles.logo}
           />
-          <TextInput 
-          label="Password" 
-          placeholder="Enter your password"
-          onChangeText={handlePasswordChange}
-          inputStyle= {styles.inputStyle}
+          {/* <Text style={styles.text}>Hello, React Native with TypeScript!</Text> */}
+          <TextInput
+            label="Username"
+            placeholder="Enter your username"
+            onChangeText={handleUsernameChange}
+            inputStyle={styles.inputStyle}
           />
-          <Button 
-            />
-      </View>
-    </ImageBackground>
-
+          <TextInput
+            label="Password"
+            placeholder="Enter your password"
+            onChangeText={handlePasswordChange}
+            inputStyle={styles.inputStyle}
+          />
+          <Button />
+        </View>
+      </ImageBackground>
+    </SafeAreaView>
   );
 }
 
