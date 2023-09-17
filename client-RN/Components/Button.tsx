@@ -2,8 +2,6 @@ import * as React from 'react';
 import { Button } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 
-
-
 const ButtonComponent = () => (
         <Button 
             mode="contained" 
