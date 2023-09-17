@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { Button } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
-import globalStyles from '../styles';
 
 
-const MyComponent = () => (
+
+const ButtonComponent = () => (
         <Button 
             mode="contained" 
             onPress={() => console.log('Pressed')}
@@ -25,4 +25,4 @@ const styles = StyleSheet.create({
     },
   });
 
-export default MyComponent;
+export default ButtonComponent;

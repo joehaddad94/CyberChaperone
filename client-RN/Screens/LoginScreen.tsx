@@ -59,6 +59,7 @@ export default function LoginScreen() {
       fontWeight: 'bold',
       textAlign: 'center',
       backgroundColor: '#000000c0',
+      fontFamily: 'Urbanist-Regular'
     },
     logo: {
     width: 150,
