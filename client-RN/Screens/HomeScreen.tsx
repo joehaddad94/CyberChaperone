@@ -4,6 +4,7 @@ import Switch from '../Components/Switch'
 import SearchBar from '../Components/SearchBar'
 import Header from '../Components/Header'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import SwipeCalendar from '../Components/SwipeCalendar';
 
 export default function HomeScreen() {
     return(
@@ -11,6 +12,7 @@ export default function HomeScreen() {
             <Header 
                 headerTitle={"Settings"}
             />
+            <SwipeCalendar/>
             
             {/* <SearchBar/> */}
             {/* <Switch/> */}

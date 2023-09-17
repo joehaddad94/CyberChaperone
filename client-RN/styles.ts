@@ -8,6 +8,9 @@ const globalStyles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center'
     },
+    row: {
+      flexDirection: 'row'
+    },
     text: {
       fontSize: 16,
       color: '#333333',
