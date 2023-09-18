@@ -13,7 +13,7 @@ let token = localStorageData.token
 ipcRenderer.send('token', token);
 
 const accumulatedEmotionData = [];
-const dispatchThreshold = 10;
+const dispatchThreshold = 50;
 
 const emotionBars = {
     angry: document.getElementById('anger'),
@@ -145,14 +145,15 @@ Promise.all([
                     // emotionBars[emotion].textContent = `${capitalizedEmotion}: ${percentage}%`;
                     
                     let emotionsData = {
+                      // 'emotion': capitalizedEmotion.toString(),
                       'emotion': capitalizedEmotion,
                       'percentage': percentage,
                     }
                     
-                    emotionsObject.emotions.push(emotionsData);
+                    emotionsObject.emotions.push(JSON.stringify(emotionsData));
                     accumulatedEmotionData.push(emotionsObject);
-                    // dispatchEmotionData();
-                    ipcRenderer.send('emotion-data', emotionsObject);
+                    dispatchEmotionData();
+                    // ipcRenderer.send('emotion-data', emotionsObject);
 
                     const emotionId = emotionToId[emotion];
 

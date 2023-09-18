@@ -170,6 +170,7 @@ app.whenReady().then(() => {
     })
     
     ipcMain.on('emotion-data', (event, emotions) => {
+      console.log(emotions)
         socket.emit('emotions-data', emotions);
     });
   });
