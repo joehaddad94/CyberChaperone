@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {useState} from 'react';
-import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Text, ImageBackground } from 'react-native';
 import globalStyles from '../styles';
 import CameraScreen from '../Screens/CameraScreen'; 
 import InfoScreen from '../Screens/InfoScreen'; 
@@ -16,10 +16,15 @@ const Tab = createBottomTabNavigator();
 
 function BottomTabsNavigator() {
   return (
+    <ImageBackground
+              source={require('../assets/images/DarkBG.png')}
+              style={[globalStyles.backgroundImage, globalStyles.container]}
+              resizeMode="cover"
+            >
     <Tab.Navigator
     screenOptions={{
       tabBarShowLabel: false,
-      headerShown: false,
+      headerShown: true,
       tabBarStyle: {
         position: "absolute",
         bottom: 0,
@@ -59,6 +64,16 @@ function BottomTabsNavigator() {
             )
           },
           headerShown: true,
+          headerStyle: {
+            backgroundColor: '#00B69B',
+            height: 60,
+            borderBottomLeftRadius:15,
+            borderBottomRightRadius:15,     
+          }, 
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            color: 'white'
+          }
         }}
         />
       <Tab.Screen 
@@ -74,7 +89,14 @@ function BottomTabsNavigator() {
           },
           headerShown: true,
           headerStyle: {
-            backgroundColor: '#00B69B'
+            backgroundColor: '#00B69B',
+            height: 60,
+            borderBottomLeftRadius:15,
+            borderBottomRightRadius:15,     
+          }, 
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            color: 'white'
           }
         }}
         />
@@ -90,9 +112,20 @@ function BottomTabsNavigator() {
             )
           },
           headerShown: true,
+          headerStyle: {
+            backgroundColor: '#00B69B',
+            height: 60,
+            borderBottomLeftRadius:15,
+            borderBottomRightRadius:15,     
+          }, 
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            color: 'white'
+          }
         }}
         />
     </Tab.Navigator>
+    </ImageBackground>
   );
 }
 

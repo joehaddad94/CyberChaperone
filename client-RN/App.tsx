@@ -20,7 +20,7 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
 
   const [fontsLoaded] = useFonts({
-    'Urbanist Regular': require('./assets/fonts/Urbanist-Regular.ttf'),
+    'Urbanist-Regular': require('./assets/fonts/Urbanist-Regular.ttf'),
   });
 
   const onLayoutRootView = useCallback(async () => {
@@ -43,7 +43,7 @@ export default function App() {
           component={HomeScreen} 
           options={{ headerShown: false }}
         />
-      <Stack.Screen
+      {/* <Stack.Screen
           name="LoginScreen"
           component={LoginScreen} 
           options={{ headerShown: false }}
@@ -52,7 +52,7 @@ export default function App() {
           name="RegisterScreen"
           component={RegisterScreen} 
           options={{ headerShown: false }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -66,6 +66,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     backgroundColor: '#000000c0',
-    fontFamily: 'Urbanist Regular'
+    fontFamily: 'Urbanist-Regular'
   }
 })

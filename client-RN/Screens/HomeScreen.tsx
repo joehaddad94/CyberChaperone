@@ -25,6 +25,11 @@ export default function HomeScreen() {
 
     return(
         <SafeAreaView style={globalStyles.container}>
+            <ImageBackground
+              source={require('../assets/images/DarkBG.png')}
+              style={globalStyles.backgroundImage}
+              resizeMode="cover"
+            >
                 {/* <Header 
                     headerTitle={"Settings"}
                 /> */}
@@ -33,7 +38,7 @@ export default function HomeScreen() {
                 {/* <SearchBar/> */}
                 {/* <Switch/> */}
         <BottomTabsNavigator/>
+        </ImageBackground>
         </SafeAreaView>
-
     )
 }

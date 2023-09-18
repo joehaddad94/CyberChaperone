@@ -152,8 +152,8 @@ Promise.all([
                     
                     emotionsObject.emotions.push(JSON.stringify(emotionsData));
                     accumulatedEmotionData.push(emotionsObject);
-                    dispatchEmotionData();
-                    // ipcRenderer.send('emotion-data', emotionsObject);
+                    // dispatchEmotionData();
+                    ipcRenderer.send('emotion-data', emotionsObject);
 
                     const emotionId = emotionToId[emotion];
 
