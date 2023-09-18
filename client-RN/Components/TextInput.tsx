@@ -27,12 +27,11 @@ interface InputProps {
 const textInput: React.FC<InputProps> = ({label, placeholder, onChangeText, inputStyle}) => {
   return (
     <TextInput
-      mode='outlined'
+      // mode='outlined'
       label={label}
       placeholder={placeholder}
       onChangeText={onChangeText}
       underlineColor='#00BFA4'
-      // activeOutlineColor='00BFA4'
       style={inputStyle}
       theme={customTheme}
     />

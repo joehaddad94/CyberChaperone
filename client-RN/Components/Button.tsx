@@ -3,14 +3,14 @@ import { Button } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 
 interface ButtonComponentProps {
-  onPress: () => void;
+  handleSubmit: () => void;
   title: string;
 }
 
-const ButtonComponent: React.FC<ButtonComponentProps> = ({ onPress, title }) => (
+const ButtonComponent: React.FC<ButtonComponentProps> = ({ handleSubmit, title }) => (
         <Button 
             mode="contained" 
-            onPress={() => console.log('Pressed')}
+            onPress={() => handleSubmit()}
             buttonColor='#00BFA4'
             style={styles.button}
             >

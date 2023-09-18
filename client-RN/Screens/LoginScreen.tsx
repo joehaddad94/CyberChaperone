@@ -13,7 +13,7 @@ const Logo = require("../assets/images/Logo.png");
 export default function LoginScreen() {
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [errors, setErrors] = useState({});
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const navigation = useNavigation<NavigationProp<StackParamList>>();
 
   const handleUsernameChange = (newUsername: string) => {
@@ -39,6 +39,27 @@ export default function LoginScreen() {
     return Object.keys(errors).length === 0;
   }
 
+  const handleSubmit = () => {
+    if(validateFOrm()) {
+      console.log('submited')
+      setUsername("");
+      setPassword("");
+      // setTimeout(() => {
+      //   setErrors({});
+      // }, 3000);
+    }
+  }
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setErrors({});
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [errors]);
+
   return (
     <SafeAreaView style={[globalStyles.container, styles.screen]}>
       <ImageBackground
@@ -60,6 +81,10 @@ export default function LoginScreen() {
             onChangeText={handleUsernameChange}
             inputStyle={styles.inputStyle}
           />
+          {
+            errors.username ? (
+            <Text style= {styles.errorText}>{errors.username}</Text>
+          ) : null } 
           <TextInput
             label="Password"
             placeholder="Enter your password"
@@ -67,18 +92,24 @@ export default function LoginScreen() {
             onChangeText={handlePasswordChange}
             inputStyle={styles.inputStyle}
           />
+          {
+            errors.password ? (
+            <Text style= {styles.errorText}>{errors.password}</Text>
+          ) : null }
+          </View>
+          <View style= {styles.button}>
           <Button 
             title = "Login"  
-            onPress={() => {}}/>
+            handleSubmit={handleSubmit}/>
           </View>
         </View>
         <View style={styles.footer}>
           <Text style={styles.footerText}>
             Don't have an account?{' '}
-            <TouchableOpacity onPress={navigateToRegister}>
+          </Text>
+          <TouchableOpacity onPress={navigateToRegister}>
               <Text style={styles.register}>Register</Text>
             </TouchableOpacity>
-          </Text>
         </View>
       </ImageBackground>
       
@@ -98,25 +129,25 @@ const styles = StyleSheet.create({
   logo: {
     width: 150,
     height: 150,
+    marginBottom: 50,
   },
   inputStyle: {
     width: 300,
   },
   containerGap: {
-    gap: 100,
+    gap: 20,
   },
   footer: {
     backgroundColor: '#787878',
     width: '100%',
     height: 100,
     alignItems: 'center',
-    justifyContent: 'center',
     borderTopLeftRadius:45,
     borderTopRightRadius:45,
   },
   footerText: {
+    marginTop: 10,
     color: 'white',
-    textAlign: 'center',
   },
   register: {
     fontWeight: 'bold', 
@@ -124,6 +155,13 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   InputGap: {
-    gap: 40,
+    gap: 10,
   },
+  button: {
+    marginTop: 20,
+  },
+  errorText: {
+    color: "red",
+    
+  }
 });
