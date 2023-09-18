@@ -23,6 +23,11 @@ const globalStyles = StyleSheet.create({
     },
     secondaryColor: {
       backgroundColor: '#787878',
+    },
+    headerTitle: {
+      color: 'white',
+      fontSize: 18,
+      fontWeight: 'bold',
     }
 
   });

@@ -10,7 +10,7 @@ interface HeaderProps {
   const Header: React.FC<HeaderProps> = ({ headerTitle }) => {
     return (
         <View style= {[styles.headerContainer, globalStyles.center]}>
-            <Text> {headerTitle} </Text>
+            <Text style ={globalStyles.headerTitle}> {headerTitle} </Text>
         </View>
     )
   }
