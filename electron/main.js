@@ -58,7 +58,7 @@ function createHomeWindow() {
     homeWindow = new BrowserWindow({
         title: 'CyberChaperone',
         width: isDev ? 1500 : 1300,
-        height: 725,
+        height: 800,
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,
@@ -120,6 +120,7 @@ app.on('window-all-closed', () => {
 
   ipcMain.on('logout-btn', async (event, token) => {
     const url = `${baseUrl}/api/logout`;
+    console.log(token)
     
     try {
       const response = await makeRequest('GET', url, {
