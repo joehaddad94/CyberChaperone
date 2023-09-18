@@ -10,6 +10,7 @@ import { Feather } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import Header from './Header';
 
 const Tab = createBottomTabNavigator();
 
@@ -42,7 +43,8 @@ function BottomTabsNavigator() {
                 <Ionicons name="camera-outline" size={24} color="black" />
               </View>
             )
-          }
+          },
+          headerShown: false,
         }}
         />
       <Tab.Screen 
@@ -55,7 +57,8 @@ function BottomTabsNavigator() {
                 <Entypo name="info" size={24} color="black" />
               </View>
             )
-          }
+          },
+          headerShown: true,
         }}
         />
       <Tab.Screen 
@@ -68,11 +71,15 @@ function BottomTabsNavigator() {
                 <Ionicons name="ios-analytics-sharp" size={24} color="black" />
               </View>
             )
+          },
+          headerShown: true,
+          headerStyle: {
+            backgroundColor: '#00B69B'
           }
         }}
         />
       <Tab.Screen 
-        name="Settings" 
+        name="Profile" 
         component={ProfileScreen} 
         options={{
           tabBarIcon: ({focused}) => {
@@ -81,7 +88,8 @@ function BottomTabsNavigator() {
                 <FontAwesome name="user" size={24} color="grey" />
               </View>
             )
-          }
+          },
+          headerShown: true,
         }}
         />
     </Tab.Navigator>

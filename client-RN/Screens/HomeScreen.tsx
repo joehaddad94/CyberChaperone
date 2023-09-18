@@ -24,31 +24,7 @@ export default function HomeScreen() {
     const Stack = createNativeStackNavigator<StackParamList>();
 
     return(
-        <View style={globalStyles.container}>
-            <NavigationContainer independent={true}>
-        <Stack.Navigator>
-            <Stack.Screen
-                name="CameraScreen"
-                component={CameraScreen} 
-                options={{ headerShown: false }}
-                />
-            <Stack.Screen
-                name="InfoScreen"
-                component={InfoScreen} 
-                options={{ headerShown: true }}
-                />
-            <Stack.Screen
-            name="DashboardScreen"
-            component={DashboardScreen} 
-            options={{ headerShown: true }}
-            />
-             <Stack.Screen
-            name="ProfileScreen"
-            component={ProfileScreen} 
-            options={{ headerShown: true }}
-            />
-        </Stack.Navigator>
-        </NavigationContainer>
+        <SafeAreaView style={globalStyles.container}>
                 {/* <Header 
                     headerTitle={"Settings"}
                 /> */}
@@ -57,7 +33,7 @@ export default function HomeScreen() {
                 {/* <SearchBar/> */}
                 {/* <Switch/> */}
         <BottomTabsNavigator/>
-        </View>
+        </SafeAreaView>
 
     )
 }
