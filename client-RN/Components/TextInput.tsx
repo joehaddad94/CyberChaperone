@@ -22,9 +22,10 @@ interface InputProps {
   onChangeText: (text: string) => void;
   inputStyle?: ViewStyle;
   value: string;
+  secureTextEntry: boolean;
 }
 
-const textInput: React.FC<InputProps> = ({label, placeholder, onChangeText, inputStyle}) => {
+const textInput: React.FC<InputProps> = ({label, placeholder, onChangeText, inputStyle, secureTextEntry}) => {
   return (
     <TextInput
       // mode='outlined'
@@ -34,6 +35,7 @@ const textInput: React.FC<InputProps> = ({label, placeholder, onChangeText, inpu
       underlineColor='#00BFA4'
       style={inputStyle}
       theme={customTheme}
+      secureTextEntry = {secureTextEntry}
     />
   );
 };

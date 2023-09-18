@@ -41,12 +41,8 @@ export default function LoginScreen() {
 
   const handleSubmit = () => {
     if(validateFOrm()) {
-      console.log('submited')
       setUsername("");
       setPassword("");
-      // setTimeout(() => {
-      //   setErrors({});
-      // }, 3000);
     }
   }
 
@@ -80,6 +76,7 @@ export default function LoginScreen() {
             value = {username}
             onChangeText={handleUsernameChange}
             inputStyle={styles.inputStyle}
+            secureTextEntry={false}
           />
           {
             errors.username ? (
@@ -91,6 +88,7 @@ export default function LoginScreen() {
             value= {password}
             onChangeText={handlePasswordChange}
             inputStyle={styles.inputStyle}
+            secureTextEntry={true}
           />
           {
             errors.password ? (
@@ -162,6 +160,5 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: "red",
-    
   }
 });
