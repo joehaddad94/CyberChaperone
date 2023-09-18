@@ -2,14 +2,19 @@ import * as React from 'react';
 import { Button } from 'react-native-paper';
 import { View, StyleSheet } from 'react-native';
 
-const ButtonComponent = () => (
+interface ButtonComponentProps {
+  onPress: () => void;
+  title: string;
+}
+
+const ButtonComponent: React.FC<ButtonComponentProps> = ({ onPress, title }) => (
         <Button 
             mode="contained" 
             onPress={() => console.log('Pressed')}
             buttonColor='#00BFA4'
             style={styles.button}
             >
-            Press me
+            {title}
         </Button>
 );
 
