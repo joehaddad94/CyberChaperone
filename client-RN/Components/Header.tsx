@@ -5,11 +5,12 @@ import globalStyles from '../styles';
 
 interface HeaderProps {
     headerTitle: string;
+    backgroundColor: string;
   }
   
-  const Header: React.FC<HeaderProps> = ({ headerTitle }) => {
+  const Header: React.FC<HeaderProps> = ({ headerTitle, backgroundColor }) => {
     return (
-        <View style= {[styles.headerContainer, globalStyles.center]}>
+        <View style= {[styles.headerContainer, globalStyles.center,, { backgroundColor }]}>
             <Text style ={globalStyles.headerTitle}> {headerTitle} </Text>
         </View>
     )
@@ -19,7 +20,6 @@ export default Header
 
 const styles = StyleSheet.create({
   headerContainer: {
-    backgroundColor: '#00B69B',
     height:50,
     borderBottomLeftRadius:10,
     borderBottomRightRadius:10,

@@ -9,6 +9,7 @@ export default function DashboardScreen() {
         <View style={[globalStyles.backgroundImage,globalStyles.primaryColor]}>
              <Header 
                 headerTitle={"Dashboard"}
+                backgroundColor= '#00B69B'
             /> 
             <SwipeCalendar/>
         </View>

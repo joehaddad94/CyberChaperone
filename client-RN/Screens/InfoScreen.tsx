@@ -8,6 +8,7 @@ export default function InfoScreen() {
         <View style={[globalStyles.container, globalStyles.primaryColor]}>
             <Header 
                 headerTitle={"Info"}
+                backgroundColor = '#00B69B'
             />
             <Text>
                 Info Screen!!!

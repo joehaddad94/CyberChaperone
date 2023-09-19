@@ -11,6 +11,7 @@ export default function ProfileScreen() {
             >
               <Header 
                 headerTitle={"Profile"}
+                backgroundColor= '#00B69B'
             />
               
               <View style={[globalStyles.container]}>

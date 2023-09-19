@@ -114,12 +114,12 @@ export default function RegisterScreen() {
           </View>
         </View>
         <View style={styles.footer}>
-          <Text style={styles.footerText}>
+          {/* <Text style={styles.footerText}>
             Already have an account?{' '}
           </Text>
             <TouchableOpacity onPress={navigateToLogin}>
               <Text style={styles.login}>Login</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
         </View>
       </ImageBackground>
     </SafeAreaView>
