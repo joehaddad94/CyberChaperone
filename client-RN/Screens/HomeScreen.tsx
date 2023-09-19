@@ -8,7 +8,6 @@ import Switch from '../Components/Switch'
 import SearchBar from '../Components/SearchBar'
 import Header from '../Components/Header'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import SwipeCalendar from '../Components/SwipeCalendar';
 import globalStyles from '../styles';
 import { StackParamList } from '../ParamTypes';
 
@@ -32,8 +31,8 @@ export default function HomeScreen() {
             >
                 {/* <Header 
                     headerTitle={"Settings"}
-                /> */}
-                {/* <SwipeCalendar/> */}
+                />  */}
+                
                 
                 {/* <SearchBar/> */}
                 {/* <Switch/> */}
