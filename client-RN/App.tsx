@@ -38,12 +38,12 @@ export default function App() {
     <NavigationContainer onReady={onLayoutRootView}>
       {/* <Text style={styles.text}>Hello, React Native with TypeScript!</Text> */}
       <Stack.Navigator>
-      {/* <Stack.Screen
+      <Stack.Screen
           name="HomeScreen"
           component={HomeScreen} 
           options={{ headerShown: false }}
-        /> */}
-      <Stack.Screen
+        />
+      {/* <Stack.Screen
           name="LoginScreen"
           component={LoginScreen} 
           options={{ headerShown: false }}
@@ -52,7 +52,7 @@ export default function App() {
           name="RegisterScreen"
           component={RegisterScreen} 
           options={{ headerShown: false }}
-        />
+        /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -25,12 +25,8 @@ const styles = StyleSheet.create({
     height: 50,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'center',
     paddingHorizontal: 10,
-  },
-  titleContainer: {
-    flex: 1,
-    alignItems: 'center',
   },
 })
