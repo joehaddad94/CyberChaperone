@@ -67,8 +67,8 @@ function BottomTabsNavigator() {
           headerStyle: {
             backgroundColor: '#00B69B',
             height: 60,
-            borderBottomLeftRadius:15,
-            borderBottomRightRadius:15,     
+            // borderBottomLeftRadius:15,
+            // borderBottomRightRadius:15,     
           }, 
           headerTitleAlign: 'center',
           headerTitleStyle: {
@@ -91,8 +91,8 @@ function BottomTabsNavigator() {
           headerStyle: {
             backgroundColor: '#00B69B',
             height: 60,
-            borderBottomLeftRadius:15,
-            borderBottomRightRadius:15,     
+            // borderBottomLeftRadius:15,
+            // borderBottomRightRadius:15,     
           }, 
           headerTitleAlign: 'center',
           headerTitleStyle: {
@@ -115,8 +115,8 @@ function BottomTabsNavigator() {
           headerStyle: {
             backgroundColor: '#00B69B',
             height: 60,
-            borderBottomLeftRadius:15,
-            borderBottomRightRadius:15,     
+            // borderBottomLeftRadius:15,
+            // borderBottomRightRadius:15,     
           }, 
           headerTitleAlign: 'center',
           headerTitleStyle: {

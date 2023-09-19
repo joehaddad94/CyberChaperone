@@ -6,8 +6,6 @@ import PagerView from 'react-native-pager-view';
 import { format } from 'date-fns';
 import { Animated } from 'react-native';
 
-
-
 let isSelected;
 
 const dates = eachWeekOfInterval(
@@ -32,7 +30,7 @@ const SwipeCalendar: React.FC = () => {
     const [selectedDate, setSelectedDate] = useState<Date | null>(null); 
 
     return (
-        <PagerView style={styles.container}>
+        <PagerView style={[styles.container,globalStyles.primaryColor]}>
           {dates.map((week, i) => {
             const monthName = format(week[0], 'MMMM yyyy');
     

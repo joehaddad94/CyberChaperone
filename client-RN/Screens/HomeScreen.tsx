@@ -23,12 +23,12 @@ export default function HomeScreen() {
     const Stack = createNativeStackNavigator<StackParamList>();
 
     return(
-        <SafeAreaView style={globalStyles.container}>
-            <ImageBackground
+        <SafeAreaView style={[globalStyles.container,globalStyles.primaryColor]}>
+            {/* <ImageBackground
               source={require('../assets/images/DarkBG.png')}
               style={globalStyles.backgroundImage}
               resizeMode="cover"
-            >
+            > */}
                 {/* <Header 
                     headerTitle={"Settings"}
                 />  */}
@@ -37,7 +37,7 @@ export default function HomeScreen() {
                 {/* <SearchBar/> */}
                 {/* <Switch/> */}
         <BottomTabsNavigator/>
-        </ImageBackground>
+        {/* </ImageBackground> */}
         </SafeAreaView>
     )
 }
