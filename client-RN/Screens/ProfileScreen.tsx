@@ -1,5 +1,6 @@
 import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
 import globalStyles from '../styles';
+import Header from '../Components/Header'
 
 export default function ProfileScreen() {
     return(
@@ -8,7 +9,10 @@ export default function ProfileScreen() {
               style={globalStyles.backgroundImage}
               resizeMode="cover"
             >
-           
+              <Header 
+                headerTitle={"Profile"}
+            />
+              
               <View style={[globalStyles.container]}>
                 <Text>Profile Screen</Text>
               </View>
