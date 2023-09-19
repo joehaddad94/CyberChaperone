@@ -45,45 +45,11 @@ const emotionBars = {
     surprised: 'surprise'
   };
 
-  // function dispatchEmotionData() {
-  //   if (accumulatedEmotionData.length >= dispatchThreshold) {
-  //     ipcRenderer.send('emotion-data', accumulatedEmotionData);
-  //     accumulatedEmotionData.length = 0;
-  //   }
-  // }
-
-  function accumulateAndDispatchEmotionData(emotions) {
-    // Parse the received emotion data
-    // const parsedEmotions = JSON.parse(emotions);
-  
-    // // Accumulate the percentages for each emotion
-    // parsedEmotions.forEach((emotionData) => {
-    //   const emotion = JSON.parse(emotionData);
-    //   accumulatedEmotions[emotion.emotion] += parseFloat(emotion.percentage);
-    // });
-  
-    // // Check if the threshold is reached, then calculate averages and send
-    // if (accumulatedEmotionData.length >= dispatchThreshold) {
-    //   const averageEmotions = {};
-    //   for (const emotion in accumulatedEmotions) {
-    //     if (accumulatedEmotions.hasOwnProperty(emotion)) {
-    //       // Calculate the average percentage for each emotion
-    //       averageEmotions[emotion] =
-    //         accumulatedEmotions[emotion] / accumulatedEmotionData.length;
-    //     }
-    //   }
-  
-    //   // Send the average emotions to the main process
-    //   ipcRenderer.send('average-emotion-data', averageEmotions);
-  
-    //   // Clear the accumulated data and reset counters
-    //   accumulatedEmotionData.length = 0;
-    //   for (const emotion in accumulatedEmotions) {
-    //     if (accumulatedEmotions.hasOwnProperty(emotion)) {
-    //       accumulatedEmotions[emotion] = 0;
-    //     }
-    //   }
-    // }
+  function dispatchEmotionData() {
+    if (accumulatedEmotionData.length >= dispatchThreshold) {
+      ipcRenderer.send('emotion-data', accumulatedEmotionData);
+      accumulatedEmotionData.length = 0;
+    }
   }
 
   function getFromLocalStorage(key) {
@@ -193,12 +159,14 @@ Promise.all([
                       'percentage': percentage,
                     }
                     
-                    emotionsObject.emotions.push(JSON.stringify(emotionsData));
-                    // accumulatedEmotionData.push(emotionsObject);
-                    // dispatchEmotionData();
-                    ipcRenderer.send('emotion-data', emotionsObject);
+                    // emotionsObject.emotions.push(JSON.stringify(emotionsData));
+                    emotionsObject.emotions.push(emotionsData);
 
-                    accumulatedEmotionData.push(JSON.stringify(emotionsData));
+                    accumulatedEmotionData.push(emotionsObject);
+                    dispatchEmotionData();
+                    // ipcRenderer.send('emotion-data', emotionsObject);
+
+                    // accumulatedEmotionData.push(JSON.stringify(emotionsData));
                     // accumulateAndDispatchEmotionData(emotionsData);
 
                     const emotionId = emotionToId[emotion];

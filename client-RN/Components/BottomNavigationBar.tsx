@@ -63,10 +63,10 @@ function BottomTabsNavigator() {
               </View>
             )
           },
-          headerShown: true,
+          headerShown: false,
           headerStyle: {
             backgroundColor: '#00B69B',
-            height: 60,
+            height: 50,
             // borderBottomLeftRadius:15,
             // borderBottomRightRadius:15,     
           }, 
@@ -87,7 +87,7 @@ function BottomTabsNavigator() {
               </View>
             )
           },
-          headerShown: true,
+          headerShown: false,
           headerStyle: {
             backgroundColor: '#00B69B',
             height: 60,
@@ -111,7 +111,7 @@ function BottomTabsNavigator() {
               </View>
             )
           },
-          headerShown: true,
+          headerShown: false,
           headerStyle: {
             backgroundColor: '#00B69B',
             height: 60,
