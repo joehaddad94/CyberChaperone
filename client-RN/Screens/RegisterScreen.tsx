@@ -6,6 +6,9 @@ import TextInput from '../Components/TextInput';
 import Button from '../Components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackParamList } from '../ParamTypes';
+import { Ionicons } from '@expo/vector-icons';
+
+
 
 const bgImage = require('../assets/images/DarkBG.png');
 const Logo = require('../assets/images/Logo.png');
@@ -29,9 +32,9 @@ export default function RegisterScreen() {
     setPassword(newPassword);
   };
 
-  const navigateToLogin = () => {
-    navigation.navigate('LoginScreen');
-  };
+  // const navigateToLogin = () => {
+  //   navigation.navigate('LoginScreen');
+  // };
 
   const validateForm = () => {
     let errors: Record<string, string> = {};
@@ -65,6 +68,10 @@ export default function RegisterScreen() {
     };
   }, [errors]);
 
+  const handleBackButtonPress = () => {
+    navigation.goBack();
+  };
+
   return (
     <SafeAreaView style={[globalStyles.container, styles.screen]}>
       <ImageBackground
@@ -72,6 +79,14 @@ export default function RegisterScreen() {
         style={globalStyles.backgroundImage}
         resizeMode="cover"
       >
+        <View style={styles.headerContainer}>
+          <TouchableOpacity onPress={handleBackButtonPress}>
+            <Ionicons name="arrow-back-sharp" size={40} color="white" /> 
+          </TouchableOpacity>
+        <View style={styles.titleContainer}>
+          <Text style={globalStyles.headerTitle}> Register </Text>
+        </View>
+    </View>
         <View style={[styles.container, styles.containerGap]}>
           <Image source={Logo} resizeMode="cover" style={styles.logo} />
           <View style={styles.InputGap}>
@@ -113,14 +128,14 @@ export default function RegisterScreen() {
             <Button title="Register" handleSubmit={handleSubmit} />
           </View>
         </View>
-        <View style={styles.footer}>
-          {/* <Text style={styles.footerText}>
+        {/* <View style={styles.footer}>
+          <Text style={styles.footerText}>
             Already have an account?{' '}
           </Text>
             <TouchableOpacity onPress={navigateToLogin}>
               <Text style={styles.login}>Login</Text>
-            </TouchableOpacity> */}
-        </View>
+            </TouchableOpacity>
+        </View> */}
       </ImageBackground>
     </SafeAreaView>
   );
@@ -171,5 +186,18 @@ const styles = StyleSheet.create({
   },
   errorText: {
     color: 'red',
+  },
+  headerContainer: {
+    height: 50,
+    borderBottomLeftRadius: 10,
+    borderBottomRightRadius: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 10,
+    backgroundColor: '#787878'
+  },
+  titleContainer: {
+    flex: 1,
+    alignItems: 'center',
   },
 });
