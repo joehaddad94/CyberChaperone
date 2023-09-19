@@ -57,8 +57,8 @@ function createMainWindow() {
 function createHomeWindow() {
     homeWindow = new BrowserWindow({
         title: 'CyberChaperone',
-        width: isDev ? 1500 : 1300,
-        height: 800,
+        width: isDev ? 1500 : 1250,
+        height: 750,
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,
@@ -119,32 +119,31 @@ app.on('window-all-closed', () => {
   })
 
   ipcMain.on('logout-btn', async (event, token) => {
-    const url = `${baseUrl}/api/logout`;
-    console.log(token)
+    // const url = `${baseUrl}/api/logout`;
+    // console.log(token)
     
-    try {
-      const response = await makeRequest('GET', url, {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-      console.log(response)
-    //   if (homeWindow) {
-    //     localStorage.clear()
-    //     homeWindow.close();
-    //     homeWindow = null;
-    //     createMainWindow();
-    // }
-    
-    } catch (error) {
-      if (error.response) {
-        console.error('Server error:', error.response.status, error.response.data);
-      } else if (error.request) {
-        console.error('No response from server'); 
-      } else {
-        console.error('Request error:', error.message);
-      }
+    // try {
+    //   const response = await makeRequest('GET', url, {
+    //     headers: {
+    //       'Authorization': `Bearer ${token}`
+    //     }
+    //   });
+    //   console.log(response)
+      if (homeWindow) {
+        homeWindow.close();
+        homeWindow = null;
+        createMainWindow();
     }
+    
+    // } catch (error) {
+    //   if (error.response) {
+    //     console.error('Server error:', error.response.status, error.response.data);
+    //   } else if (error.request) {
+    //     console.error('No response from server'); 
+    //   } else {
+    //     console.error('Request error:', error.message);
+    //   }
+    // }
 });
 
 app.whenReady().then(() => {

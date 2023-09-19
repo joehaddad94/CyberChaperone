@@ -182,4 +182,5 @@ logOutButton.addEventListener('click', () => {
   const token = localStorageData?.token;
   // console.log(token)
   ipcRenderer.send('logout-btn', token);
+  localStorage.clear();
 })
