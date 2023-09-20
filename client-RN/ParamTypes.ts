@@ -6,4 +6,5 @@ export type StackParamList = {
     InfoScreen: undefined;
     DashboardScreen: undefined;
     ProfileScreen: undefined;
+    SettingsScreen: undefined
   };

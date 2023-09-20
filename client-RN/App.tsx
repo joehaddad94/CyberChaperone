@@ -9,6 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import LoginScreen from './Screens/LoginScreen';
 import RegisterScreen from './Screens/RegisterScreen';
 import HomeScreen from './Screens/HomeScreen';
+import SettingsScreen from './Screens/SettingsScreen'
 
 import { StackParamList } from './ParamTypes';
 
@@ -53,6 +54,11 @@ export default function App() {
           component={RegisterScreen} 
           options={{ headerShown: false }}
         /> */}
+        <Stack.Screen
+          name="SettingsScreen"
+          component={SettingsScreen} 
+          options={{ headerShown: false }}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
