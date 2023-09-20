@@ -27,11 +27,11 @@ interface NestedHeaderProps {
             <Text style={globalStyles.headerTitle}> {headerTitle} </Text>
         </View>
         <View>
-        {showButton && (
-        <TouchableOpacity onPress={onButtonPress}>
-          <Text style={styles.buttonText}>Button</Text>
-        </TouchableOpacity>
-      )}
+            {showButton && (
+            <TouchableOpacity style = {styles.buttonContainer} onPress={onButtonPress}>
+            <Text style={styles.buttonText}>Create User</Text>
+            </TouchableOpacity>
+        )}
         </View>
     </View>
     );
@@ -44,18 +44,26 @@ const styles = StyleSheet.create({
     height: 55,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
+    flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     paddingHorizontal: 10,
-},
+    },
     leftHeader: {
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'flex-start',
+    },
+    buttonContainer: {
+        backgroundColor: 'white',
+        padding: 5,
+        marginRight: 10,
+        borderRadius: 5,
+       
     },
     buttonText: {
-        color: 'white',
+        color: '#00B69B',
         fontSize: 16,
         marginRight: 10,
-  },
+        fontWeight: 'bold',
+    },
 })
