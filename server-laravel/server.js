@@ -4,6 +4,74 @@ import axios from "axios";
 
 let userToken;
 
+let emotionsArray = [
+    {
+        emotions: [
+          '{"emotion":"Neutral","percentage":"1.85"}',
+          '{"emotion":"Happy","percentage":"98.05"}',
+          '{"emotion":"Sad","percentage":"0.04"}',
+          '{"emotion":"Angry","percentage":"0.00"}',
+          '{"emotion":"Fearful","percentage":"0.00"}',
+          '{"emotion":"Disgusted","percentage":"0.01"}',
+          '{"emotion":"Surprised","percentage":"0.05"}'
+        ]
+      },
+      {
+        emotions: [
+          '{"emotion":"Neutral","percentage":"1.85"}',
+          '{"emotion":"Happy","percentage":"98.05"}',
+          '{"emotion":"Sad","percentage":"0.04"}',
+          '{"emotion":"Angry","percentage":"0.00"}',
+          '{"emotion":"Fearful","percentage":"0.00"}',
+          '{"emotion":"Disgusted","percentage":"0.01"}',
+          '{"emotion":"Surprised","percentage":"0.05"}'
+        ]
+      },
+      {
+        emotions: [
+          '{"emotion":"Neutral","percentage":"1.88"}',
+          '{"emotion":"Happy","percentage":"98.01"}',
+          '{"emotion":"Sad","percentage":"0.05"}',
+          '{"emotion":"Angry","percentage":"0.00"}',
+          '{"emotion":"Fearful","percentage":"0.00"}',
+          '{"emotion":"Disgusted","percentage":"0.02"}',
+          '{"emotion":"Surprised","percentage":"0.02"}'
+        ]
+      },
+]
+
+
+let emotionsArray1 = [
+        { emotion: 'Fearful', percentage: '0.00' },
+        { emotion: 'Disgusted', percentage: '0.00' },
+        { emotion: 'Surprised', percentage: '0.04' },
+        { emotion: 'Neutral', percentage: '15.44' },
+        { emotion: 'Happy', percentage: '84.42' },
+        { emotion: 'Sad', percentage: '0.01' },
+        { emotion: 'Angry', percentage: '0.03' },
+        { emotion: 'Fearful', percentage: '0.00' },
+        { emotion: 'Disgusted', percentage: '0.02' },
+        { emotion: 'Surprised', percentage: '0.09' },
+        { emotion: 'Neutral', percentage: '5.25' },
+        { emotion: 'Happy', percentage: '94.71' },
+        { emotion: 'Sad', percentage: '0.00' },
+        { emotion: 'Angry', percentage: '0.00' },
+        { emotion: 'Fearful', percentage: '0.00' },
+        { emotion: 'Disgusted', percentage: '0.00' },
+        { emotion: 'Surprised', percentage: '0.04' },
+        { emotion: 'Neutral', percentage: '5.02' },
+        { emotion: 'Happy', percentage: '94.93' },
+        { emotion: 'Sad', percentage: '0.00' },
+        { emotion: 'Angry', percentage: '0.00' },
+        { emotion: 'Fearful', percentage: '0.00' },
+        { emotion: 'Disgusted', percentage: '0.00' },
+        { emotion: 'Surprised', percentage: '0.04' },
+        { emotion: 'Neutral', percentage: '10.09' },
+        { emotion: 'Happy', percentage: '89.86' },
+        { emotion: 'Sad', percentage: '0.00' },
+        { emotion: 'Angry', percentage: '0.01' },
+]
+
 const httpServer = createServer();
 const io = new Server(httpServer, {
     cors: {
@@ -20,7 +88,7 @@ io.on("connection", (socket) => {
       });
 
       socket.on("emotions-data", async (emotions) => {
-        // console.log(emotions)
+        console.log(emotions)
         try {
             const apiUrl = "";
 
@@ -28,12 +96,8 @@ io.on("connection", (socket) => {
                 Authorization: `Bearer ${userToken}`,
             };
 
-            const parsedEmotions = JSON.parse(emotions);
-            // console.log(parsedEmotions)
-
-            // const averageEmotions = calculateAverageEmotions(parsedEmotions);
-            const averageEmotions = calculateAverageEmotions(emotions);
-            console.log(averageEmotions)
+            const averageEmotions = calculateEmotionAverages(emotions);
+            // console.log(averageEmotions)
 
             // const response = await axios.post(apiUrl, averageEmotions, { headers });
 
@@ -44,46 +108,44 @@ io.on("connection", (socket) => {
     });
 });
 
-function calculateAverageEmotions(emotionsData) {
-    const emotionTotals = {
-        Neutral: 0,
-        Happy: 0,
-        Sad: 0,
-        Angry: 0,
-        Fearful: 0,
-        Disgusted: 0,
-        Surprised: 0,
-    };
+function calculateEmotionAverages(emotionsArray) {
+    // Initialize an object to store the sum and count for each emotion
+    const emotionSum = {};
+    const emotionCount = {};
 
-    emotionsData.forEach((emotion) => {
+    // Iterate through the emotionsArray and parse the JSON strings to calculate the sum and count
+    emotionsArray.forEach((entry) => {
+        entry.emotions.forEach((emotionStr) => {
+            const emotionObj = JSON.parse(emotionStr);
+            const { emotion, percentage } = emotionObj;
+            const percentageValue = parseFloat(percentage);
 
-        const parsedEmotion = JSON.parse(emotion);
-
-        for (const emotionName in parsedEmotion) {
-            if (emotionTotals.hasOwnProperty(emotionName)) {
-                emotionTotals[emotionName] += parseFloat(parsedEmotion[emotionName]);
+            // Update the sum and count for each emotion
+            if (!emotionSum[emotion]) {
+                emotionSum[emotion] = 0;
+                emotionCount[emotion] = 0;
             }
-        }
+            emotionSum[emotion] += percentageValue;
+            emotionCount[emotion]++;
+        });
     });
 
-    const numEmotions = emotionsData.length;
-    const averageEmotions = {};
-
-    for (const emotionName in emotionTotals) {
-        if (emotionTotals.hasOwnProperty(emotionName)) {
-            averageEmotions[emotionName] = (emotionTotals[emotionName] / numEmotions).toFixed(2);
-        }
+    // Calculate the average for each emotion
+    const emotionAverages = {};
+    for (const emotion in emotionSum) {
+        const average = emotionSum[emotion] / emotionCount[emotion];
+        emotionAverages[emotion] = Math.round(average * 100) / 100;
     }
 
-    return averageEmotions;
+    // Get the timestamp from the first entry (assuming they all have the same timestamp)
+    const currentTimestamp = new Date().toISOString();
+
+    return { timestamp: currentTimestamp, emotionAverages };
+
 }
+
 
 httpServer.listen(3000, () => {
   console.log('Server is running on port 3000');
 });
-
-
-
-
-
 

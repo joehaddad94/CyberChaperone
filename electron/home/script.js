@@ -12,18 +12,24 @@ let localStorageData = getFromLocalStorage('loginResponse')
 let token = localStorageData.token
 ipcRenderer.send('token', token);
 
-const accumulatedEmotions = {
-  Neutral: 0,
-  Happy: 0,
-  Sad: 0,
-  Angry: 0,
-  Fearful: 0,
-  Disgusted: 0,
-  Surprised: 0,
-};
-
 const accumulatedEmotionData = [];
-const dispatchThreshold = 200;
+// const dispatchThreshold = 200;
+const dispatchInterval = 20000;
+let dispatchTimer;
+
+// function dispatchEmotionData() {
+//   if (accumulatedEmotionData.length >= dispatchThreshold) {
+//     ipcRenderer.send('emotion-data', accumulatedEmotionData);
+//     accumulatedEmotionData.length = 0;
+//   }
+// }
+
+function dispatchEmotionData() {
+    if (accumulatedEmotionData.length > 0) {
+        ipcRenderer.send('emotion-data', accumulatedEmotionData);
+        accumulatedEmotionData.length = 0;
+    }
+}
 
 const emotionBars = {
     angry: document.getElementById('anger'),
@@ -44,13 +50,7 @@ const emotionBars = {
     sad: 'sad',
     surprised: 'surprise'
   };
-
-  function dispatchEmotionData() {
-    if (accumulatedEmotionData.length >= dispatchThreshold) {
-      ipcRenderer.send('emotion-data', accumulatedEmotionData);
-      accumulatedEmotionData.length = 0;
-    }
-  }
+  
 
   function getFromLocalStorage(key) {
     const data = localStorage.getItem(key);
@@ -145,7 +145,7 @@ Promise.all([
                 
                 let emotionsObject = {
                   'emotions': [],
-                  'timestamp': new Date()
+                  // 'timestamp': new Date()
                 }
 
                 for (const emotion in emotions) {
@@ -159,11 +159,17 @@ Promise.all([
                       'percentage': percentage,
                     }
                     
-                    // emotionsObject.emotions.push(JSON.stringify(emotionsData));
-                    emotionsObject.emotions.push(emotionsData);
+                    emotionsObject.emotions.push(JSON.stringify(emotionsData));
+                    // emotionsObject.emotions.push(emotionsData);
 
                     accumulatedEmotionData.push(emotionsObject);
-                    dispatchEmotionData();
+                    
+                    if (!dispatchTimer) {
+                      // Set a timer to dispatch emotion data every 20 seconds
+                      dispatchTimer = setInterval(() => {
+                        dispatchEmotionData();
+                      }, dispatchInterval);
+                    }
                     // ipcRenderer.send('emotion-data', emotionsObject);
 
                     // accumulatedEmotionData.push(JSON.stringify(emotionsData));
