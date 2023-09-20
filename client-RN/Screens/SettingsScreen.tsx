@@ -1,11 +1,16 @@
 import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
 import NestedHeader from '../Components/NestedHeader';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function SettingsScreen() {
     return(
-        <View>
-            <NestedHeader headerTitle={'Settings'} backgroundColor = '#00B69B'/>
-        </View>
+        <SafeAreaView>
+            <NestedHeader 
+                headerTitle={'Settings'} 
+                backgroundColor = '#00B69B'
+                showButton = {true}
+                />
+        </SafeAreaView>
     );
 }
