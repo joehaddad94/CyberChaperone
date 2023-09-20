@@ -8,7 +8,7 @@ Route::group(["middleware" => "auth:api"], function () {
     //General user Apis
     Route::group(["middleware" => "auth.general_user"], function () {
         Route::get("logout", [AuthController::class, "logout"]);
-        Route::post("save_emotion", [EmotionsResultsController::class, "saveEmotionsData"]);
+        Route::post("save_emotions", [EmotionsResultsController::class, "saveEmotions"]);
     });
 
     Route::post("refresh", [AuthController::class, "refresh"]);

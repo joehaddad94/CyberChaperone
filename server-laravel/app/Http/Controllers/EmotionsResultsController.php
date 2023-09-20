@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\DetectionResult;
 
 class emotionsResultsController extends Controller {
-    public function store(Request $request) {
+    public function saveEmotions(Request $request) {
         try {
 
         $authUser = Auth::user();
@@ -15,15 +15,15 @@ class emotionsResultsController extends Controller {
             return response()->json(['error' => 'User is not authenticated.'], 401);
         }
 
-        $request->validate([
-            'emotions' => 'required|array',
+        $validateData = $request->validate([
+            'emotionAverages' => 'required|array',
             'timestamp' => 'required|date',
         ]);
 
-        $emotionData = new EmotionData();
+        $emotionData = new DetectionResult();
         $emotionData->user_id = $authUser->id;
-        $emotionData->emotions_percentage = $request->input('emotions');
-        $emotionData->detection_time = $request->input('timestamp');
+        $emotionData->emotions_percentage = $validateData['emotionAverages'];
+        $emotionData->detection_time = $validateData['timestamp'];
 
             $emotionData->save();
         } catch (\Exception $e) {
