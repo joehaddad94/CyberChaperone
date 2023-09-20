@@ -3,21 +3,21 @@ import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
 import globalStyles from '../styles';
 import Header from '../Components/Header';
 import PressableTitle from '../Components/PressableTitle';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../ParamTypes';
 
 const  ProfileScreen: React.FC = () => {
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<StackParamList>>();
   
   function handleMenuItemPress(item: string) {
 
     switch (item) {
       case 'Manage Account':
-  
+        navigation.navigate('ManageProfileScreen');
         break;
       case 'Manage Users':
-  
+        navigation.navigate('UsersScreen');
         break;
       case 'Settings':
         navigation.navigate('SettingsScreen');
