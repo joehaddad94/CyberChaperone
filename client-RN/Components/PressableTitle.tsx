@@ -1,16 +1,20 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet, StyleProp, ViewStyle } from 'react-native';
 
-interface ProfileMenuItemProps {
+interface PressableTitle {
   title: string;
   onPress: () => void;
   style?: StyleProp<ViewStyle>;
+  isRed?: boolean;
 }
 
-const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({ title, onPress, style }) => {
+const PressableTitle: React.FC<PressableTitle> = ({ title, onPress, style, isRed }) => {
+
+  const titleStyle = isRed ? [styles.menuText, { color: 'red' }] : styles.menuText;
+
   return (
     <TouchableOpacity style={[styles.menuItem, style]} onPress={onPress}>
-      <Text style={styles.menuText}>{title}</Text>
+      <Text style={titleStyle}>{title}</Text>
     </TouchableOpacity>
   );
 };
@@ -31,4 +35,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProfileMenuItem;
+export default PressableTitle;
