@@ -3,6 +3,8 @@ import { Server } from "socket.io";
 import axios from "axios";
 
 let userToken;
+let accumulatedEmotions = [];
+let calculateAverageTimer;
 
 let emotionsArray = [
     {
@@ -88,7 +90,7 @@ io.on("connection", (socket) => {
       });
 
       socket.on("emotions-data", async (emotions) => {
-        console.log(emotions)
+        // console.log(emotions)
         try {
             const apiUrl = "";
 
@@ -96,9 +98,17 @@ io.on("connection", (socket) => {
                 Authorization: `Bearer ${userToken}`,
             };
 
-            const averageEmotions = calculateEmotionAverages(emotions);
+            // const averageEmotions = calculateEmotionAverages(emotions);
             // console.log(averageEmotions)
+            accumulatedEmotions.push(...emotions);
 
+        if (!calculateAverageTimer) {
+            calculateAverageTimer = setInterval(() => {
+                const averageEmotions = calculateEmotionAverages(accumulatedEmotions);
+                accumulatedEmotions = [];
+                console.log("Average emotion data:", averageEmotions);
+        }, 20000);
+    }
             // const response = await axios.post(apiUrl, averageEmotions, { headers });
 
             // console.log("Average emotion data sent successfully:", response.data);
