@@ -22,7 +22,7 @@ export default Header
 
 const styles = StyleSheet.create({
   headerContainer: {
-    height: 50,
+    height: 55,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     alignItems: 'center',

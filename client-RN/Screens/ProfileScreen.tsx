@@ -22,8 +22,8 @@ export default function ProfileScreen() {
             source={require('../assets/images/user.png')}
             style={styles.profilePicture}
           />
-          <Text>Username</Text>
-          <Text>email</Text>
+          <Text style = {styles.username}>Username</Text>
+          <Text style = {styles.email}>email</Text>
         </View>
         <View style = {styles.topContainer}>
           <PressableTitle title="Manage Account" onPress={() => handleMenuItemPress('Manage Account')} />
@@ -57,9 +57,12 @@ const styles = StyleSheet.create({
   },
   username: {
     color: 'white',
+    fontSize: 18,
   },
   email: {
     color: 'white',
+    fontSize: 16,
+    paddingTop: 5,
   }
 });
 
