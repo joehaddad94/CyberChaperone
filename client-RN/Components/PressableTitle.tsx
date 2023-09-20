@@ -22,7 +22,7 @@ const PressableTitle: React.FC<PressableTitle> = ({ title, onPress, style, isRed
 const styles = StyleSheet.create({
   menuItem: {
     backgroundColor: '#FFFFFF',
-    width: '80%',
+    width: 300,
     padding: 15,
     marginBottom: 10,
     borderRadius: 10,

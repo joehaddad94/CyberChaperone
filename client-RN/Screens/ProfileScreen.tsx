@@ -2,7 +2,7 @@ import React from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
 import globalStyles from '../styles';
 import Header from '../Components/Header';
-import PressableTitle from '../Components/PressableTitle'; // Import the new component
+import PressableTitle from '../Components/PressableTitle';
 
 export default function ProfileScreen() {
   return (
@@ -17,20 +17,19 @@ export default function ProfileScreen() {
       />
 
       <View style={styles.container}>
-        <View>
-        <Image
-          source={require('../assets/images/user.png')}
-          style={styles.profilePicture}
-        />
-        <Text>Username</Text>
-        <Text>email</Text>
-
+        <View style = {styles.topContainer}>
+          <Image
+            source={require('../assets/images/user.png')}
+            style={styles.profilePicture}
+          />
+          <Text>Username</Text>
+          <Text>email</Text>
         </View>
-        <View style = {styles.container}>
-        <PressableTitle title="Manage Account" onPress={() => handleMenuItemPress('Manage Account')} />
-        <PressableTitle title="Manage Users" onPress={() => handleMenuItemPress('Manage Users')} />
-        <PressableTitle title="Settings" onPress={() => handleMenuItemPress('Settings')} />
-        <PressableTitle title="Logout" onPress={() => handleMenuItemPress('Logout')} />
+        <View style = {styles.topContainer}>
+          <PressableTitle title="Manage Account" onPress={() => handleMenuItemPress('Manage Account')} />
+          <PressableTitle title="Manage Users" onPress={() => handleMenuItemPress('Manage Users')} />
+          <PressableTitle title="Settings" onPress={() => handleMenuItemPress('Settings')} />
+          <PressableTitle title="Logout" onPress={() => handleMenuItemPress('Logout')} isRed={true} />
         </View>
       </View>
     </ImageBackground>
@@ -46,13 +45,24 @@ const styles = StyleSheet.create({
   profilePicture: {
     width: 200,
     height: 200,
-    borderRadius: 75,
+    borderRadius: 100,
     marginBottom: 20,
   },
-  pressableTitle: {
-    width: 200,
+  topContainer: {
+    marginBottom: 40,
+    alignItems: 'center',
+  }, 
+  botContainer: {
+    marginBottom: 20,
+  },
+  username: {
+    color: 'white',
+  },
+  email: {
+    color: 'white',
   }
 });
+
 
 function handleMenuItemPress(item: string) {
 
