@@ -3,8 +3,33 @@ import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
 import globalStyles from '../styles';
 import Header from '../Components/Header';
 import PressableTitle from '../Components/PressableTitle';
+import { useNavigation } from '@react-navigation/native';
+import { StackParamList } from '../ParamTypes';
 
-export default function ProfileScreen() {
+const  ProfileScreen: React.FC = () => {
+
+  const navigation = useNavigation();
+  
+  function handleMenuItemPress(item: string) {
+
+    switch (item) {
+      case 'Manage Account':
+  
+        break;
+      case 'Manage Users':
+  
+        break;
+      case 'Settings':
+        navigation.navigate('SettingsScreen' as keyof StackParamList);
+        break;
+      case 'Logout':
+  
+        break;
+      default:
+        break;
+    }
+  }
+
   return (
     <ImageBackground
       source={require('../assets/images/DarkBG.png')}
@@ -66,23 +91,4 @@ const styles = StyleSheet.create({
   }
 });
 
-
-function handleMenuItemPress(item: string) {
-
-  switch (item) {
-    case 'Manage Account':
-
-      break;
-    case 'Manage Users':
-
-      break;
-    case 'Settings':
-  
-      break;
-    case 'Logout':
-
-      break;
-    default:
-      break;
-  }
-}
+export default ProfileScreen;
