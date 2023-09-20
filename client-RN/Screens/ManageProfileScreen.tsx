@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
 import NestedHeader from '../Components/NestedHeader';
 import globalStyles from '../styles';
@@ -6,6 +6,15 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-paper';
 
 const ManageProfileScreen: React.FC = () => {
+    const [firstName, setFirstName] = useState("")
+    const [lastName, setLastName] = useState("")
+
+    const handleFirstNameChange = () => {
+    }
+
+    const handleLastNameChange = () => {
+    }
+
   return (
     <SafeAreaView style = {globalStyles.container}>
     <ImageBackground
@@ -32,17 +41,17 @@ const ManageProfileScreen: React.FC = () => {
             <TextInput
                 label="First Name"
                 placeholder="Enter your First Name"
-                value={username}
-                onChangeText={handleUsernameChange}
-                inputStyle={styles.inputStyle}
+                value={firstName}
+                onChangeText={handleFirstNameChange}
+                style={styles.inputStyle}
                 secureTextEntry={false}
               />
             <TextInput 
                 label="Last Name"
                 placeholder="Enter your Last Name"
-                value={username}
-                onChangeText={handleUsernameChange}
-                inputStyle={styles.inputStyle}
+                value={lastName}
+                onChangeText={handleLastNameChange}
+                style={styles.inputStyle}
                 secureTextEntry={false}
             />
         </View>
@@ -79,6 +88,9 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 16,
     paddingTop: 5,
+  },
+  inputStyle: {
+    width: 300,
   },
 });
 
