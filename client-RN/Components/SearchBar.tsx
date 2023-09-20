@@ -15,8 +15,7 @@ const SearchBar = () => {
 //   const onChangeSearch = query => setSearchQuery(query);
 
 return (
-    // <PaperProvider theme={theme}>
-    //   <View style={styles.container}>
+    
         <Searchbar theme={{
             colors: {
                 // primary:'#00BFA4',
@@ -27,11 +26,9 @@ return (
           placeholder="Search"
           value={searchQuery}
           mode='view'
-          loading={true}
-        //   style={styles.searchBar}
+          loading={false}
+          style={styles.searchBar}
         />
-    //   </View>
-    // </PaperProvider>
   );
 };
 
@@ -40,11 +37,11 @@ const styles = StyleSheet.create({
        
     },
     searchBar: {
-        // flex:1,
-        justifyContent: 'center',
+      justifyContent: 'center',
       alignItems: 'center', 
-      width: '80%',
-    //   backgroundColor: '#00BFA4'
+      width: '90%',
+      height: 50,
+
     },
   });
 

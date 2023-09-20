@@ -128,14 +128,6 @@ export default function RegisterScreen() {
             <Button title="Register" handleSubmit={handleSubmit} />
           </View>
         </View>
-        {/* <View style={styles.footer}>
-          <Text style={styles.footerText}>
-            Already have an account?{' '}
-          </Text>
-            <TouchableOpacity onPress={navigateToLogin}>
-              <Text style={styles.login}>Login</Text>
-            </TouchableOpacity>
-        </View> */}
       </ImageBackground>
     </SafeAreaView>
   );
