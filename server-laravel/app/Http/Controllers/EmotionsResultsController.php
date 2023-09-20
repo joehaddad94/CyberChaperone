@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DetectionResult;
+use Illuminate\Support\Facades\Auth;
 
 class emotionsResultsController extends Controller {
     public function saveEmotions(Request $request) {
