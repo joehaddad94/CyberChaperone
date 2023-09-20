@@ -9,7 +9,7 @@ export default function SettingsScreen() {
             <NestedHeader 
                 headerTitle={'Settings'} 
                 backgroundColor = '#00B69B'
-                showButton = {true}
+                showButton = {false}
                 />
         </SafeAreaView>
     );

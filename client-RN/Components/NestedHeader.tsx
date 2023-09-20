@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, View, StyleSheet, TouchableOpacity } from 'react-native'
+import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import globalStyles from '../styles';
 import { Ionicons } from '@expo/vector-icons';
@@ -28,9 +28,12 @@ interface NestedHeaderProps {
         </View>
         <View>
             {showButton && (
-            <TouchableOpacity style = {styles.buttonContainer} onPress={onButtonPress}>
-            <Text style={styles.buttonText}>Create User</Text>
-            </TouchableOpacity>
+            <Button
+            title="Create User"
+            onPress={onButtonPress}
+            // style={{ backgroundColor: 'white' }}
+            // titleStyle={{ color: '#00B69B' }}
+          />
         )}
         </View>
     </View>
