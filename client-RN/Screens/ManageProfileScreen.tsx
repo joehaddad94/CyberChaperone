@@ -4,6 +4,7 @@ import NestedHeader from '../Components/NestedHeader';
 import globalStyles from '../styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-paper';
+import ButtonComponent from '../Components/Button';
 
 const ManageProfileScreen: React.FC = () => {
     const [firstName, setFirstName] = useState("")
@@ -15,6 +16,9 @@ const ManageProfileScreen: React.FC = () => {
     const handleLastNameChange = () => {
     }
 
+    const handleSave = () => {
+    }
+
   return (
     <SafeAreaView style = {globalStyles.container}>
     <ImageBackground
@@ -23,7 +27,7 @@ const ManageProfileScreen: React.FC = () => {
       resizeMode="cover"
     >
       <NestedHeader
-        headerTitle={'Settings'}
+        headerTitle={'Account'}
         backgroundColor="#00B69B"
         showButton={false}
       />
@@ -37,7 +41,7 @@ const ManageProfileScreen: React.FC = () => {
           <Text style={styles.username}>Username</Text>
           <Text style={styles.email}>email</Text>
         </View>
-        <View style={styles.topContainer}>
+        <View style={styles.botContainer}>
             <TextInput
                 label="First Name"
                 placeholder="Enter your First Name"
@@ -55,6 +59,10 @@ const ManageProfileScreen: React.FC = () => {
                 secureTextEntry={false}
             />
         </View>
+        <ButtonComponent
+            title='Save Changes'
+            handleSubmit={handleSave}
+        />
       </View>
     </ImageBackground>
     </SafeAreaView>
@@ -74,11 +82,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   topContainer: {
-    marginBottom: 40,
+    marginBottom: 50,
     alignItems: 'center',
   },
   botContainer: {
     marginBottom: 20,
+    gap: 20,
   },
   username: {
     color: 'white',

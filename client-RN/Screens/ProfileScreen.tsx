@@ -50,7 +50,7 @@ const  ProfileScreen: React.FC = () => {
           <Text style = {styles.username}>Username</Text>
           <Text style = {styles.email}>email</Text>
         </View>
-        <View style = {styles.topContainer}>
+        <View style = {styles.botContainer}>
           <PressableTitle title="Manage Account" onPress={() => handleMenuItemPress('Manage Account')} />
           <PressableTitle title="Manage Users" onPress={() => handleMenuItemPress('Manage Users')} />
           <PressableTitle title="Settings" onPress={() => handleMenuItemPress('Settings')} />
