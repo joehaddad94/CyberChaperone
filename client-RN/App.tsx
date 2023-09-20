@@ -9,7 +9,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import LoginScreen from './Screens/LoginScreen';
 import RegisterScreen from './Screens/RegisterScreen';
 import HomeScreen from './Screens/HomeScreen';
-import SettingsScreen from './Screens/SettingsScreen'
+import SettingsScreen from './Screens/SettingsScreen';
+import ManageProfileScreen from './Screens/ManageProfileScreen';
+import UsersScreen from './Screens/UsersScreen';
 
 import { StackParamList } from './ParamTypes';
 
@@ -57,6 +59,16 @@ export default function App() {
         <Stack.Screen
           name="SettingsScreen"
           component={SettingsScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ManageProfileScreen"
+          component={ManageProfileScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="UsersScreen"
+          component={UsersScreen} 
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

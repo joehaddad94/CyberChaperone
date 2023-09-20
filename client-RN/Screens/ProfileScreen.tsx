@@ -20,7 +20,7 @@ const  ProfileScreen: React.FC = () => {
   
         break;
       case 'Settings':
-        navigation.navigate('SettingsScreen' as keyof StackParamList);
+        navigation.navigate('SettingsScreen');
         break;
       case 'Logout':
   
