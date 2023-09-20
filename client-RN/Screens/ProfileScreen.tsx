@@ -19,11 +19,11 @@ export default function ProfileScreen() {
       <View style={styles.container}>
         {/* Profile Picture */}
         <Image
-          source={require('../assets/images/profile.jpg')}
+          source={require('../assets/images/user.png')}
           style={styles.profilePicture}
         />
 
-        {/* Pressable Titles */}
+        
         <PressableTitle title="Manage Account" onPress={() => handleMenuItemPress('Manage Account')} />
         <PressableTitle title="Manage Users" onPress={() => handleMenuItemPress('Manage Users')} />
         <PressableTitle title="Settings" onPress={() => handleMenuItemPress('Settings')} />
