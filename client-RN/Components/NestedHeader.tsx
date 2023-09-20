@@ -4,8 +4,6 @@ import { useNavigation, NavigationProp } from '@react-navigation/native';
 import globalStyles from '../styles';
 import { Ionicons } from '@expo/vector-icons';
 
-
-
 interface NestedHeaderProps {
     headerTitle: string;
     backgroundColor: string;
@@ -25,18 +23,18 @@ interface NestedHeaderProps {
           </TouchableOpacity>
         <Text style={globalStyles.headerTitle}> {headerTitle} </Text>
     </View>
-  );
-  };
-  
+    );
+};
+
 export default NestedHeader
 
 const styles = StyleSheet.create({
-  headerContainer: {
+    headerContainer: {
     height: 55,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 10,
-  },
+},
 })
