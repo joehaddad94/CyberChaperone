@@ -9,9 +9,8 @@ use Illuminate\Support\Facades\Auth;
 class emotionsResultsController extends Controller {
     public function saveEmotions(Request $request) {
         try {
-
         $authUser = Auth::user();
-
+;
         if (!$authUser) {
             return response()->json(['error' => 'User is not authenticated.'], 401);
         }
@@ -20,12 +19,12 @@ class emotionsResultsController extends Controller {
             'emotionAverages' => 'required|array',
             'timestamp' => 'required|date',
         ]);
-
+            // dd($validateData);
         $emotionData = new DetectionResult();
         $emotionData->user_id = $authUser->id;
         $emotionData->emotions_percentage = $validateData['emotionAverages'];
         $emotionData->detection_time = $validateData['timestamp'];
-
+            dd($emotionData);
             $emotionData->save();
         } catch (\Exception $e) {
             return response()->json(['error' => 'Failed to save emotion data.'], 500);

@@ -5,6 +5,7 @@ import axios from "axios";
 let userToken;
 let accumulatedEmotions = [];
 let calculateAverageTimer;
+let averageEmotions;
 
 const httpServer = createServer();
 const io = new Server(httpServer, {
@@ -34,11 +35,13 @@ io.on("connection", (socket) => {
 
         if (accumulatedEmotions.length > 0 && !calculateAverageTimer) {
             calculateAverageTimer = setInterval(() => {
-                const averageEmotions = calculateEmotionAverages(accumulatedEmotions);
+                averageEmotions = calculateEmotionAverages(accumulatedEmotions);
                 accumulatedEmotions = [];
-                console.log("Average emotion data:", averageEmotions);
+                // console.log("Average emotion data:", averageEmotions);
         }, 20000);
     }
+        console.log(averageEmotions.emotionAverages)
+        console.log(averageEmotions.timestamp)
             // const response = await axios.post(apiUrl, averageEmotions, { headers });
 
             // console.log("Average emotion data sent successfully:", response.data);
