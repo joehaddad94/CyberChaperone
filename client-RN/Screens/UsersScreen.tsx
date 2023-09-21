@@ -1,11 +1,10 @@
-import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
+import { ImageBackground, Image, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, NavigationProp  } from '@react-navigation/native';
 import NestedHeader from '../Components/NestedHeader';
 import globalStyles from '../styles';
 import { StackParamList } from '../ParamTypes';
 import SearchBar from '../Components/SearchBar';
-
 
 export default function UsersScreen() {
     const navigation = useNavigation<NavigationProp<StackParamList>>();
@@ -28,7 +27,76 @@ export default function UsersScreen() {
             showButton={true}
             onButtonPress={handleCreateUserPress}
         />
+        <ScrollView style = {[globalStyles.primaryColor, styles.scrollView]}>
+            <View style = {styles.parentContainer}>
+                <View style= {styles.leftContainer}>
+                    <Image
+                        source={require('../assets/images/user.png')}
+                        style={styles.profilePicture}
+                    />
+                    <View style = {styles.textContainer}>
+                        <Text>Username</Text>
+                        <Text>Email</Text>
+                    </View>
+                </View>  
+                <View>
+                    <TouchableOpacity
+                        //   onPress={() => handleEditUser(user.id)}
+                        style={styles.editButton}
+                    >
+                            <Text>Edit</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.deleteButton}
+                        >
+                            <Text>Delete</Text>
+                    </TouchableOpacity>
+                </View>    
+            </View>
+        </ScrollView>
         </ImageBackground>
     </SafeAreaView>
     );
 }
+
+const styles = StyleSheet.create({
+    scrollView: {
+        position: 'absolute',
+        width: '100%',
+        height: 650,
+        bottom: 0,
+        borderTopRightRadius:20,
+        borderTopLeftRadius:20,
+    },
+    parentContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        marginTop: 15,
+        paddingLeft: 25,
+        paddingRight:20,
+    },
+    leftContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 25,
+    },
+    textContainer :{
+        gap:10,
+    },
+    text: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: 'white',
+    },
+    profilePicture: {
+        width: 70,
+        height: 70,
+    },
+    editButton: {
+        marginRight: 10,
+    },
+    deleteButton: {
+        marginLeft: 10,
+    },
+})
