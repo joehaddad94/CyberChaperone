@@ -91,7 +91,8 @@ export default function LoginScreen() {
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setErrors({});
+      setErrors({})
+      setLoginError('');
     }, 3000);
 
     return () => {

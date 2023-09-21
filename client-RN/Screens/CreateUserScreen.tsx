@@ -6,80 +6,74 @@ import { ImageBackground, View, Text, StyleSheet, Image } from 'react-native';
 import TextInput from '../Components/TextInput';
 import Button from '../Components/Button'
 import { userCredentials } from '../ParamTypes';
-
+import { BASE_URL } from '../react-native.config';
+import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { StackParamList } from '../ParamTypes';
+import axios from 'axios';
 
 export default function CreateUserScreen() {
+    const [errors, setErrors] = useState<Record<string, string>>({});
+    const navigation = useNavigation<NavigationProp<StackParamList>>();
 
-  const [userCredentials, setUserCredentials] = useState<userCredentials>({
+
+    const [userCredentials, setUserCredentials] = useState<userCredentials>({
     username: '',
     email: '',
     password: '',
- })
-
- const handleChange = (field: keyof userCredentials, value: string) => {
-    setUserCredentials({
-      ...userCredentials,
-      [field]: value,
     })
-  }
 
-  const validateForm = () => {
-    let errors: Record<string, string> = {};
+    const handleChange = (field: keyof userCredentials, value: string) => {
+    setUserCredentials({
+        ...userCredentials,
+        [field]: value,
+    })
+    }
 
-    if (!registerCredentials.username) errors.username = 'Username is required';
-    if (!registerCredentials.email) errors.email = 'Email is required';
-    if (!registerCredentials.password) errors.password = 'Password is required';
+    const validateForm = () => {
+        let errors: Record<string, string> = {};
 
-    setErrors(errors);
+        if (!userCredentials.username) errors.username = 'Username is required';
+        if (!userCredentials.email) errors.email = 'Email is required';
+        if (!userCredentials.password) errors.password = 'Password is required';
 
-    return Object.keys(errors).length === 0;
-  };
-  
-  const handleSubmit = async () => {
+        setErrors(errors);
+
+        return Object.keys(errors).length === 0;
+    };
+
+    const handleSubmit = async () => {
     if (validateForm()) {
-      try{
+        try{
         const apiUrl = `${BASE_URL}/api/register`
 
-        const response = await axios.post(apiUrl, registerCredentials, {
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json; charset=utf-8'
+        const response = await axios.post(apiUrl, userCredentials, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json; charset=utf-8'
             }})
-        
-        saveUserInfo(
-          response.data.token,
-          response.data.user.username,
-          response.data.user.email
-          )
-          
-          navigation.dispatch(
-            CommonActions.reset({
-              index: 0,
-              routes: [{ name: 'HomeScreen' }], 
-            })
-          );
-      } catch(error) {
-        console.log(error)
-      }
-      setRegisterCredentials({
-        username: '',
-        email: '',
-        password: '',
-      })
-    }
-  };
+            navigation.goBack();
+        } catch(error) {
+            console.log(error)
+        }
+        setUserCredentials({
+            username: '',
+            email: '',
+            password: '',
+        })
+        }
+    };
 
-  return (
+    return (
     <SafeAreaView style={globalStyles.container}>
-      <ImageBackground
-        source={require('../assets/images/DarkBG.png')}
-        style={globalStyles.backgroundImage}
-        resizeMode="cover"
-      >
+        <ImageBackground
+            source={require('../assets/images/DarkBG.png')}
+            style={globalStyles.backgroundImage}
+            resizeMode="cover"
+        >
         <NestedHeader
-          headerTitle="Create User"
-          backgroundColor="#00B69B"
-          showButton={false}
+            headerTitle="Create User"
+            backgroundColor="#00B69B"
+            showButton={false}
         />
         
         <View style={[globalStyles.container, styles.mainContainer ]}>
@@ -119,9 +113,9 @@ export default function CreateUserScreen() {
                 <Button title="Save" handleSubmit={handleSubmit} />
             </View>
         </View>
-      </ImageBackground>
+        </ImageBackground>
     </SafeAreaView>
-  );
+    );
 }
 
 const styles = StyleSheet.create({
