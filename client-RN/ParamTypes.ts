@@ -10,3 +10,9 @@ export type StackParamList = {
     UsersScreen: undefined;
     ManageProfileScreen: undefined;
   };
+
+  export type registerCredentials = {
+    username: string,
+    email: string,
+    password: string,
+  }

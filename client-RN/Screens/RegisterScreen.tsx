@@ -8,16 +8,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackParamList } from '../ParamTypes';
 import { Ionicons } from '@expo/vector-icons';
 import { BASE_URL } from '../react-native.config';
+import { registerCredentials } from '../ParamTypes';
 import axios from 'axios';
 
 const bgImage = require('../assets/images/DarkBG.png');
 const Logo = require('../assets/images/Logo.png');
-
-type registerCredentials = {
-  username: string,
-  email: string,
-  password: string,
-}
 
 export default function RegisterScreen() {
  const [registerCredentials, setRegisterCredentials] = useState<registerCredentials>({
@@ -53,12 +48,16 @@ export default function RegisterScreen() {
         const apiUrl = `${BASE_URL}/api/register`
 
         const response = await axios.post(apiUrl, registerCredentials)
+        console.log(response)
+      } catch(error) {
+
       }
-      // Perform registration logic here
-      console.log(username,email,password);
-      setUsername('');
-      setEmail('');
-      setPassword('');
+      setRegisterCredentials({
+        ...registerCredentials,
+        username: '',
+        email: '',
+        password: '',
+      })
     }
   };
 
@@ -97,8 +96,8 @@ export default function RegisterScreen() {
             <TextInput
               label="Username"
               placeholder="Enter your username"
-              value={username}
-              onChangeText={handleUsernameChange}
+              value={registerCredentials.username}
+              handleChange={handleChange}
               inputStyle={styles.inputStyle}
               secureTextEntry={false}
             />
@@ -108,8 +107,8 @@ export default function RegisterScreen() {
             <TextInput
               label="Email"
               placeholder="Enter your email"
-              value={email}
-              onChangeText={handleEmailChange}
+              value={registerCredentials.email}
+              handleChange={handleChange}
               inputStyle={styles.inputStyle}
               secureTextEntry={false}
             />
@@ -119,8 +118,8 @@ export default function RegisterScreen() {
             <TextInput
               label="Password"
               placeholder="Enter your password"
-              value={password}
-              onChangeText={handlePasswordChange}
+              value={registerCredentials.password}
+              handleChange={handleChange}
               inputStyle={styles.inputStyle}
               secureTextEntry={true}
             />
