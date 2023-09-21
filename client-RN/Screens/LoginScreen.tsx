@@ -18,6 +18,7 @@ const Logo = require("../assets/images/Logo.png");
 
 export default function LoginScreen() {
   const { user, saveUserInfo, logout } = useAuth();
+  const [loginError, setLoginError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const navigation = useNavigation<NavigationProp<StackParamList>>();
 
@@ -64,15 +65,22 @@ export default function LoginScreen() {
           response.data.user.username,
           response.data.user.email
           )
-          // navigation.navigate('HomeScreen');
+
+          setLoginError(null);
+
           navigation.dispatch(
             CommonActions.reset({
               index: 0,
               routes: [{ name: 'HomeScreen' }],
             })
           );
-      } catch(error) {
+      } catch(error: any) {
         console.log(error)
+        if (error.response && error.response.data && error.response.data.message) {
+          setLoginError(error.response.data.message);
+        } else {
+          setLoginError('An error occurred during login.');
+        }
       }
       setLoginCredentials({
         username: '',
@@ -129,6 +137,7 @@ export default function LoginScreen() {
             errors.password ? (
             <Text style= {styles.errorText}>{errors.password}</Text>
           ) : null }
+          {loginError ? <Text style={styles.errorText}>{loginError}</Text> : null}
           </View>
           <View style= {styles.button}>
           <Button 
@@ -140,8 +149,8 @@ export default function LoginScreen() {
           <Text style={styles.footerText}>
             Don't have an account?{' '}
           </Text>
+          
           <TouchableOpacity onPress={navigateToRegister}>
-              <Text style={styles.register}>Register</Text>
             </TouchableOpacity>
         </View>
       </ImageBackground>
