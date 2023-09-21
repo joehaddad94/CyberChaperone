@@ -22,3 +22,9 @@ export type StackParamList = {
     username: string,
     password: string,
   }
+
+  export type userCredentials = {
+    username: string,
+    email: string,
+    password: string,
+  }

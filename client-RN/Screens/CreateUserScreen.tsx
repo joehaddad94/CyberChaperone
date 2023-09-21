@@ -5,18 +5,68 @@ import NestedHeader from '../Components/NestedHeader';
 import { ImageBackground, View, Text, StyleSheet, Image } from 'react-native';
 import TextInput from '../Components/TextInput';
 import Button from '../Components/Button'
+import { userCredentials } from '../ParamTypes';
 
 
 export default function CreateUserScreen() {
-  // Define state for form inputs
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+
+  const [userCredentials, setUserCredentials] = useState<userCredentials>({
+    username: '',
+    email: '',
+    password: '',
+ })
+
+ const handleChange = (field: keyof userCredentials, value: string) => {
+    setUserCredentials({
+      ...userCredentials,
+      [field]: value,
+    })
+  }
+
+  const validateForm = () => {
+    let errors: Record<string, string> = {};
+
+    if (!registerCredentials.username) errors.username = 'Username is required';
+    if (!registerCredentials.email) errors.email = 'Email is required';
+    if (!registerCredentials.password) errors.password = 'Password is required';
+
+    setErrors(errors);
+
+    return Object.keys(errors).length === 0;
+  };
   
-  const handleSubmit = () => {
-    // Handle the form submission logic here
-    // You can access the form values from the state variables (username, email, password)
-    // Example: Send a POST request to create a new user
+  const handleSubmit = async () => {
+    if (validateForm()) {
+      try{
+        const apiUrl = `${BASE_URL}/api/register`
+
+        const response = await axios.post(apiUrl, registerCredentials, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8'
+            }})
+        
+        saveUserInfo(
+          response.data.token,
+          response.data.user.username,
+          response.data.user.email
+          )
+          
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'HomeScreen' }], 
+            })
+          );
+      } catch(error) {
+        console.log(error)
+      }
+      setRegisterCredentials({
+        username: '',
+        email: '',
+        password: '',
+      })
+    }
   };
 
   return (
@@ -43,25 +93,25 @@ export default function CreateUserScreen() {
                 <TextInput
                     label="Username"
                     placeholder="Enter your username"
-                    value={username}
+                    value={userCredentials.username}
                     inputStyle={styles.inputStyle}
-                    onChangeText={(text) => setUsername(text)}
+                    handleChange={(field, value) => handleChange('username', value)}
                     secureTextEntry={false}
                 />
                 <TextInput
                     label="Email"
                     placeholder="Enter your email"
-                    value={email}
+                    value={userCredentials.email}
                     inputStyle={styles.inputStyle}
-                    onChangeText={(text) => setEmail(text)}
+                    handleChange={(field, value) => handleChange('email', value)}
                     secureTextEntry={false}
                 />
                 <TextInput
                     label="Password"
                     placeholder="Enter your password"
-                    value={password}
+                    value={userCredentials.password}
                     inputStyle={styles.inputStyle}
-                    onChangeText={(text) => setPassword(text)}
+                    handleChange={(field, value) => handleChange('password', value)}
                     secureTextEntry={true}
                 />
             </View>
