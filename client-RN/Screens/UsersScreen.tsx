@@ -18,7 +18,6 @@ export default function UsersScreen() {
             backgroundColor="#00B69B"
             showButton={true}
         />
-        <SearchBar/>
         </ImageBackground>
     </SafeAreaView>
     );

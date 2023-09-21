@@ -5,14 +5,19 @@ use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\EmotionsResultsController;
 
 Route::group(["middleware" => "auth:api"], function () {
+
+    // Guardian User Apis
+    Route::group(["middleware" => "auth.general_user"], function () {
+
+    });
+
     //General user Apis
     Route::group(["middleware" => "auth.general_user"], function () {
         Route::get("logout", [AuthController::class, "logout"]);
         Route::post("save_emotions", [EmotionsResultsController::class, "saveEmotions"]);
-        // Route::get("save_emotions", [EmotionsResultsController::class, "saveEmotions"]);
     });
 
-    Route::post("refresh", [AuthController::class, "refresh"]);
+
 });
 
 Route::post("login", [AuthController::class, "login"]);
