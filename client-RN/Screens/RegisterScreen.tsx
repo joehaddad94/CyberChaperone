@@ -10,19 +10,22 @@ import { Ionicons } from '@expo/vector-icons';
 import { BASE_URL } from '../react-native.config';
 import { registerCredentials } from '../ParamTypes';
 import axios from 'axios';
+import { useAuth } from '../ContextFiles/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const bgImage = require('../assets/images/DarkBG.png');
 const Logo = require('../assets/images/Logo.png');
 
 export default function RegisterScreen() {
- const [registerCredentials, setRegisterCredentials] = useState<registerCredentials>({
+  const { user, saveUserInfo, logout } = useAuth();
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const navigation = useNavigation<NavigationProp<StackParamList>>();
+
+  const [registerCredentials, setRegisterCredentials] = useState<registerCredentials>({
     username: '',
     email: '',
     password: '',
  })
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const navigation = useNavigation<NavigationProp<StackParamList>>();
 
   const handleChange = (field: keyof registerCredentials, value: string) => {
     setRegisterCredentials({
@@ -54,14 +57,12 @@ export default function RegisterScreen() {
             'Content-Type': 'application/json; charset=utf-8'
             }})
         
-        console.log(response.data.token)
-        console.log(response.data.user.username)
-        console.log(response.data.user.email)
-        
-        await AsyncStorage.setItem('token', response.data.token);
-        await AsyncStorage.setItem('username',response.data.user.username);
-        await AsyncStorage.setItem('email', response.data.user.email);
-       
+        saveUserInfo(
+          response.data.token,
+          response.data.user.username,
+          response.data.user.email
+          )
+          navigation.navigate('HomeScreen');
       } catch(error) {
         console.log(error)
       }
