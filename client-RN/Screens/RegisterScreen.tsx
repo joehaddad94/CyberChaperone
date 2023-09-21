@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { BASE_URL } from '../react-native.config';
 import { registerCredentials } from '../ParamTypes';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const bgImage = require('../assets/images/DarkBG.png');
 const Logo = require('../assets/images/Logo.png');
@@ -47,13 +48,24 @@ export default function RegisterScreen() {
       try{
         const apiUrl = `${BASE_URL}/api/register`
 
-        const response = await axios.post(apiUrl, registerCredentials)
-        console.log(response)
+        const response = await axios.post(apiUrl, registerCredentials, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8'
+            }})
+        
+        console.log(response.data.token)
+        console.log(response.data.user.username)
+        console.log(response.data.user.email)
+        
+        await AsyncStorage.setItem('token', response.data.token);
+        await AsyncStorage.setItem('username',response.data.user.username);
+        await AsyncStorage.setItem('email', response.data.user.email);
+       
       } catch(error) {
-
+        console.log(error)
       }
       setRegisterCredentials({
-        ...registerCredentials,
         username: '',
         email: '',
         password: '',
@@ -97,7 +109,7 @@ export default function RegisterScreen() {
               label="Username"
               placeholder="Enter your username"
               value={registerCredentials.username}
-              handleChange={handleChange}
+              handleChange={(field, value) => handleChange('username', value)}
               inputStyle={styles.inputStyle}
               secureTextEntry={false}
             />
@@ -108,7 +120,7 @@ export default function RegisterScreen() {
               label="Email"
               placeholder="Enter your email"
               value={registerCredentials.email}
-              handleChange={handleChange}
+              handleChange={(field, value) => handleChange('email', value)}
               inputStyle={styles.inputStyle}
               secureTextEntry={false}
             />
@@ -119,7 +131,7 @@ export default function RegisterScreen() {
               label="Password"
               placeholder="Enter your password"
               value={registerCredentials.password}
-              handleChange={handleChange}
+              handleChange={(field, value) => handleChange('password', value)}
               inputStyle={styles.inputStyle}
               secureTextEntry={true}
             />

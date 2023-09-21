@@ -3,6 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
+import { AuthProvider } from './ContextFiles/AuthContext';
 import * as SplashScreen from 'expo-splash-screen';
 
 
@@ -38,6 +39,7 @@ export default function App() {
   }
 
   return (
+    <AuthProvider>
     <NavigationContainer onReady={onLayoutRootView}>
       {/* <Text style={styles.text}>Hello, React Native with TypeScript!</Text> */}
       <Stack.Navigator>
@@ -73,5 +75,6 @@ export default function App() {
         />
       </Stack.Navigator>
     </NavigationContainer>
+    </AuthProvider>
   );
 }
