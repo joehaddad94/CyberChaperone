@@ -27,8 +27,9 @@ const io = new Server(httpServer, {
         socket.on("emotions-data", async (emotions) => {
             // console.log(emotions)
             accumulatedEmotions.push(...emotions);
+            // console.log(accumulatedEmotions)
 
-            if (accumulatedEmotions.length > 0 && !calculateAverageTimer) {
+            if (!calculateAverageTimer) {
                 calculateAverageTimer = setInterval(() => {
                     averageEmotions = calculateEmotionAverages(accumulatedEmotions);
                     accumulatedEmotions = [];
@@ -38,7 +39,8 @@ const io = new Server(httpServer, {
 
             if (averageEmotions && Object.keys(averageEmotions.emotionAverages).length > 0) {
                 try {
-                    const apiUrl = `${baseUrl}/api/register`;
+                    console.log('entered')
+                    const apiUrl = 'http://127.0.0.1:8000/api/save_emotions';
 
                     const headers = {
                         Authorization: `Bearer ${userToken}`,
