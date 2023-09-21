@@ -4,6 +4,7 @@ import { useNavigation, NavigationProp  } from '@react-navigation/native';
 import NestedHeader from '../Components/NestedHeader';
 import globalStyles from '../styles';
 import { StackParamList } from '../ParamTypes';
+import { AntDesign } from '@expo/vector-icons';
 import SearchBar from '../Components/SearchBar';
 
 export default function UsersScreen() {
@@ -39,18 +40,19 @@ export default function UsersScreen() {
                         <Text style = {styles.text}>Email</Text>
                     </View>
                 </View>  
-                <View>
-                    <TouchableOpacity
-                        //   onPress={() => handleEditUser(user.id)}
-                        style={styles.editButton}
+                <View style={styles.buttonContainer} >
+                <TouchableOpacity
+              // onPress={() => handleEditUser(user.id)}
+                    style={styles.editButton}
                     >
-                            <Text>Edit</Text>
+                    <AntDesign name="edit" size={24} color="#00BFA4" />
                     </TouchableOpacity>
                     <TouchableOpacity
-                        style={styles.deleteButton}
-                        >
-                            <Text>Delete</Text>
-                    </TouchableOpacity>
+                    // onPress={() => handleDeleteUser(user.id)}
+                    style={styles.deleteButton}
+                    >
+                    <AntDesign name="delete" size={24} color="red" />
+            </TouchableOpacity>
                 </View>    
             </View>
         </ScrollView>
@@ -93,17 +95,15 @@ const styles = StyleSheet.create({
         width: 70,
         height: 70,
     },
-    editButton: {
-        backgroundColor: '#00BFA4',
-        paddingHorizontal: 15,
-        paddingVertical: 5,
-        borderRadius: 5,
-        elevation:5
-      },
-      deleteButton: {
-        backgroundColor: 'red',
-        paddingHorizontal: 15,
-        paddingVertical: 5,
-        borderRadius: 5,
-      },
+    buttonContainer: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 20
+    },
+        editButton: {
+
+        },
+        deleteButton: {
+
+        },
 })
