@@ -37,11 +37,9 @@ io.on("connection", (socket) => {
             calculateAverageTimer = setInterval(() => {
                 averageEmotions = calculateEmotionAverages(accumulatedEmotions);
                 accumulatedEmotions = [];
-                // console.log("Average emotion data:", averageEmotions);
+                console.log("Average emotion data:", averageEmotions);
         }, 20000);
     }
-        console.log(averageEmotions.emotionAverages)
-        console.log(averageEmotions.timestamp)
             // const response = await axios.post(apiUrl, averageEmotions, { headers });
 
             // console.log("Average emotion data sent successfully:", response.data);

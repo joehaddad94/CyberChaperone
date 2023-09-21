@@ -18,7 +18,6 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        UserType::create(['type_name' => 'admin']);
         UserType::create(['type_name' => 'guardian']);
         UserType::create(['type_name' => 'general user']);
     }

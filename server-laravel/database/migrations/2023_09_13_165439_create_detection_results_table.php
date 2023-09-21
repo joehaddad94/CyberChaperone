@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->datetime('detection_time');
-            $table->json('emotions_percentage');
+            $table->text('emotions_percentage');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
