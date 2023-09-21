@@ -137,8 +137,8 @@ export default function LoginScreen() {
             errors.password ? (
             <Text style= {styles.errorText}>{errors.password}</Text>
           ) : null }
-          {loginError ? <Text style={styles.errorText}>{loginError}</Text> : null}
           </View>
+          {loginError ? <Text style={styles.errorText}>{loginError}</Text> : null}
           <View style= {styles.button}>
           <Button 
             title = "Login"  
@@ -149,8 +149,8 @@ export default function LoginScreen() {
           <Text style={styles.footerText}>
             Don't have an account?{' '}
           </Text>
-          
           <TouchableOpacity onPress={navigateToRegister}>
+              <Text style={styles.register}>Register</Text>
             </TouchableOpacity>
         </View>
       </ImageBackground>

@@ -9,6 +9,7 @@ export type StackParamList = {
     SettingsScreen: undefined;
     UsersScreen: undefined;
     ManageProfileScreen: undefined;
+    CreateUsersScreen: undefined;
   };
 
   export type registerCredentials = {

@@ -13,6 +13,7 @@ import HomeScreen from './Screens/HomeScreen';
 import SettingsScreen from './Screens/SettingsScreen';
 import ManageProfileScreen from './Screens/ManageProfileScreen';
 import UsersScreen from './Screens/UsersScreen';
+import CreateUsersScreen from './Screens/CreateUserScreen'
 
 import { StackParamList } from './ParamTypes';
 
@@ -41,7 +42,6 @@ export default function App() {
   return (
     <AuthProvider>
     <NavigationContainer onReady={onLayoutRootView}>
-      {/* <Text style={styles.text}>Hello, React Native with TypeScript!</Text> */}
       <Stack.Navigator>
         <Stack.Screen
           name="LoginScreen"
@@ -71,6 +71,11 @@ export default function App() {
         <Stack.Screen
           name="UsersScreen"
           component={UsersScreen} 
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="CreateUsersScreen"
+          component={CreateUsersScreen} 
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

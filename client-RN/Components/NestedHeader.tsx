@@ -27,21 +27,16 @@ interface NestedHeaderProps {
             <Text style={globalStyles.headerTitle}> {headerTitle} </Text>
         </View>
         <View>
-            {/* {showButton && (
+            {showButton && (
             <Button
             title="Create User"
             onPress={onButtonPress}
+            color="#292937"
             // style={{ backgroundColor: 'white' }}
             // titleStyle={{ color: '#00B69B' }}
-          /> */}
-        {/* )} */}
-        {showButton && (
-            <TouchableOpacity onPress={onButtonPress}>
-                <View style={[styles.buttonContainer, { backgroundColor }]}>
-                <Text style={styles.buttonText}>Create User</Text>
-                </View>
-            </TouchableOpacity>
-            )}
+          />
+         )}
+            
 
         </View>
     </View>

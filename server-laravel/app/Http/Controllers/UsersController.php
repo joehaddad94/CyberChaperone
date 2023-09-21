@@ -34,7 +34,6 @@ class UsersController extends Controller
                 return response()->json($validator->errors(), 400);
             }
 
-            // dd(Auth::id());
             $user = User::create([
                 'type_id' => 2,
                 'guardian_id' => Auth::id(),
