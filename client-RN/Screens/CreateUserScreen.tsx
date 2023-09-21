@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import globalStyles from '../styles';
 import NestedHeader from '../Components/NestedHeader';
@@ -16,7 +16,7 @@ import { useAuth } from '../ContextFiles/AuthContext';
 export default function CreateUserScreen() {
     const [errors, setErrors] = useState<Record<string, string>>({});
     const navigation = useNavigation<NavigationProp<StackParamList>>();
-
+    const User = useAuth();
 
     const [userCredentials, setUserCredentials] = useState<userCredentials>({
     username: '',
@@ -48,12 +48,15 @@ export default function CreateUserScreen() {
         try{
         const apiUrl = `${BASE_URL}/api/create_general_user`
 
+        const authToken = User.user.token
+            console.log(authToken)
         const response = await axios.post(apiUrl, userCredentials, {
             headers: {
                 'Accept': 'application/json',
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${authToken}`
             }})
-            console.log(response)
+            console.log(response.data)
             navigation.goBack();
         } catch(error) {
             console.log(error)
@@ -65,6 +68,16 @@ export default function CreateUserScreen() {
         })
         }
     };
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            setErrors({});
+        }, 3000);
+    
+        return () => {
+            clearTimeout(timeoutId);
+        };
+        }, [errors]);
 
     return (
     <SafeAreaView style={globalStyles.container}>
@@ -95,6 +108,9 @@ export default function CreateUserScreen() {
                     handleChange={(field, value) => handleChange('username', value)}
                     secureTextEntry={false}
                 />
+                {errors.username ? (
+                <Text style={styles.errorText}>{errors.username}</Text>
+            ) : null}
                 <TextInput
                     label="Email"
                     placeholder="Enter your email"
@@ -103,6 +119,9 @@ export default function CreateUserScreen() {
                     handleChange={(field, value) => handleChange('email', value)}
                     secureTextEntry={false}
                 />
+                {errors.email ? (
+                <Text style={styles.errorText}>{errors.email}</Text>
+            ) : null}
                 <TextInput
                     label="Password"
                     placeholder="Enter your password"
@@ -111,6 +130,9 @@ export default function CreateUserScreen() {
                     handleChange={(field, value) => handleChange('password', value)}
                     secureTextEntry={true}
                 />
+                {errors.password ? (
+                <Text style={styles.errorText}>{errors.password}</Text>
+                ) : null}
             </View>
             <View>
                 <Button title="Save" handleSubmit={handleSubmit} />
@@ -141,4 +163,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
         marginBottom: 20,
     },
+    errorText: {
+        color: 'red',
+    }
 })
