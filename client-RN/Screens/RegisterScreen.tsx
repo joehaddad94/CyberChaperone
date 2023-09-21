@@ -9,9 +9,9 @@ import { StackParamList } from '../ParamTypes';
 import { Ionicons } from '@expo/vector-icons';
 import { BASE_URL } from '../react-native.config';
 import { registerCredentials } from '../ParamTypes';
+import { CommonActions } from '@react-navigation/native';
 import axios from 'axios';
 import { useAuth } from '../ContextFiles/AuthContext';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const bgImage = require('../assets/images/DarkBG.png');
 const Logo = require('../assets/images/Logo.png');
@@ -62,7 +62,13 @@ export default function RegisterScreen() {
           response.data.user.username,
           response.data.user.email
           )
-          navigation.navigate('HomeScreen');
+          // navigation.navigate('HomeScreen');
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'HomeScreen' }], 
+            })
+          );
       } catch(error) {
         console.log(error)
       }

@@ -7,13 +7,17 @@ import Button from '../Components/Button'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackParamList } from '../ParamTypes';
 import { loginCredentials } from '../ParamTypes';
+import axios from 'axios';
+import { BASE_URL } from '../react-native.config';
+import { useAuth } from '../ContextFiles/AuthContext';
+import { CommonActions } from '@react-navigation/native';
+
 
 const bgImage = require("../assets/images/DarkBG.png");
 const Logo = require("../assets/images/Logo.png");
 
 export default function LoginScreen() {
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
+  const { user, saveUserInfo, logout } = useAuth();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const navigation = useNavigation<NavigationProp<StackParamList>>();
 
@@ -36,20 +40,46 @@ export default function LoginScreen() {
   const validateFOrm = () => {
     let errors: Record<string, string> = {}
 
-    if (!username) errors.username = "Username is required";
-    if (!password) errors.password = "Password is required";
+    if (!loginCredentials.username) errors.username = "Username is required";
+    if (!loginCredentials.password) errors.password = "Password is required";
 
     setErrors(errors);
     
     return Object.keys(errors).length === 0;
   }
 
-  const handleSubmit = () => {
-    if(validateFOrm()) {
-      setUsername("");
-      setPassword("");
+  const handleSubmit = async () => {
+    if (validateFOrm()) {
+      try{
+        const apiUrl = `${BASE_URL}/api/login`
+
+        const response = await axios.post(apiUrl, loginCredentials, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8'
+            }})
+        
+        saveUserInfo(
+          response.data.token,
+          response.data.user.username,
+          response.data.user.email
+          )
+          // navigation.navigate('HomeScreen');
+          navigation.dispatch(
+            CommonActions.reset({
+              index: 0,
+              routes: [{ name: 'HomeScreen' }],
+            })
+          );
+      } catch(error) {
+        console.log(error)
+      }
+      setLoginCredentials({
+        username: '',
+        password: '',
+      })
     }
-  }
+  };
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -78,7 +108,7 @@ export default function LoginScreen() {
           <TextInput
             label="Username"
             placeholder="Enter your username"
-            value = {username}
+            value = {loginCredentials.username}
             handleChange={(field, value) => handleChange('username', value)}
             inputStyle={styles.inputStyle}
             secureTextEntry={false}
@@ -90,7 +120,7 @@ export default function LoginScreen() {
           <TextInput
             label="Password"
             placeholder="Enter your password"
-            value= {password}
+            value= {loginCredentials.password}
             handleChange={(field, value) => handleChange('password', value)}
             inputStyle={styles.inputStyle}
             secureTextEntry={true}

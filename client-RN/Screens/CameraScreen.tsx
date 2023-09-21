@@ -6,7 +6,7 @@ export default function CameraScreen() {
     const { user } = useAuth();
     return(
         <View>
-            <Text>{user.token} and {user.email} and {user.username}</Text>
+            {/* <Text>{user.token} and {user.email} and {user.username}</Text> */}
         </View>
     )
 }
