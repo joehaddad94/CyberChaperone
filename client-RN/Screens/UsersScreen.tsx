@@ -35,8 +35,8 @@ export default function UsersScreen() {
                         style={styles.profilePicture}
                     />
                     <View style = {styles.textContainer}>
-                        <Text>Username</Text>
-                        <Text>Email</Text>
+                        <Text style = {styles.text}>Username</Text>
+                        <Text style = {styles.text}>Email</Text>
                     </View>
                 </View>  
                 <View>
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
         gap:10,
     },
     text: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: 'bold',
         color: 'white',
     },
@@ -94,9 +94,16 @@ const styles = StyleSheet.create({
         height: 70,
     },
     editButton: {
-        marginRight: 10,
-    },
-    deleteButton: {
-        marginLeft: 10,
-    },
+        backgroundColor: '#00BFA4',
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        borderRadius: 5,
+        elevation:5
+      },
+      deleteButton: {
+        backgroundColor: 'red',
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        borderRadius: 5,
+      },
 })
