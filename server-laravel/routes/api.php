@@ -3,12 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\EmotionsResultsController;
+use App\Http\Controllers\UsersController;
 
 Route::group(["middleware" => "auth:api"], function () {
 
     // Guardian User Apis
-    Route::group(["middleware" => "auth.general_user"], function () {
-
+    Route::group(["middleware" => "auth.guardian_user"], function () {
+        Route::post("create_general_user", [UsersController::class, "createGeneralUser"]);
     });
 
     //General user Apis
