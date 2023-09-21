@@ -10,6 +10,8 @@ import { BASE_URL } from '../react-native.config';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../ParamTypes';
 import axios from 'axios';
+import { useAuth } from '../ContextFiles/AuthContext';
+
 
 export default function CreateUserScreen() {
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -44,13 +46,14 @@ export default function CreateUserScreen() {
     const handleSubmit = async () => {
     if (validateForm()) {
         try{
-        const apiUrl = `${BASE_URL}/api/register`
+        const apiUrl = `${BASE_URL}/api/create_general_user`
 
         const response = await axios.post(apiUrl, userCredentials, {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json; charset=utf-8'
             }})
+            console.log(response)
             navigation.goBack();
         } catch(error) {
             console.log(error)
