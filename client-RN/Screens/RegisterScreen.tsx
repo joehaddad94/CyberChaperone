@@ -62,7 +62,7 @@ export default function RegisterScreen() {
           response.data.user.username,
           response.data.user.email
           )
-          // navigation.navigate('HomeScreen');
+          
           navigation.dispatch(
             CommonActions.reset({
               index: 0,
