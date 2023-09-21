@@ -2,6 +2,8 @@ import { createServer } from "http";
 import { Server } from "socket.io";
 import axios from "axios";
 
+const baseUrl = 'http://127.0.0.1:8000'
+
 let userToken;
 let accumulatedEmotions = [];
 let calculateAverageTimer;
@@ -15,39 +17,41 @@ const io = new Server(httpServer, {
       },
 });
 
-io.on("connection", (socket) => {
-    console.log('Electron App is connected');
+    io.on("connection", (socket) => {
+        console.log('Electron App is connected');
 
-    socket.on("token", (token) => {
-        userToken = token;
-      });
+        socket.on("token", (token) => {
+            userToken = token;
+        });
 
-      socket.on("emotions-data", async (emotions) => {
-        // console.log(emotions)
-        try {
-            const apiUrl = "";
-
-            const headers = {
-                Authorization: `Bearer ${userToken}`,
-            };
-
+        socket.on("emotions-data", async (emotions) => {
+            // console.log(emotions)
             accumulatedEmotions.push(...emotions);
 
-        if (accumulatedEmotions.length > 0 && !calculateAverageTimer) {
-            calculateAverageTimer = setInterval(() => {
-                averageEmotions = calculateEmotionAverages(accumulatedEmotions);
-                accumulatedEmotions = [];
-                console.log("Average emotion data:", averageEmotions);
-        }, 20000);
-    }
-            // const response = await axios.post(apiUrl, averageEmotions, { headers });
+            if (accumulatedEmotions.length > 0 && !calculateAverageTimer) {
+                calculateAverageTimer = setInterval(() => {
+                    averageEmotions = calculateEmotionAverages(accumulatedEmotions);
+                    accumulatedEmotions = [];
+                    console.log("Average emotion data:", averageEmotions);
+                }, 20000);
+            }
 
-            // console.log("Average emotion data sent successfully:", response.data);
-        } catch (error) {
-            console.error("Error sending average emotion data:", error);
-        }
+            if (averageEmotions && Object.keys(averageEmotions.emotionAverages).length > 0) {
+                try {
+                    const apiUrl = `${baseUrl}/api/register`;
+
+                    const headers = {
+                        Authorization: `Bearer ${userToken}`,
+                    };
+
+                    const response = await axios.post(apiUrl, averageEmotions, { headers });
+                    console.log("Average emotion data sent successfully:", response.data);
+                } catch (error) {
+                    console.error("Error sending average emotion data:", error);
+                }
+            }
+        });
     });
-});
 
 function calculateEmotionAverages(emotionsArray) {
     const emotionSum = {};

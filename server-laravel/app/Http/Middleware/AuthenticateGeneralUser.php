@@ -19,7 +19,7 @@ class AuthenticateGeneralUser
     {
         $user = Auth::user();
 
-        if ($user->type_id == 3) {
+        if ($user->type_id == 2) {
             return $next($request);
         }
 

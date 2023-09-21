@@ -65,7 +65,7 @@ class AuthController extends Controller
     $user = Auth::user();
 
 
-    if ($user->type_id !== 3) {
+    if ($user->type_id !== 2) {
         Auth::logout();
         return response()->json([
             'status' => 'Error Unauthorized User Type',
