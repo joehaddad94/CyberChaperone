@@ -7,51 +7,55 @@ import Button from '../Components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackParamList } from '../ParamTypes';
 import { Ionicons } from '@expo/vector-icons';
-
-
+import { BASE_URL } from '../react-native.config';
+import axios from 'axios';
 
 const bgImage = require('../assets/images/DarkBG.png');
 const Logo = require('../assets/images/Logo.png');
 
+type registerCredentials = {
+  username: string,
+  email: string,
+  password: string,
+}
+
 export default function RegisterScreen() {
-  const [username, setUsername] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+ const [registerCredentials, setRegisterCredentials] = useState<registerCredentials>({
+    username: '',
+    email: '',
+    password: '',
+ })
   const [errors, setErrors] = useState<Record<string, string>>({});
   const navigation = useNavigation<NavigationProp<StackParamList>>();
 
-  const handleUsernameChange = (newUsername: string) => {
-    setUsername(newUsername);
-  };
-
-  const handleEmailChange = (newEmail: string) => {
-    setEmail(newEmail);
-  };
-
-  const handlePasswordChange = (newPassword: string) => {
-    setPassword(newPassword);
-  };
-
-  // const navigateToLogin = () => {
-  //   navigation.navigate('LoginScreen');
-  // };
+  const handleChange = (field: keyof registerCredentials, value: string) => {
+    setRegisterCredentials({
+      ...registerCredentials,
+      [field]: value,
+    })
+  }
 
   const validateForm = () => {
     let errors: Record<string, string> = {};
 
-    if (!username) errors.username = 'Username is required';
-    if (!email) errors.email = 'Email is required';
-    if (!password) errors.password = 'Password is required';
+    if (!registerCredentials.username) errors.username = 'Username is required';
+    if (!registerCredentials.email) errors.email = 'Email is required';
+    if (!registerCredentials.password) errors.password = 'Password is required';
 
     setErrors(errors);
 
     return Object.keys(errors).length === 0;
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (validateForm()) {
+      try{
+        const apiUrl = `${BASE_URL}/api/register`
+
+        const response = await axios.post(apiUrl, registerCredentials)
+      }
       // Perform registration logic here
-      console.log('Registered');
+      console.log(username,email,password);
       setUsername('');
       setEmail('');
       setPassword('');
