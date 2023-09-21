@@ -6,6 +6,7 @@ import TextInput from '../Components/TextInput'
 import Button from '../Components/Button'
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackParamList } from '../ParamTypes';
+import { loginCredentials } from '../ParamTypes';
 
 const bgImage = require("../assets/images/DarkBG.png");
 const Logo = require("../assets/images/Logo.png");
@@ -16,12 +17,16 @@ export default function LoginScreen() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const navigation = useNavigation<NavigationProp<StackParamList>>();
 
-  const handleUsernameChange = (newUsername: string) => {
-    setUsername(newUsername);
-  }
+  const [loginCredentials, setLoginCredentials] = useState<loginCredentials>({
+    username: '',
+    password: '',
+ })
 
-  const handlePasswordChange = (newPassword: string) => {
-    setPassword(newPassword);
+  const handleChange = (field: keyof loginCredentials, value: string) => {
+    setLoginCredentials({
+      ...loginCredentials,
+      [field]: value,
+    })
   }
 
   const navigateToRegister = () => {
@@ -74,7 +79,7 @@ export default function LoginScreen() {
             label="Username"
             placeholder="Enter your username"
             value = {username}
-            onChangeText={handleUsernameChange}
+            handleChange={(field, value) => handleChange('username', value)}
             inputStyle={styles.inputStyle}
             secureTextEntry={false}
           />
@@ -86,7 +91,7 @@ export default function LoginScreen() {
             label="Password"
             placeholder="Enter your password"
             value= {password}
-            onChangeText={handlePasswordChange}
+            handleChange={(field, value) => handleChange('password', value)}
             inputStyle={styles.inputStyle}
             secureTextEntry={true}
           />
