@@ -10,6 +10,7 @@ Route::group(["middleware" => "auth:api"], function () {
     // Guardian User Apis
     Route::group(["middleware" => "auth.guardian_user"], function () {
         Route::post("create_general_user", [UsersController::class, "createGeneralUser"]);
+        Route::get("fetch_all_users", [UsersController::class, "fetchAllUsers"]);
     });
 
     //General user Apis
