@@ -20,7 +20,6 @@ class UsersController extends Controller
             }
 
         $validator = Validator::make($request->all(), [
-            'guardian_id' => 'required',
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
@@ -37,7 +36,7 @@ class UsersController extends Controller
 
             $user = User::create([
                 'type_id' => 2,
-                'guardian_id' => $request->guardian_id,
+                'guardian_id' => Auth::id(),
                 'username' => $request->username,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
@@ -47,5 +46,18 @@ class UsersController extends Controller
                 'message' => 'User created successfully',
                 'user' => $user,
             ]);
+    }
+
+    public function fetchAllUsers (Request $request) {
+
+        $authUser = Auth::user();
+
+            if (!$authUser) {
+                return response()->json(['error' => 'User is not authenticated.'], 401);
+            }
+
+        $users = User::where('gaurdian_id', $authUser->id)-get();
+
+        return response()->json(['users' => $users]);
     }
 }
