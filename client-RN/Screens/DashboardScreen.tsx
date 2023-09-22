@@ -1,4 +1,4 @@
-import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
+import { ImageBackground, Image, StyleSheet, Text, View, ScrollView } from 'react-native';
 import {useState} from 'react'
 import Header from '../Components/Header'
 import SwipeCalendar from '../Components/SwipeCalendar';
@@ -10,7 +10,7 @@ import PieChartComponent from '../Components/PieChartComponent';
 export default function DashboardScreen() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     return(
-        <View style={[globalStyles.backgroundImage,globalStyles.primaryColor]}>
+        <ScrollView style={[globalStyles.backgroundImage,globalStyles.primaryColor]}>
             <Header 
                 headerTitle={"Dashboard"}
                 backgroundColor= '#00B69B'
@@ -20,8 +20,12 @@ export default function DashboardScreen() {
                 setSelectedValue={setSelectedValue}
             />
             <SwipeCalendar/>
-            <PieChartComponent/>
-        </View>
+            
+                <View>
+                    <PieChartComponent/>
+                </View>
+            
+        </ScrollView>
         
         
     )

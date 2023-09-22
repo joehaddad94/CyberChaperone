@@ -29,9 +29,9 @@ const PieChartComponent = () => {
   ];
 
   const chartConfig = {
-    backgroundGradientFrom: "#1E2923",
+    backgroundGradientFrom: "white",
     backgroundGradientFromOpacity: 0,
-    backgroundGradientTo: "#08130D",
+    backgroundGradientTo: "white",
     backgroundGradientToOpacity: 0.5,
     color: (opacity = 1) => `rgba(26, 255, 146, ${opacity})`,
     strokeWidth: 2, // optional, default 3
@@ -43,10 +43,10 @@ const PieChartComponent = () => {
     <PieChart
         data={data}
         width={screenWidth}
-        height={220}
+        height={300}
         chartConfig={chartConfig}
         accessor={"population"}
-        backgroundColor={"transparent"}
+        backgroundColor={"white"}
         paddingLeft={"15"}
         center={[10, 50]}
         absolute
