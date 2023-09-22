@@ -60,4 +60,23 @@ class UsersController extends Controller
 
         return response()->json(['users' => $users]);
     }
+
+    public function deleteUser ($id) {
+            try {
+
+                $authUser = Auth::user();
+
+                if (!$authUser) {
+                    return response()->json(['error' => 'User is not authenticated.'], 401);
+                }
+
+                $user = User::findOrFail($id);
+                $user->delete();
+
+                return response()->json(['message' => 'User deleted successfully']);
+
+            } catch (\Exception $e) {
+                return response()->json(['error' => 'User not found'], 404);
+            }
+    }
 }
