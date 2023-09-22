@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     scrollViewContent: {
-        marginBottom: 40, // Add padding at the bottom of the content container
+        marginBottom: 40,
       },
     subContainer: {
         marginBottom: 20,
