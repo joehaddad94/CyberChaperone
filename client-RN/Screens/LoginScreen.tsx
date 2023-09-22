@@ -67,7 +67,7 @@ export default function LoginScreen() {
           )
 
           setLoginError(null);
-
+          
           navigation.dispatch(
             CommonActions.reset({
               index: 0,

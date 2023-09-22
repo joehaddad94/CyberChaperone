@@ -21,7 +21,7 @@ export default function DashboardScreen() {
             />
             <SwipeCalendar/>
             
-                <View>
+                <View style = {styles.chartContainer}>
                     <PieChartComponent/>
                 </View>
             
@@ -30,3 +30,13 @@ export default function DashboardScreen() {
         
     )
 }
+
+const styles = StyleSheet.create({
+    chartContainer: {
+      flex: 1,
+      alignItems: 'center',
+      backgroundColor: 'white',
+      width:350,
+      borderRadius: 10,
+    },
+  })
