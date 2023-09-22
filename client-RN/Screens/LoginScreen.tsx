@@ -75,7 +75,6 @@ export default function LoginScreen() {
               routes: [{ name: 'HomeScreen' }],
             })
           );
-          
       } catch(error: any) {
         console.log(error)
         if (error.response && error.response.data && error.response.data.message) {
