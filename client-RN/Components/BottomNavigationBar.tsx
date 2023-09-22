@@ -195,7 +195,7 @@ function BottomTabsNavigator() {
               iconName = focused ? 'user' : 'user-o';
             }
 
-            const iconStyle = focused ? { color: 'white' } : { color: 'black' };
+            const iconStyle = focused ? { color: 'white' } : { color: '#454545' };
 
             return React.createElement(iconComponent, {
               name: iconName,
