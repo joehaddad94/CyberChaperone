@@ -17,6 +17,7 @@ interface User {
 }
 
 export default function UsersScreen() {
+    const noUsersImage = require('../assets/images/no-users.png');
     const navigation = useNavigation<NavigationProp<StackParamList>>();
     const user = useAuth();
     const [users, setUsers] = useState<User[]>([]);
@@ -80,13 +81,11 @@ export default function UsersScreen() {
                                 <View style={styles.buttonContainer} >
                                     <TouchableOpacity
                                         // onPress={() => handleEditUser(user.id)}
-                                        style={styles.editButton}
                                     >
                                         <AntDesign name="edit" size={24} color="#00BFA4" />
                                     </TouchableOpacity>
                                     <TouchableOpacity
                                         // onPress={() => handleDeleteUser(user.id)}
-                                        style={styles.deleteButton}
                                     >
                                         <AntDesign name="delete" size={24} color="red" />
                                     </TouchableOpacity>
@@ -94,7 +93,14 @@ export default function UsersScreen() {
                             </View>
                         ))
                     ) : (
-                        <Text>No users available</Text>
+                        <View style = {styles.emptyState}>
+                            <Image
+                                source={noUsersImage}
+                                resizeMode='cover'
+                                style={styles.noUsersImage}
+                            />
+                            <Text style = {styles.emptyStateText}>No users to display.</Text>
+                        </View>
                     )}
                 </ScrollView>
             </ImageBackground>
@@ -146,10 +152,18 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         gap: 20
     },
-    editButton: {
-
+    emptyState: {
+        alignItems: 'center',
+        marginTop: 70,
     },
-    deleteButton: {
-
+    noUsersImage: {
+        width:200,
+        height:200,
     },
+    emptyStateText: {
+        color: 'white',
+        fontSize: 20,
+        fontWeight: 'bold',
+        marginTop: 20,
+    }
 });
