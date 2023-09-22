@@ -50,6 +50,7 @@ export default function LoginScreen() {
   }
 
   const handleSubmit = async () => {
+    console.log('pressed')
     if (validateFOrm()) {
       try{
         const apiUrl = `${BASE_URL}/api/login`
@@ -74,6 +75,7 @@ export default function LoginScreen() {
               routes: [{ name: 'HomeScreen' }],
             })
           );
+          
       } catch(error: any) {
         console.log(error)
         if (error.response && error.response.data && error.response.data.message) {

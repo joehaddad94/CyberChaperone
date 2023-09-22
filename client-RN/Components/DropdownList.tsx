@@ -30,7 +30,7 @@ const DropdownList: React.FC<SelectListProps> = ({
         placeholder="Select User"
         boxStyles = {styles.boxStyles}
         inputStyles = {{}}
-        dropdownStyles = {{}}
+        dropdownStyles = {styles.dropdownStyles}
         dropdownItemStyles = {{}}
         dropdownTextStyles = {{}}
       />

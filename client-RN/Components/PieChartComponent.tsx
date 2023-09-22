@@ -7,11 +7,12 @@ import { Dimensions } from "react-native";
 const screenWidth = Dimensions.get("window").width;
 
 const PieChartComponent = () => {
-  
+
   const pieData = [
-    {value: 40, gradientCenterColor: 'lightblue', text: '54%'},
-    {value: 40, gradientCenterColor: '#79D2DE', text: '30%'},
-    {value: 20, gradientCenterColor: '#ED6665', text: '26%'},
+    {value: 30, gradientCenterColor: 'lightblue', text: '30%'},
+    {value: 30, gradientCenterColor: '#79D2DE', text: '30%'},
+    {value: 25, gradientCenterColor: '#ED6665', text: '25%'},
+    {value: 15, gradientCenterColor: '#ED6665', text: '15%'},
 ];
 
 const legends = [
@@ -30,7 +31,7 @@ return(
           radius={100}
           textSize={10}
           showTextBackground
-          textBackgroundRadius={20}
+          textBackgroundRadius={15}
           data={pieData}
           showValuesAsLabels={true}
           showGradient
