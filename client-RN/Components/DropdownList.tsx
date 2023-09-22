@@ -28,9 +28,9 @@ const DropdownList: React.FC<SelectListProps> = ({
         save="value"
         setSelected={setSelectedValue}
         placeholder="Select User"
-        boxStyles = {{backgroundColor: 'white',}}
-        inputStyles = {{backgroundColor: 'white'}}
-        dropdownStyles = {{backgroundColor: 'white'}}
+        boxStyles = {styles.boxStyles}
+        inputStyles = {{}}
+        dropdownStyles = {{}}
         dropdownItemStyles = {{}}
         dropdownTextStyles = {{}}
       />
@@ -39,7 +39,13 @@ const DropdownList: React.FC<SelectListProps> = ({
 };
 
 const styles = StyleSheet.create({
-    
+    boxStyles: {
+        backgroundColor: 'white',
+        marginTop: 20,
+    },
+    dropdownStyles: {
+        backgroundColor: 'white',
+    }
 });
 
 export default DropdownList;

@@ -4,21 +4,23 @@ import Header from '../Components/Header'
 import SwipeCalendar from '../Components/SwipeCalendar';
 import DropdownList from '../Components/DropdownList'
 import globalStyles from '../styles';
+import PieChartComponent from '../Components/PieChartComponent';
 
 
 export default function DashboardScreen() {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     return(
         <View style={[globalStyles.backgroundImage,globalStyles.primaryColor]}>
-             <Header 
+            <Header 
                 headerTitle={"Dashboard"}
                 backgroundColor= '#00B69B'
             /> 
             <DropdownList 
-                  selectedValue={selectedValue}
-                  setSelectedValue={setSelectedValue}
+                selectedValue={selectedValue}
+                setSelectedValue={setSelectedValue}
             />
             <SwipeCalendar/>
+            <PieChartComponent/>
         </View>
         
         
