@@ -26,7 +26,7 @@ const globalStyles = StyleSheet.create({
     },
     headerTitle: {
       color: 'white',
-      fontSize: 20,
+      fontSize: 22,
       fontWeight: 'bold',
     }
 

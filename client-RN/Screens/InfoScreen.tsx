@@ -27,20 +27,20 @@ const styles = StyleSheet.create({
         padding: 20,
     },
     scrollViewContent: {
-        paddingBottom: 40, // Add padding at the bottom of the content container
+        marginBottom: 40, // Add padding at the bottom of the content container
       },
     subContainer: {
-        // marginBottom: 20,
+        marginBottom: 20,
         
     },
     title: {
         color: 'white',
-        fontSize: 16,
+        fontSize: 18,
         fontWeight: 'bold',
     },
     description: {
         color: 'white',
-        fontSize: 14,
+        fontSize: 16,
         marginTop:10,
         marginBottom: 20,
     }
