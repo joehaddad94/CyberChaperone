@@ -3,7 +3,7 @@ import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
 import globalStyles from '../styles';
 import Header from '../Components/Header';
 import PressableTitle from '../Components/PressableTitle';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation, NavigationProp, CommonActions } from '@react-navigation/native';
 import { StackParamList } from '../ParamTypes';
 import { useAuth } from '../ContextFiles/AuthContext';
 
@@ -26,7 +26,12 @@ const  ProfileScreen: React.FC = () => {
         break;
       case 'Logout':
         logout();
-  
+        navigation.dispatch(
+          CommonActions.reset({
+            index: 0,
+            routes: [{ name: 'LoginScreen' }],
+          })
+        );
         break;
       default:
         break;
