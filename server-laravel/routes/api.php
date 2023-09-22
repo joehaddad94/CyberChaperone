@@ -11,6 +11,7 @@ Route::group(["middleware" => "auth:api"], function () {
     Route::group(["middleware" => "auth.guardian_user"], function () {
         Route::post("create_general_user", [UsersController::class, "createGeneralUser"]);
         Route::get("fetch_all_users", [UsersController::class, "fetchAllUsers"]);
+        Route::delete("delete_user/{id}", [UsersController::class, "deleteUser"]);
     });
 
     //General user Apis
