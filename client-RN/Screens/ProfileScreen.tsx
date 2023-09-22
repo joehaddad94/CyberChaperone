@@ -5,10 +5,12 @@ import Header from '../Components/Header';
 import PressableTitle from '../Components/PressableTitle';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../ParamTypes';
+import { useAuth } from '../ContextFiles/AuthContext';
 
 const  ProfileScreen: React.FC = () => {
 
   const navigation = useNavigation<NavigationProp<StackParamList>>();
+  const { user, logout } = useAuth();
   
   function handleMenuItemPress(item: string) {
 
@@ -23,6 +25,7 @@ const  ProfileScreen: React.FC = () => {
         navigation.navigate('SettingsScreen');
         break;
       case 'Logout':
+        logout();
   
         break;
       default:
@@ -47,8 +50,8 @@ const  ProfileScreen: React.FC = () => {
             source={require('../assets/images/user.png')}
             style={styles.profilePicture}
           />
-          <Text style = {styles.username}>Username</Text>
-          <Text style = {styles.email}>email</Text>
+          <Text style = {styles.username}>{user.username}</Text>
+          <Text style = {styles.email}>{user.email}</Text>
         </View>
         <View style = {styles.botContainer}>
           <PressableTitle title="Manage Account" onPress={() => handleMenuItemPress('Manage Account')} />
