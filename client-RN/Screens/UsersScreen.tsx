@@ -45,6 +45,30 @@ export default function UsersScreen() {
         }
     }
 
+    const handleDeleteUser = async (id: number) => {
+        try {
+            const authToken = user.user.token;
+            const apiUrl = `${BASE_URL}/api/delete_user/${id}`;
+    
+            const response = await axios.delete(apiUrl, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json; charset=utf-8',
+                    'Authorization': `Bearer ${authToken}`
+                }
+            });
+    
+            if (response.data && response.data.message === 'User deleted successfully') {
+                console.log('User deleted successfully');
+                setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
+            } else {
+                console.log('User deletion failed');
+            }
+        } catch (error) {
+            console.error('Error deleting user:', error);
+        }
+    }
+
     useFocusEffect(
         React.useCallback(() => {
             fetchAllUsers();
@@ -85,7 +109,7 @@ export default function UsersScreen() {
                                         <AntDesign name="edit" size={24} color="#00BFA4" />
                                     </TouchableOpacity>
                                     <TouchableOpacity
-                                        // onPress={() => handleDeleteUser(user.id)}
+                                        onPress={() => handleDeleteUser(user.id)}
                                     >
                                         <AntDesign name="delete" size={24} color="red" />
                                     </TouchableOpacity>
