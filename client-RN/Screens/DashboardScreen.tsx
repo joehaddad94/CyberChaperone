@@ -21,9 +21,11 @@ export default function DashboardScreen() {
             />
             <SwipeCalendar/>
             
-                <View style = {styles.chartContainer}>
-                    <PieChartComponent/>
-                </View>
+            <View style={styles.chartContainerWrapper}>
+        <View style={styles.chartContainer}>
+          <PieChartComponent />
+        </View>
+      </View>
             
         </ScrollView>
         
@@ -32,11 +34,18 @@ export default function DashboardScreen() {
 }
 
 const styles = StyleSheet.create({
+    chartContainerWrapper: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
     chartContainer: {
       flex: 1,
       alignItems: 'center',
       backgroundColor: 'white',
       width:350,
       borderRadius: 10,
+      elevation: 5,
+      borderWidth: 2,
     },
   })
