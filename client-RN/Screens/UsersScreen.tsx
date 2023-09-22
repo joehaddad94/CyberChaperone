@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation, NavigationProp, useFocusEffect } from '@react-navigation/native';
 import NestedHeader from '../Components/NestedHeader';
 import globalStyles from '../styles';
 import { StackParamList } from '../ParamTypes';
@@ -44,9 +44,11 @@ export default function UsersScreen() {
         }
     }
 
-    useEffect(() => {
-        fetchAllUsers();
-    }, []);
+    useFocusEffect(
+        React.useCallback(() => {
+            fetchAllUsers();
+        }, [])
+    );
 
     return (
         <SafeAreaView style={globalStyles.container}>
