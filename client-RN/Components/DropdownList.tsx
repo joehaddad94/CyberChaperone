@@ -25,16 +25,21 @@ const DropdownList: React.FC<SelectListProps> = ({
     <View>
       <SelectList 
         data={data}
-        save="value" 
+        save="value"
         setSelected={setSelectedValue}
-        
+        placeholder="Select User"
+        boxStyles = {{backgroundColor: 'white',}}
+        inputStyles = {{backgroundColor: 'white'}}
+        dropdownStyles = {{backgroundColor: 'white'}}
+        dropdownItemStyles = {{}}
+        dropdownTextStyles = {{}}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  // Add your custom styles here if needed
+    
 });
 
 export default DropdownList;
