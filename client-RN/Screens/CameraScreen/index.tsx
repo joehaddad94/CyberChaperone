@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { Camera, CameraType } from 'expo-camera';
+import { Camera, CameraType, FaceDetectionResult } from 'expo-camera';
+import * as FaceDetector from 'expo-face-detector';
+import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated'
 import { Button, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import globalStyles from '../../styles';
@@ -93,9 +95,75 @@ const bgImage = require("../../assets/images/DarkBG.png");
 // }
 
 export default function CameraScreen () {
+  const [facedetected, setFaceDetected] = useState(false)
+  const [permission, requestPermission] = Camera.useCameraPermissions();
+
+  const faceValues = useSharedValue({
+    width: 0,
+    height: 0,
+    x: 0,
+    y: 0,
+  })
+
+  function handleFacesDetected({faces}: FaceDetectionResult) {
+    // console.log(faces);
+    const face = faces[0] as any;
+
+    if (face) {
+      const { size, origin } = face.bounds;
+
+      faceValues.value = {
+        width: size.width,
+        height: size.height,
+        x: origin.x,
+        y: origin.y,
+      }
+      setFaceDetected(true);
+    } else {
+      setFaceDetected(false);
+    }
+  }
+
+  const animatedStyle = useAnimatedStyle(() =>({
+    position: 'absolute',
+    zIndex: 1,
+    width: faceValues.value.width,
+    height: faceValues.value.height,
+    transform: [
+      {translateX: faceValues.value.x},
+      {translateY: faceValues.value.y},
+    ],
+    borderColor: '#00B69B',
+    borderWidth: 5,
+  }))
+
+  useEffect(() => {
+    requestPermission();
+  },[]) 
+
+  if (!permission?.granted) {
+    return;
+  }
+
   return(
     <View style = {styles.container}>
-      
+      {facedetected && 
+        <Animated.View style = {animatedStyle}/>
+      }
+        <Camera 
+          style = {styles.container}
+          type={CameraType.front}
+          ratio='16:9'
+          onFacesDetected={handleFacesDetected}
+          faceDetectorSettings={{
+            mode: FaceDetector.FaceDetectorMode.fast,
+            detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
+            runClassifications: FaceDetector.FaceDetectorClassifications.all,
+            minDetectionInterval: 100,
+            tracking: true,
+          }}
+          />
+
     </View>
   );
 }
