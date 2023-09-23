@@ -8,7 +8,6 @@ import PieChartComponent from '../Components/PieChartComponent';
 import { BASE_URL } from '../react-native.config';
 import { useAuth } from '../ContextFiles/AuthContext';
 import SwipeCalendar from '../Components/SwipeCalendar';
-import { subDays } from 'date-fns';
 
 interface User {
   username: string;
@@ -17,6 +16,7 @@ interface User {
 
 export default function DashboardScreen() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const user = useAuth();
 
@@ -25,11 +25,12 @@ export default function DashboardScreen() {
   }, []);
 
   useEffect(() => {
-    if (selectedUser) {
+    if (selectedUser && selectedDate) {
       console.log('Selected User ID:', selectedUser.id);
       console.log('Selected User Username:', selectedUser.username);
+      console.log('Selected Date:', selectedDate);
     }
-  }, [selectedUser]);
+  }, [selectedUser, selectedDate]);
 
   async function fetchAllUsers() {
     try {
@@ -61,9 +62,12 @@ export default function DashboardScreen() {
           setSelectedUser(selected);
         }}
       />
-      <SwipeCalendar initialSelectedDate={subDays(new Date(), 1)}/>
-      <View style = {styles.chartContainerWrapper}>
-        <View style = {styles.chartContainer}>
+      <SwipeCalendar 
+        selectedDate={selectedDate}
+        setSelectedDate={setSelectedDate}
+        />
+      <View style={styles.chartContainerWrapper}>
+        <View style={styles.chartContainer}>
           <PieChartComponent />
         </View>
       </View>
