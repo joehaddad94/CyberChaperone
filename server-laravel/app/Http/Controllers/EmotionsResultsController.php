@@ -36,4 +36,23 @@ class emotionsResultsController extends Controller {
         return response()->json(['message' => 'Emotion data saved successfully']);
     }
 
+    public function fetchDailyDataAnalysis(Request $request) {
+
+            $authUser = Auth::user();
+
+            if (!$authUser) {
+                return response()->json(['error' => 'User is not authenticated.'], 401);
+            }
+
+            $validateData = $request->validate([
+                'userId' => 'required|number',
+                'timestamp' => 'required|date',
+            ]);
+
+            if ($validateData) {
+                $responseData = ['message' => 'Data retrieved successfully', 'data' => []];
+
+                return response()->json($responseData, 200);
+            }
+    }
 }

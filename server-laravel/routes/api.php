@@ -12,6 +12,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::post("create_general_user", [UsersController::class, "createGeneralUser"]);
         Route::get("fetch_all_users", [UsersController::class, "fetchAllUsers"]);
         Route::delete("delete_user/{id}", [UsersController::class, "deleteUser"]);
+        Route::post("fetch_dashboard_analysis", [EmotionsResultsController::class, "fetchDailyDataAnalysis"]);
     });
 
     //General user Apis

@@ -21,6 +21,7 @@ export default function DashboardScreen() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [users, setUsers] = useState<User[]>([]);
   const user = useAuth();
+  
 
   useEffect(() => {
     console.log("entered")
@@ -28,12 +29,14 @@ export default function DashboardScreen() {
   },[]);
 
   useEffect(() => {
+    const authToken = user.user.token;
     if (selectedUser && selectedDate) {
       const isInitialDate = selectedDate.toDateString() === new Date().toDateString();
       const adjustedDate = isInitialDate ? selectedDate : addDays(selectedDate, 1);
       console.log('Selected User ID:', selectedUser.id);
       console.log('Selected User Username:', selectedUser.username);
       console.log('Selected Date:', adjustedDate);
+      console.log(authToken)
     }
   }, [selectedUser, selectedDate]);
 
