@@ -66,17 +66,19 @@ export default function CameraScreen({ navigation }) {
         resizeMode='cover'
       >
         {cameraOpen ? (
-          <Camera 
-            style={styles.camera} 
-            type={type}
-            ratio= "16:9"
-            >
-            <View style={styles.buttonContainer}>
-              <TouchableOpacity style={styles.button} onPress={closeCamera}>
-                <Text style={styles.text}>Close Camera</Text>
-              </TouchableOpacity>
-            </View>
-          </Camera>
+          <View style = {styles.cameraHeight}>
+            <Camera 
+              style={styles.camera} 
+              type={type}
+              ratio= "16:9"
+              >
+              <View style={styles.buttonContainer}>
+                <TouchableOpacity style={styles.button} onPress={closeCamera}>
+                  <Text style={styles.text}>Close Camera</Text>
+                </TouchableOpacity>
+              </View>
+            </Camera>
+          </View>
         ) : (
           <View style={styles.buttonContainer}>
             <Button 
@@ -116,4 +118,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+  cameraHeight: {
+    height: 650,
+  }
 });
