@@ -45,12 +45,53 @@ class emotionsResultsController extends Controller {
             }
 
             $validateData = $request->validate([
-                'userId' => 'required|number',
+                'userId' => 'required|numeric',
                 'timestamp' => 'required|date',
             ]);
 
+            $userId = $validateData['userId'];
+            $detectionResults = DetectionResult::where('user_id', $userId)->get();
+
+            $results = [];
+            $totalEmotions = count($detectionResults);
+
+            foreach ($detectionResults as $result) {
+                $detectionTime = $result->detection_time;
+                $emotionsPercentage = json_decode($result->emotions_percentage, true);
+
+                $results[] = [
+                    'detection time' => $detectionTime,
+                    'emotionPercentage' => $emotionsPercentage
+                ];
+            }
+
+            $averageEmotions = [];
+
+            if ($totalEmotions > 0) {
+                $sumEmotions = array_fill_keys(array_keys($results[0]['emotionPercentage']), 0);
+
+                foreach ($results as $result) {
+
+                    foreach ($result['emotionPercentage'] as $emotion => $percentage) {
+                        $sumEmotions[$emotion] += $percentage;
+                    }
+                }
+
+                foreach ($sumEmotions as $emotion => $sum) {
+                    $averageEmotions[$emotion] = round($sum / $totalEmotions,2);
+                }
+            }
+
             if ($validateData) {
-                $responseData = ['message' => 'Data retrieved successfully', 'data' => []];
+                $responseData = [
+                    'message' => 'Data retrieved successfully',
+                    'data' => [
+                        'authId' => Auth::id(),
+                        'validateData' => $validateData,
+                        'averageEmotions' => $averageEmotions,
+                        'results' => $results,
+                    ]
+                ];
 
                 return response()->json($responseData, 200);
             }

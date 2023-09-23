@@ -7,5 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetectionResult extends Model
 {
-    use HasFactory;
+    protected $fillable = ['user_id', 'detection_time', 'emotions_percentage', 'timestamp'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

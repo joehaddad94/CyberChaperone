@@ -1,10 +1,7 @@
 import React from "react";
-import { View, StyleSheet, Text } from 'react-native'
-// import { PieChart } from "react-native-chart-kit";
+import { View, Text } from 'react-native'
 import { PieChart } from "react-native-gifted-charts";
-import { Dimensions } from "react-native";
-
-const screenWidth = Dimensions.get("window").width;
+import {styles} from './style'
 
 const PieChartComponent = () => {
 
@@ -51,28 +48,4 @@ return(
 }
 export default PieChartComponent;
 
-const styles = StyleSheet.create({
-  chartContainer: {
-    marginTop: 20,
-  },
-  chartWithLegends: {
-    flexDirection: 'row', // Display the pie chart and legends side by side
-    alignItems: 'center', // Vertically center the pie chart and legends
-  },
-  legendContainer: {
-    marginLeft: 10, // Add margin to separate the pie chart and legends
-  },
-  legendItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 5, // Add margin between legend items
-  },
-  legendColorBox: {
-    width: 16,
-    height: 16,
-    marginRight: 5, // Add margin between color box and label
-  },
-  legendLabel: {
-    fontSize: 12,
-  },
-});
+
