@@ -8,6 +8,8 @@ import globalStyles from '../../styles';
 import { styles } from './styles'
 
 const bgImage = require("../../assets/images/DarkBG.png");
+const happyEmoji = require("../../assets/images/happy.png")
+const neutralEmoji = require("../../assets/images/neutral.png")
 
 // export default function CameraScreen({ navigation }) {
 //   const [cameraOpen, setCameraOpen] = useState(false); // Initialize as closed
@@ -98,6 +100,8 @@ export default function CameraScreen () {
   const [facedetected, setFaceDetected] = useState(false)
   const [permission, requestPermission] = Camera.useCameraPermissions();
 
+  const [emoji, setEmoji] = useState(neutralEmoji)
+
   const faceValues = useSharedValue({
     width: 0,
     height: 0,
@@ -119,6 +123,12 @@ export default function CameraScreen () {
         y: origin.y,
       }
       setFaceDetected(true);
+
+      if(face.smillingProbability > 0.3 ) {
+        setEmoji(happyEmoji);
+      } else {
+        setEmoji(neutralEmoji)
+      }
     } else {
       setFaceDetected(false);
     }
@@ -137,6 +147,17 @@ export default function CameraScreen () {
     borderWidth: 5,
   }))
 
+  const animatedEmoji = useAnimatedStyle(() =>({
+    position: 'absolute',
+    zIndex: 1,
+    width: faceValues.value.width,
+    height: faceValues.value.height,
+    transform: [
+      {translateX: faceValues.value.x},
+      {translateY: faceValues.value.y + 300},
+    ]
+  }))
+
   useEffect(() => {
     requestPermission();
   },[]) 
@@ -148,7 +169,10 @@ export default function CameraScreen () {
   return(
     <View style = {styles.container}>
       {facedetected && 
-        <Animated.View style = {animatedStyle}/>
+        <View>
+          <Animated.View style={animatedStyle} />
+          <Animated.Image style={animatedEmoji} source={emoji} />
+        </View>
       }
         <Camera 
           style = {styles.container}
