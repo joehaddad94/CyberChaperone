@@ -50,7 +50,9 @@ class emotionsResultsController extends Controller {
             ]);
 
             $userId = $validateData['userId'];
-            $detectionResults = DetectionResult::where('user_id', $userId)->get();
+            $detectionResults = DetectionResult::where('user_id', $userId)
+                ->whereDate('detection_time', '=', date('Y-m-d', strtotime($validateData['timestamp'])))
+                ->get();
 
             $results = [];
             $totalEmotions = count($detectionResults);
@@ -85,12 +87,8 @@ class emotionsResultsController extends Controller {
             if ($validateData) {
                 $responseData = [
                     'message' => 'Data retrieved successfully',
-                    'data' => [
-                        'authId' => Auth::id(),
-                        'validateData' => $validateData,
-                        'averageEmotions' => $averageEmotions,
-                        'results' => $results,
-                    ]
+                    'averageEmotions' => $averageEmotions,
+                    'results' => $results,
                 ];
 
                 return response()->json($responseData, 200);
