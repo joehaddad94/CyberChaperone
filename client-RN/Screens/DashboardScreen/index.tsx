@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import axios from 'axios';
-import Header from '../Components/Header';
-import DropdownList from '../Components/DropdownList';
-import globalStyles from '../styles';
-import PieChartComponent from '../Components/PieChartComponent';
-import { BASE_URL } from '../react-native.config';
-import { useAuth } from '../ContextFiles/AuthContext';
-import SwipeCalendar from '../Components/SwipeCalendar';
+import Header from '../../Components/Header';
+import DropdownList from '../../Components/DropdownList';
+import globalStyles from '../../styles';
+import PieChartComponent from '../../Components/PieChartComponent';
+import { BASE_URL } from '../../react-native.config';
+import { useAuth } from '../../ContextFiles/AuthContext';
+import SwipeCalendar from '../../Components/SwipeCalendar';
 import { addDays, subDays } from 'date-fns';
+import { styles } from './styles'
 import { useFocusEffect } from '@react-navigation/native';
 
 interface User {
@@ -83,19 +84,4 @@ export default function DashboardScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  chartContainerWrapper: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  chartContainer: {
-    flex: 1,
-    alignItems: 'center',
-    backgroundColor: 'white',
-    width: 350,
-    borderRadius: 10,
-    elevation: 5,
-    borderWidth: 2,
-  },
-});
+
