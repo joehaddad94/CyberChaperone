@@ -8,35 +8,56 @@ interface PieChartProps {
   emotionAverages: EmotionAverages | null;
 }
 
+const getColorForEmotion = (emotion: string) => {
+  switch (emotion) {
+    case 'Neutral':
+      return 'lightblue';
+    case 'Happy':
+      return 'yellow';
+    case 'Sad':
+      return 'blue';
+    case 'Angry':
+      return 'red';
+    case 'Surprised':
+      return 'pink';
+    case 'Fearful':
+      return 'brown';
+    case 'Disgusted':
+      return 'green';
+    default:
+      return 'gray';
+  }
+};
+
 const PieChartComponent: React.FC<PieChartProps> = ({ emotionAverages }) => {
 
-  const pieData = [
-    {value: 30, gradientCenterColor: 'lightblue', text: '30%'},
-    {value: 30, gradientCenterColor: '#79D2DE', text: '30%'},
-    {value: 25, gradientCenterColor: '#ED6665', text: '25%'},
-    {value: 15, gradientCenterColor: '#ED6665', text: '15%'},
-];
+const legends = Object.entries(emotionAverages || {}).map(([emotion, percentage], index) => ({
+  label: `${emotion} ${percentage}%`,
+  color: getColorForEmotion(emotion),
+}));
 
-const legends = [
-  { label: 'Legend 1', color: 'lightblue' },
-  { label: 'Legend 2', color: '#79D2DE' },
-  { label: 'Legend 3', color: '#ED6665' },
-  // Add more legends as needed
-];
+const pieData = Object.entries(emotionAverages || {}).map(([emotion, percentage]) => ({
+  value: percentage,
+  gradientCenterColor: getColorForEmotion(emotion),
+  text: `${percentage}%`,
+}));
+
+console.log('Legends:', legends);
+console.log('Pie Data:', pieData);
 
 return(
     <View style={styles.chartContainer}>
       <View style={styles.chartWithLegends}>
         <PieChart
-          showText
+          // showText
           textColor="black"
-          radius={100}
-          textSize={10}
-          showTextBackground
+          radius={90}
+          // textSize={10}
+          // showTextBackground
           textBackgroundRadius={15}
           data={pieData}
-          showValuesAsLabels={true}
-          showGradient
+          // showValuesAsLabels={false}
+          // showGradient
           focusOnPress
         />
       <View style={styles.legendContainer}>
