@@ -1,39 +1,62 @@
-// import { Camera, CameraType } from 'expo-camera';
-import { useState } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { Camera, CameraType } from 'expo-camera';
+import { Button, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
+import globalStyles from '../styles';
 
-export default function App() {
-  // const [type, setType] = useState(CameraType.back);
-  // const [permission, requestPermission] = Camera.useCameraPermissions();
+const bgImage = require("../assets/images/DarkBG.png");
 
-  // if (!permission) {
-  //   // Camera permissions are still loading
-  //   return <View />;
-  // }
+export default function CameraScreen() {
+  const [cameraOpen, setCameraOpen] = useState(false);
+  const [type, setType] = useState(CameraType.back);
+  const [permission, requestPermission] = Camera.useCameraPermissions();
 
-  // if (!permission.granted) {
-  //   // Camera permissions are not granted yet
-  //   return (
-  //     <View style={styles.container}>
-  //       <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
-  //       <Button onPress={requestPermission} title="grant permission" />
-  //     </View>
-  //   );
-  // }
+  if (!permission) {
+    // Camera permissions are still loading
+    return <View />;
+  }
 
-  // function toggleCameraType() {
-  //   setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
-  // }
+  if (!permission.granted) {
+    // Camera permissions are not granted yet
+    return (
+      <View style={styles.container}>
+        <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
+        <Button onPress={requestPermission} title="Grant Permission" />
+      </View>
+    );
+  }
+
+  function toggleCameraType() {
+    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+  }
+
+  function toggleCamera() {
+    setCameraOpen(prevCameraOpen => !prevCameraOpen);
+  }
 
   return (
     <View style={styles.container}>
-      {/* <Camera style={styles.camera} type={type}>
+      <ImageBackground
+        source={bgImage}
+        style={globalStyles.backgroundImage}
+        resizeMode='cover'
+      >
+      {!cameraOpen ? (
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Text style={styles.text}>Flip Camera</Text>
-          </TouchableOpacity>
+          <Button onPress={toggleCamera} title="Open Camera" />
         </View>
-      </Camera> */}
+      ) : (
+        <Camera style={styles.camera} type={type}>
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
+              <Text style={styles.text}>Flip Camera</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} onPress={toggleCamera}>
+              <Text style={styles.text}>Close Camera</Text>
+            </TouchableOpacity>
+          </View>
+        </Camera>
+      )}
+      </ImageBackground>
     </View>
   );
 }
@@ -47,10 +70,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    flex: 1,
+    // flex: 1,
+    height: '100%',
     flexDirection: 'row',
+    justifyContent:'center',
+    alignItems:'center',
     backgroundColor: 'transparent',
-    margin: 64,
+
   },
   button: {
     flex: 1,

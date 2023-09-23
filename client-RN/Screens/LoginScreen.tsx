@@ -54,7 +54,7 @@ export default function LoginScreen() {
     if (validateFOrm()) {
       try{
         const apiUrl = `${BASE_URL}/api/login`
-
+        console.log(apiUrl)
         const response = await axios.post(apiUrl, loginCredentials, {
           headers: {
             'Accept': 'application/json',
@@ -80,6 +80,7 @@ export default function LoginScreen() {
         if (error.response && error.response.data && error.response.data.message) {
           setLoginError(error.response.data.message);
         } else {
+          console.log(error)
           setLoginError('An error occurred during login.');
         }
       }
