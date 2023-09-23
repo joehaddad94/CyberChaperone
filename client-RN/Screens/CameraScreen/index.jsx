@@ -2,7 +2,8 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import { Button, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native'; // Import the focus effect hook
-import globalStyles from '../styles';
+import globalStyles from '../../styles';
+import { styles } from './styles'
 
 const bgImage = require("../assets/images/DarkBG.png");
 
@@ -91,39 +92,4 @@ export default function CameraScreen({ navigation }) {
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-  },
-  permissionContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems:'center',
-    gap: 10
-  },
-  camera: {
-    flex: 1,
-  },
-  buttonContainer: {
-    height: '100%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-  },
-  button: {
-    flex: 1,
-    alignSelf: 'flex-end',
-    alignItems: 'center',
-    width: 100,
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    color: 'white',
-  },
-  cameraHeight: {
-    height: 650,
-  }
-});
+
