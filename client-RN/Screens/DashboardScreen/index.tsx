@@ -8,23 +8,15 @@ import PieChartComponent from '../../Components/PieChartComponent';
 import { BASE_URL } from '../../react-native.config';
 import { useAuth } from '../../ContextFiles/AuthContext';
 import SwipeCalendar from '../../Components/SwipeCalendar';
-import { addDays, subDays } from 'date-fns';
 import { styles } from './styles'
-import { useFocusEffect } from '@react-navigation/native';
-
-interface User {
-  username: string;
-  id: number;
-}
+import { EmotionAverages, User } from '../../ParamTypes';
 
 export default function DashboardScreen() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
-  const [emotionAverages, setEmotionAverages] = useState<Object | null>()
+  const [emotionAverages, setEmotionAverages] = useState<EmotionAverages | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const user = useAuth();
-  
-  
 
   useEffect(() => {
     console.log("entered")
@@ -80,6 +72,7 @@ export default function DashboardScreen() {
       });
 
       console.log (response.data.averageEmotions)
+      setEmotionAverages(response.data.averageEmotions);
     } catch (error) {
       console.log(error);
     }
@@ -102,7 +95,9 @@ export default function DashboardScreen() {
         />
       <View style={styles.chartContainerWrapper}>
         <View style={styles.chartContainer}>
-          <PieChartComponent />
+          <PieChartComponent
+            emotionAverages={emotionAverages}
+          />
         </View>
       </View>
     </ScrollView>

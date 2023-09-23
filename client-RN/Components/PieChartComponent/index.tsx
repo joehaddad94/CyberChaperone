@@ -1,9 +1,14 @@
 import React from "react";
 import { View, Text } from 'react-native'
 import { PieChart } from "react-native-gifted-charts";
+import { EmotionAverages } from '../../ParamTypes';
 import {styles} from './styles'
 
-const PieChartComponent = () => {
+interface PieChartProps {
+  emotionAverages: EmotionAverages | null;
+}
+
+const PieChartComponent: React.FC<PieChartProps> = ({ emotionAverages }) => {
 
   const pieData = [
     {value: 30, gradientCenterColor: 'lightblue', text: '30%'},
@@ -47,5 +52,3 @@ return(
 )
 }
 export default PieChartComponent;
-
-

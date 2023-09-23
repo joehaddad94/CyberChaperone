@@ -28,3 +28,18 @@ export type StackParamList = {
     email: string,
     password: string,
   }
+
+  export interface EmotionAverages {
+    Neutral: number;
+    Happy: number;
+    Sad: number;
+    Angry: number;
+    Fearful: number;
+    Disgusted: number;
+    Surprised: number;
+  }
+
+  export interface User {
+    username: string;
+    id: number;
+  }
