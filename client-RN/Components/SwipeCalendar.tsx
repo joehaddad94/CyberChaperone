@@ -8,6 +8,10 @@ import { Animated } from 'react-native';
 
 let isSelected;
 
+interface SwipeCalendarProps {
+  initialSelectedDate?: Date;
+}
+
 const dates = eachWeekOfInterval(
     {
         start: subDays(new Date(), 14),
@@ -25,9 +29,9 @@ const dates = eachWeekOfInterval(
     return allDays;
 });
 
-const SwipeCalendar: React.FC = () => {
+const SwipeCalendar: React.FC<SwipeCalendarProps> = ({initialSelectedDate}) => {
 
-    const [selectedDate, setSelectedDate] = useState<Date | null>(null); 
+    const [selectedDate, setSelectedDate] = useState<Date | null>(initialSelectedDate || null); 
 
     return (
         <PagerView style={[styles.container,globalStyles.primaryColor]}>

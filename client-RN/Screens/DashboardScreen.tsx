@@ -8,6 +8,7 @@ import PieChartComponent from '../Components/PieChartComponent';
 import { BASE_URL } from '../react-native.config';
 import { useAuth } from '../ContextFiles/AuthContext';
 import SwipeCalendar from '../Components/SwipeCalendar';
+import { subDays } from 'date-fns';
 
 interface User {
   username: string;
@@ -60,7 +61,7 @@ export default function DashboardScreen() {
           setSelectedUser(selected);
         }}
       />
-      <SwipeCalendar/>
+      <SwipeCalendar initialSelectedDate={subDays(new Date(), 1)}/>
       <View style = {styles.chartContainerWrapper}>
         <View style = {styles.chartContainer}>
           <PieChartComponent />
