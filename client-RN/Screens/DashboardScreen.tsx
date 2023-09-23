@@ -27,7 +27,6 @@ export default function DashboardScreen() {
     if (selectedUser) {
       console.log('Selected User ID:', selectedUser.id);
       console.log('Selected User Username:', selectedUser.username);
-      // You can use the selectedUser in your requests here
     }
   }, [selectedUser]);
 
@@ -57,13 +56,16 @@ export default function DashboardScreen() {
         data={users.map(user => ({ key: user.id.toString(), value: user.username }))}
         selectedValue={selectedUser ? selectedUser.username : null}
         setSelectedValue={(value: string | null) => {
-          // Find the selected user object based on the username
           const selected = users.find((u) => u.username === value) || null;
           setSelectedUser(selected);
         }}
       />
       <SwipeCalendar/>
-      <PieChartComponent />
+      <View style = {styles.chartContainerWrapper}>
+        <View style = {styles.chartContainer}>
+          <PieChartComponent />
+        </View>
+      </View>
     </ScrollView>
   );
 }
