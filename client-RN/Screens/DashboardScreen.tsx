@@ -8,6 +8,8 @@ import PieChartComponent from '../Components/PieChartComponent';
 import { BASE_URL } from '../react-native.config';
 import { useAuth } from '../ContextFiles/AuthContext';
 import SwipeCalendar from '../Components/SwipeCalendar';
+import { addDays, subDays } from 'date-fns';
+import { useFocusEffect } from '@react-navigation/native';
 
 interface User {
   username: string;
@@ -16,19 +18,22 @@ interface User {
 
 export default function DashboardScreen() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [users, setUsers] = useState<User[]>([]);
   const user = useAuth();
 
   useEffect(() => {
+    console.log("entered")
     fetchAllUsers();
-  }, []);
+  },[]);
 
   useEffect(() => {
     if (selectedUser && selectedDate) {
+      const isInitialDate = selectedDate.toDateString() === new Date().toDateString();
+      const adjustedDate = isInitialDate ? selectedDate : addDays(selectedDate, 1);
       console.log('Selected User ID:', selectedUser.id);
       console.log('Selected User Username:', selectedUser.username);
-      console.log('Selected Date:', selectedDate);
+      console.log('Selected Date:', adjustedDate);
     }
   }, [selectedUser, selectedDate]);
 
