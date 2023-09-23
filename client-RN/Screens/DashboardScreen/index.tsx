@@ -20,8 +20,10 @@ interface User {
 export default function DashboardScreen() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
+  const [emotionAverages, setEmotionAverages] = useState<Object | null>()
   const [users, setUsers] = useState<User[]>([]);
   const user = useAuth();
+  
   
 
   useEffect(() => {
@@ -30,14 +32,18 @@ export default function DashboardScreen() {
   },[]);
 
   useEffect(() => {
-    const authToken = user.user.token;
     if (selectedUser && selectedDate) {
-      const isInitialDate = selectedDate.toDateString() === new Date().toDateString();
-      const adjustedDate = isInitialDate ? selectedDate : addDays(selectedDate, 1);
       console.log('Selected User ID:', selectedUser.id);
       console.log('Selected User Username:', selectedUser.username);
-      console.log('Selected Date:', adjustedDate);
-      console.log(authToken)
+      console.log('Selected Date:', selectedDate);
+
+      const analysisObject = {
+        userId: selectedUser.id,
+        timestamp: selectedDate.toISOString(),
+      };
+      console.log(analysisObject)
+  
+      fetchDataAnalysis(analysisObject);
     }
   }, [selectedUser, selectedDate]);
 
@@ -55,6 +61,25 @@ export default function DashboardScreen() {
       });
 
       setUsers(response.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async function fetchDataAnalysis(data:any) {
+    try {
+      const authToken = user.user.token;
+      const apiUrl = `${BASE_URL}/api/fetch_dashboard_analysis`;
+
+      const response = await axios.post(apiUrl, data, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
+          'Authorization': `Bearer ${authToken}`
+        }
+      });
+
+      console.log (response.data.averageEmotions)
     } catch (error) {
       console.log(error);
     }

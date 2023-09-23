@@ -1,7 +1,7 @@
 import React from "react";
 import { View, Text } from 'react-native'
 import { PieChart } from "react-native-gifted-charts";
-import {styles} from './style'
+import {styles} from './styles'
 
 const PieChartComponent = () => {
 

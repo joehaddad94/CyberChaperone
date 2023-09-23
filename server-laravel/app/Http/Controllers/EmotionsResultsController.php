@@ -36,8 +36,8 @@ class emotionsResultsController extends Controller {
         return response()->json(['message' => 'Emotion data saved successfully']);
     }
 
-    public function fetchDailyDataAnalysis(Request $request)
-{
+    public function fetchDailyDataAnalysis(Request $request) {
+
     try {
         $authUser = Auth::user();
 
@@ -50,9 +50,13 @@ class emotionsResultsController extends Controller {
             'timestamp' => 'required|date',
         ]);
 
+        $Date = $validateData['timestamp'];
+
+        $adjustedDate = date('Y-m-d', strtotime($Date . ' +1 day'));
+
         $userId = $validateData['userId'];
         $detectionResults = DetectionResult::where('user_id', $userId)
-            ->whereDate('detection_time', '=', date('Y-m-d', strtotime($validateData['timestamp'])))
+            ->whereDate('detection_time', '=', $adjustedDate)
             ->get();
 
         $results = [];
@@ -87,7 +91,7 @@ class emotionsResultsController extends Controller {
         $responseData = [
             'message' => 'Data retrieved successfully',
             'averageEmotions' => $averageEmotions,
-            'results' => $results,
+            // 'results' => $results,
         ];
 
         return response()->json($responseData, 200);
