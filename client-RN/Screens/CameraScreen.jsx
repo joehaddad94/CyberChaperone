@@ -1,14 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Camera, CameraType } from 'expo-camera';
 import { Button, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { useFocusEffect } from '@react-navigation/native'; // Import the focus effect hook
 import globalStyles from '../styles';
 
 const bgImage = require("../assets/images/DarkBG.png");
 
-export default function CameraScreen() {
-  const [cameraOpen, setCameraOpen] = useState(false);
-  const [type, setType] = useState(CameraType.back);
+export default function CameraScreen({ navigation }) {
+  const [cameraOpen, setCameraOpen] = useState(true); // Open the selfie camera by default
+  const [type] = useState(CameraType.front); // Set the camera type to front (selfie)
   const [permission, requestPermission] = Camera.useCameraPermissions();
+
+  useEffect(() => {
+    // Cleanup function when the component unmounts
+    return () => {
+      // Release the camera resources when the component unmounts
+      if (cameraOpen) {
+        setCameraOpen(false);
+      }
+    };
+  }, []);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      // This callback runs when the screen is focused
+      setCameraOpen(true); // Open the camera when the screen is focused
+      return () => {
+        // This callback runs when the screen is unfocused
+        // Close the camera when the screen is unfocused
+        if (cameraOpen) {
+          setCameraOpen(false);
+        }
+      };
+    }, [])
+  );
 
   if (!permission) {
     // Camera permissions are still loading
@@ -25,14 +50,6 @@ export default function CameraScreen() {
     );
   }
 
-  function toggleCameraType() {
-    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
-  }
-
-  function toggleCamera() {
-    setCameraOpen(prevCameraOpen => !prevCameraOpen);
-  }
-
   return (
     <View style={styles.container}>
       <ImageBackground
@@ -40,22 +57,19 @@ export default function CameraScreen() {
         style={globalStyles.backgroundImage}
         resizeMode='cover'
       >
-      {!cameraOpen ? (
-        <View style={styles.buttonContainer}>
-          <Button onPress={toggleCamera} title="Open Camera" />
-        </View>
-      ) : (
-        <Camera style={styles.camera} type={type}>
+        {cameraOpen ? (
+          <Camera style={styles.camera} type={type}>
+            <View style={styles.buttonContainer}>
+              <TouchableOpacity style={styles.button} onPress={() => setCameraOpen(false)}>
+                <Text style={styles.text}>Close Camera</Text>
+              </TouchableOpacity>
+            </View>
+          </Camera>
+        ) : (
           <View style={styles.buttonContainer}>
-            <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-              <Text style={styles.text}>Flip Camera</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={toggleCamera}>
-              <Text style={styles.text}>Close Camera</Text>
-            </TouchableOpacity>
+            <Button onPress={() => setCameraOpen(true)} title="Open Camera" />
           </View>
-        </Camera>
-      )}
+        )}
       </ImageBackground>
     </View>
   );
@@ -70,13 +84,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    // flex: 1,
     height: '100%',
     flexDirection: 'row',
-    justifyContent:'center',
-    alignItems:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: 'transparent',
-
   },
   button: {
     flex: 1,
