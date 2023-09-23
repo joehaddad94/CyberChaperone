@@ -32,16 +32,14 @@ export default function CameraScreen({ navigation }) {
           setCameraOpen(false);
         }
       };
-    }, [cameraOpen]) // Include cameraOpen in the dependencies to react to its changes
+    }, [cameraOpen])
   );
 
   if (!permission) {
-    // Camera permissions are still loading
     return <View />;
   }
 
   if (!permission.granted) {
-    // Camera permissions are not granted yet
     return (
       <View style={styles.container}>
         <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
@@ -51,7 +49,7 @@ export default function CameraScreen({ navigation }) {
   }
 
   function openCamera() {
-    setCameraOpen(true); // Open the camera when the button is pressed
+    setCameraOpen(true);
   }
 
   function closeCamera() {
@@ -98,6 +96,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
   },
+  permissionContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems:'center',
+    gap: 10
+  },
   camera: {
     flex: 1,
   },
@@ -112,6 +116,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignSelf: 'flex-end',
     alignItems: 'center',
+    width: 100,
   },
   text: {
     fontSize: 24,
