@@ -101,6 +101,10 @@ class AuthController extends Controller
                 return response()->json([
                     'message' => 'Username is already taken.',
                 ], 400);
+            } elseif ($validator->errors()->has('email')) {
+                return response()->json([
+                    'message' => 'Email is already taken.',
+                ], 400);
             }
 
             return response()->json($validator->errors(), 400);

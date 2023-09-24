@@ -19,7 +19,7 @@ interface User {
 }
 
 export default function UsersScreen() {
-    const noUsersImage = require('../assets/images/no-users.png');
+    const noUsersImage = require('../../assets/images/no-users.png');
     const navigation = useNavigation<NavigationProp<StackParamList>>();
     const user = useAuth();
     const [users, setUsers] = useState<User[]>([]);
@@ -79,7 +79,7 @@ export default function UsersScreen() {
     return (
         <SafeAreaView style={globalStyles.container}>
             <ImageBackground
-                source={require('../assets/images/DarkBG.png')}
+                source={require('../../assets/images/DarkBG.png')}
                 style={globalStyles.backgroundImage}
                 resizeMode="cover"
             >
@@ -95,7 +95,7 @@ export default function UsersScreen() {
                             <View style={styles.parentContainer} key={user.id}>
                                 <View style={styles.leftContainer}>
                                     <Image
-                                        source={require('../assets/images/user.png')}
+                                        source={require('../../assets/images/user.png')}
                                         style={styles.profilePicture}
                                     />
                                     <View style={styles.textContainer}>

@@ -52,6 +52,8 @@ export default function RegisterScreen() {
       try{
         const apiUrl = `${BASE_URL}/api/register`
 
+        console.log(registerCredentials);
+
         const response = await axios.post(apiUrl, registerCredentials, {
           headers: {
             'Accept': 'application/json',
@@ -70,8 +72,8 @@ export default function RegisterScreen() {
               routes: [{ name: 'HomeScreen' }], 
             })
           );
-      } catch(error) {
-        console.log(error)
+      } catch(error: any) {
+        console.log(error.response.data.message)
       }
     }
   };

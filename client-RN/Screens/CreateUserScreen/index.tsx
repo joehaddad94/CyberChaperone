@@ -48,9 +48,8 @@ export default function CreateUserScreen() {
     if (validateForm()) {
         try{
         const apiUrl = `${BASE_URL}/api/create_general_user`
-
         const authToken = User.user.token
-            console.log(authToken)
+
         const response = await axios.post(apiUrl, userCredentials, {
             headers: {
                 'Accept': 'application/json',
@@ -59,8 +58,8 @@ export default function CreateUserScreen() {
             }})
             console.log(response.data)
             navigation.goBack();
-        } catch(error) {
-            console.log(error)
+        } catch(error:any) {
+            console.log(error.response.data.message)
         }
         }
     };
@@ -78,7 +77,7 @@ export default function CreateUserScreen() {
     return (
     <SafeAreaView style={globalStyles.container}>
         <ImageBackground
-            source={require('../assets/images/DarkBG.png')}
+            source={require('../../assets/images/DarkBG.png')}
             style={globalStyles.backgroundImage}
             resizeMode="cover"
         >
@@ -91,7 +90,7 @@ export default function CreateUserScreen() {
         <View style={[globalStyles.container, styles.mainContainer ]}>
             <View>
                 <Image
-                    source={require('../assets/images/user.png')}
+                    source={require('../../assets/images/user.png')}
                     style={styles.profilePicture}
                 />
             </View>
