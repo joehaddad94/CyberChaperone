@@ -1,11 +1,13 @@
 import React from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
-import globalStyles from '../styles';
-import Header from '../Components/Header';
-import PressableTitle from '../Components/PressableTitle';
+import Header from '../../Components/Header';
+import PressableTitle from '../../Components/PressableTitle';
 import { useNavigation, NavigationProp, CommonActions } from '@react-navigation/native';
-import { StackParamList } from '../ParamTypes';
-import { useAuth } from '../ContextFiles/AuthContext';
+import { StackParamList } from '../../ParamTypes';
+import { useAuth } from '../../ContextFiles/AuthContext';
+
+import globalStyles from '../../styles';
+import { styles } from './styles';
 
 const  ProfileScreen: React.FC = () => {
 
@@ -41,7 +43,7 @@ const  ProfileScreen: React.FC = () => {
 
   return (
     <ImageBackground
-      source={require('../assets/images/DarkBG.png')}
+      source={require('../../assets/images/DarkBG.png')}
       style={globalStyles.backgroundImage}
       resizeMode="cover"
     >
@@ -53,7 +55,7 @@ const  ProfileScreen: React.FC = () => {
       <View style={styles.container}>
         <View style = {styles.topContainer}>
           <Image
-            source={require('../assets/images/user.png')}
+            source={require('../../assets/images/user.png')}
             style={styles.profilePicture}
           />
           <Text style = {styles.username}>{user.username}</Text>
@@ -69,35 +71,5 @@ const  ProfileScreen: React.FC = () => {
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  profilePicture: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    marginBottom: 20,
-  },
-  topContainer: {
-    marginBottom: 40,
-    alignItems: 'center',
-  }, 
-  botContainer: {
-    marginBottom: 20,
-  },
-  username: {
-    color: 'white',
-    fontSize: 18,
-  },
-  email: {
-    color: 'white',
-    fontSize: 16,
-    paddingTop: 5,
-  }
-});
 
 export default ProfileScreen;
