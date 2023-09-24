@@ -1,12 +1,12 @@
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
-    chartContainerWrapper: {
+    pieChartContainerWrapper: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
     },
-    chartContainer: {
+    pieChartContainer: {
       flex: 1,
       alignItems: 'center',
       backgroundColor: 'white',
@@ -15,4 +15,22 @@ export const styles = StyleSheet.create({
       elevation: 5,
       borderWidth: 2,
     },
+    barChartContainerWrapper: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      width: '100%',
+      marginBottom: 100,
+    },
+    barChartContainer: {
+      width: 350,
+      alignItems: 'center',
+      height: 360,
+      backgroundColor: 'white',
+      borderRadius: 10,
+      elevation: 5, 
+    },
+    barChartSmallContainer: {
+      width: 300,
+    }
   });

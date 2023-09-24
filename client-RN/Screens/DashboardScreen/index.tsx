@@ -10,7 +10,7 @@ import { useAuth } from '../../ContextFiles/AuthContext';
 import SwipeCalendar from '../../Components/SwipeCalendar';
 import { styles } from './styles'
 import { EmotionAverages, User } from '../../ParamTypes';
-import BarcChartComponent from '../../Components/BarChartComponent';
+import BarChartComponent from '../../Components/BarChartComponent';
 
 export default function DashboardScreen() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
@@ -20,7 +20,6 @@ export default function DashboardScreen() {
   const user = useAuth();
 
   useEffect(() => {
-    console.log("entered")
     fetchAllUsers();
   },[]);
 
@@ -94,16 +93,18 @@ export default function DashboardScreen() {
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
         />
-      <View style={styles.chartContainerWrapper}>
-        <View style={styles.chartContainer}>
+      <View style={styles.pieChartContainerWrapper}>
+        <View style={styles.pieChartContainer}>
           <PieChartComponent
             emotionAverages={emotionAverages}
           />
         </View>
       </View>
-      <View>
-        <View>
-          <BarcChartComponent/>
+      <View style={styles.barChartContainerWrapper}>
+        <View style={styles.barChartContainer}>
+          <View style = {styles.barChartSmallContainer}>
+          <BarChartComponent/>
+          </View>
         </View>
       </View>
     </ScrollView>
