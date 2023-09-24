@@ -72,8 +72,21 @@ export default function RegisterScreen() {
               routes: [{ name: 'HomeScreen' }], 
             })
           );
-      } catch(error: any) {
-        console.log(error.response.data.message)
+      } catch (error: any) {
+        if (error.response && error.response.data) {
+          const errorMessage = error.response.data.message;
+          if (errorMessage === 'Username is already taken.') {
+            setErrors({ ...errors, username: errorMessage });
+          } else {
+            setErrors({ ...errors, email: errorMessage });
+          }
+  
+          console.log(errorMessage);
+          
+          console.log(errorMessage);
+        } else {
+          console.log('An error occurred during registration.');
+        }
       }
     }
   };

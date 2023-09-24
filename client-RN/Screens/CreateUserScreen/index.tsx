@@ -56,11 +56,19 @@ export default function CreateUserScreen() {
                 'Content-Type': 'application/json; charset=utf-8',
                 'Authorization': `Bearer ${authToken}`
             }})
-            console.log(response.data)
             navigation.goBack();
-        } catch(error:any) {
-            console.log(error.response.data.message)
-        }
+        } catch (error: any) {
+            if (error.response && error.response.data) {
+              const errorMessage = error.response.data.message;
+              if (errorMessage === 'Username is already taken.') {
+                setErrors({ ...errors, username: errorMessage });
+              } else {
+                setErrors({ ...errors, email: errorMessage });
+              }
+            } else {
+              console.log('An error occurred during registration.');
+            }
+          }
         }
     };
 
