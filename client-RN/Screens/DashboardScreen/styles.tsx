@@ -37,5 +37,13 @@ export const styles = StyleSheet.create({
       color: 'white',
       fontSize: 18,
       paddingVertical:10,
+    },
+    emptyStateImgContainer: {
+      alignItems:'center',
+      marginTop:50,
+    },
+    emptyStateImg: {
+      width: 300,
+      height: 300,
     }
   });

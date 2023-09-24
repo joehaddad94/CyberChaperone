@@ -5,7 +5,7 @@ import { MaxEmotions } from "../../ParamTypes";
 import { styles } from "./styles";
 
 interface BarChartProps {
-    maxEmotions: any | null;
+    maxEmotions: MaxEmotions | null;
 }
 
 const BarChartComponent: React.FC<BarChartProps> = ({maxEmotions}) => {

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View, Image } from 'react-native';
 import axios from 'axios';
 import Header from '../../Components/Header';
 import DropdownList from '../../Components/DropdownList';
@@ -11,6 +11,8 @@ import SwipeCalendar from '../../Components/SwipeCalendar';
 import { styles } from './styles'
 import { EmotionAverages, User } from '../../ParamTypes';
 import BarChartComponent from '../../Components/BarChartComponent';
+
+const emptyStateImg = require('../../assets/images/empty-data.png')
 
 export default function DashboardScreen() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
@@ -26,15 +28,11 @@ export default function DashboardScreen() {
 
   useEffect(() => {
     if (selectedUser && selectedDate) {
-      // console.log('Selected User ID:', selectedUser.id);
-      // console.log('Selected User Username:', selectedUser.username);
-      // console.log('Selected Date:', selectedDate);
 
       const analysisObject = {
         userId: selectedUser.id,
         timestamp: selectedDate.toISOString(),
       };
-      // console.log(analysisObject)
   
       fetchDataAnalysis(analysisObject);
     }
@@ -72,9 +70,7 @@ export default function DashboardScreen() {
         }
       });
 
-      // console.log (response.data)
       setEmotionAverages(response.data.averageEmotions);
-      console.log (response.data.maxEmotions)
       const MaxEmotionsData = response.data
       setMaxEmotions(MaxEmotionsData.maxEmotions);
     } catch (error) {
@@ -84,7 +80,9 @@ export default function DashboardScreen() {
 
   const emptyStateView = (
     <View style={globalStyles.container}>
-      <Text >No data available</Text>
+      <Image
+        source={emptyStateImg}
+      />
     </View>
   );
 
@@ -104,28 +102,29 @@ export default function DashboardScreen() {
         <ScrollView>
           <View style={styles.pieChartContainerWrapper}>
             <Text style={styles.chartTitle}>Average Emotion Distribution</Text>
-            {emotionAverages ? (
-              <View style={styles.pieChartContainer}>
-                <PieChartComponent emotionAverages={emotionAverages} />
-              </View>
-            ) : (
-              emptyStateView
-            )}
+            <View style={styles.pieChartContainer}>
+              <PieChartComponent emotionAverages={emotionAverages} />
+            </View>
           </View>
           <View style={styles.barChartContainerWrapper}>
             <Text style={styles.chartTitle}>Maximum Emotion Percentages</Text>
-            {maxEmotions ? (
-              <View style={styles.barChartContainer}>
-                <View style={styles.barChartSmallContainer}>
-                  <BarChartComponent maxEmotions={maxEmotions} />
-                </View>
+            <View style={styles.barChartContainer}>
+              <View style={styles.barChartSmallContainer}>
+                <BarChartComponent maxEmotions={maxEmotions} />
               </View>
-            ) : (
-              emptyStateView
-            )}
+            </View>
           </View>
         </ScrollView>
-      ) : null}
+      ) : (
+        <View style={[globalStyles.container, styles.emptyStateImgContainer]}>
+          <Image
+            source={emptyStateImg}
+            resizeMode='cover'
+            style={styles.emptyStateImg}
+          />
+        </View>
+      )}
     </View>
   );
+  
 }
