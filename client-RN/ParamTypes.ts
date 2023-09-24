@@ -53,3 +53,8 @@ export type StackParamList = {
     username: string;
     id: number;
   }
+
+  export interface ProfileCredentials {
+    firstName: string;
+    lastName: string;
+  }

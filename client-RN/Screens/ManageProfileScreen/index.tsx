@@ -1,44 +1,63 @@
 import React, { useState } from 'react';
 import { ImageBackground, Image, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-
 import NestedHeader from '../../Components/NestedHeader/NestedHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextInput from '../../Components/TextInput'
 import ButtonComponent from '../../Components/Button';
 import { useAuth } from '../../ContextFiles/AuthContext';
+import { BASE_URL } from '../../react-native.config';
+import axios from 'axios';
 
 import globalStyles from '../../styles';
 import { styles } from './styles'
 
 const ManageProfileScreen: React.FC = () => {
     const { user } = useAuth();
-    const [firstName, setFirstName] = useState(user?.first_name || '')
-    const [lastName, setLastName] = useState(user?.last_name || '')
-    const [isFirstNameChanged, setIsFirstNameChanged] = useState<boolean>(false);
-    const [isLastNameChanged, setIsLastNameChanged] = useState<boolean>(false);
+    const [profileInfo, setProfileInfo] = useState({
+      firstName: user?.first_name || '',
+      lastName: user?.last_name || ''
+    });
     const navigation = useNavigation();
 
-    const handleFirstNameChange = (value: string) => {
-      setFirstName(value);
-      setIsFirstNameChanged(value !== user.first_name);
-    };
-
-    const handleLastNameChange = (value: string) => {
-      setLastName(value);
-      setIsLastNameChanged(value !== user.last_name);
-    };
+    const handleProfileChange = (field: string, value: string) => {
+      setProfileInfo({
+          ...profileInfo,
+          [field]: value,
+      });
+  };
 
     const handleSave = () => {
-      if (isFirstNameChanged || isLastNameChanged) {
-
-        console.log('First Name:', firstName);
-        console.log('Last Name:', lastName);
-      } else {
-        console.log('No changes detected.')
-        navigation.goBack();
-      }
+      editProfile()
     };
+
+    const editProfile = async () => {
+      try {
+        const apiUrl = `${BASE_URL}/api/edit_profile`;
+
+        const updatedProfileData = {
+          first_name: profileInfo.firstName,
+          last_name: profileInfo.lastName,
+      }
+
+        const response = await axios.post(apiUrl, updatedProfileData, {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+            'Content-Type': 'application/json',
+          },
+          });
+
+            if (response.status === 200) {
+              console.log('Profile updated successfully');
+              navigation.goBack();
+            } else {
+              console.log('Failed to update profile');
+            }
+          } catch (error) {
+            console.error('An error occurred while updating the profile:', error);
+          }
+      };
+    
     
   return (
     <SafeAreaView style = {globalStyles.container}>
@@ -64,18 +83,18 @@ const ManageProfileScreen: React.FC = () => {
         </View>
         <View style={styles.botContainer}>
             <TextInput
-                label={firstName ? firstName : "First Name"}
+                label="First Name"
                 placeholder="Edit your First Name"
-                value={firstName}
-                handleChange={handleFirstNameChange}
+                value={profileInfo.firstName}
+                handleChange={(field, value) => handleProfileChange('firstName', value)}
                 inputStyle={styles.inputStyle}
                 secureTextEntry={false}
               />
             <TextInput 
-                label={lastName ? lastName : "Last Name"}
+                label="Last Name"
                 placeholder="Enter your Last Name"
-                value={lastName}
-                handleChange={handleLastNameChange}
+                value={profileInfo.lastName}
+                handleChange={(field, value) => handleProfileChange('lastName', value)}
                 inputStyle={styles.inputStyle}
                 secureTextEntry={false}
             />
