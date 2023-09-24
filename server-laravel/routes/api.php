@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\EmotionsResultsController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ProfilesController;
 
 Route::group(["middleware" => "auth:api"], function () {
 
@@ -13,6 +14,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::get("fetch_all_users", [UsersController::class, "fetchAllUsers"]);
         Route::delete("delete_user/{id}", [UsersController::class, "deleteUser"]);
         Route::post("fetch_dashboard_analysis", [EmotionsResultsController::class, "fetchDailyDataAnalysis"]);
+        Route::post("edit_profile", [ProfilesController::class, "editProfile"]);
     });
 
     //General user Apis
