@@ -29,6 +29,21 @@ class AuthController extends Controller
             }
 
             $user = Auth::user();
+
+            if ($user->profile) {
+                $profileData = [
+                    'first_name' => $user->profile->first_name,
+                    'last_name' => $user->profile->last_name,
+                    'profile_picture' => $user->profile->profile_picture,
+                ];
+            } else {
+                $profileData = [
+                    'first_name' => '',
+                    'last_name' => '',
+                    'profile_picture' => '',
+                ];
+            }
+
             $token = Auth::attempt($credentials);
 
         if (!$token) {
@@ -38,7 +53,7 @@ class AuthController extends Controller
         }
 
         return response()->json([
-            'user' => $user,
+            'user' => array_merge($user->toArray()),
             'token' => $token,
         ]);
     }
@@ -119,9 +134,25 @@ class AuthController extends Controller
 
         $token = Auth::login($user);
 
+        $createdUser = User::with('profile')->find(Auth::id());
+
+        $profileData = [
+            'first_name' => '',
+            'last_name' => '',
+            'profile_picture' => '',
+        ];
+
+        if ($createdUser->profile) {
+            $profileData = [
+                'first_name' => $createdUser->profile->first_name,
+                'last_name' => $createdUser->profile->last_name,
+                'profile_picture' => $createdUser->profile->profile_picture,
+            ];
+        }
+
             return response()->json([
                 'message' => 'User created successfully',
-                'user' => $user,
+                'user' => array_merge($user->toArray(), $profileData),
                 'token' => $token
             ]);
         }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
+import { ImageBackground, Image, View, Text } from 'react-native';
 import NestedHeader from '../../Components/NestedHeader/NestedHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import TextInput from '../../Components/TextInput'
