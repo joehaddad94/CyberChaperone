@@ -13,7 +13,6 @@ const  ProfileScreen: React.FC = () => {
 
   const navigation = useNavigation<NavigationProp<StackParamList>>();
   const { user, logout } = useAuth();
-  console.log('user',user)
   
   function handleMenuItemPress(item: string) {
 

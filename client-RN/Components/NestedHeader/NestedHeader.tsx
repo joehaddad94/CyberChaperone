@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native'
-import { useNavigation, NavigationProp } from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import globalStyles from '../../styles';
 import { styles } from './styles'
 import { Ionicons } from '@expo/vector-icons';

@@ -22,7 +22,7 @@ interface InputProps {
   placeholder: string;
   handleChange: (field: keyof registerCredentials, value: string) => void;
   inputStyle?: ViewStyle;
-  value: string;
+  value: string | null;
   secureTextEntry: boolean;
 }
 

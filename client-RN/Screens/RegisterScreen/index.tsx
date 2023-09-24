@@ -64,10 +64,11 @@ export default function RegisterScreen() {
               response.data.token,
               response.data.user.username,
               response.data.user.email,
-              response.data.user.first_name,
-              response.data.user.last_name,
-              response.data.user.profile_picture,
-              )
+              response.data.user.profile?.first_name || '',
+              response.data.user.profile?.last_name || '',
+              response.data.user.profile?.profile_picture || '',
+            );
+            
           
           navigation.dispatch(
             CommonActions.reset({

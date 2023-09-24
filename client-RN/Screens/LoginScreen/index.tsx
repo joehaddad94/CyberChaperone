@@ -63,14 +63,15 @@ export default function LoginScreen() {
             'Content-Type': 'application/json; charset=utf-8'
             }})
 
-        saveUserInfo(
-          response.data.token,
-          response.data.user.username,
-          response.data.user.email,
-          response.data.user.profile.first_name,
-          response.data.user.profile.last_name,
-          response.data.user.profile.profile_picture,
-          )
+            saveUserInfo(
+              response.data.token,
+              response.data.user.username,
+              response.data.user.email,
+              response.data.user.profile?.first_name || '',
+              response.data.user.profile?.last_name || '',
+              response.data.user.profile?.profile_picture || '',
+            );
+            
 
           setLoginError(null);
           
