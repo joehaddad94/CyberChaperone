@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ScrollView, StyleSheet, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 import axios from 'axios';
 import Header from '../../Components/Header';
 import DropdownList from '../../Components/DropdownList';
@@ -94,6 +94,7 @@ export default function DashboardScreen() {
         setSelectedDate={setSelectedDate}
         />
       <View style={styles.pieChartContainerWrapper}>
+        <Text style={styles.chartTitle}>Average Emotion Distribution</Text>
         <View style={styles.pieChartContainer}>
           <PieChartComponent
             emotionAverages={emotionAverages}
@@ -101,14 +102,13 @@ export default function DashboardScreen() {
         </View>
       </View>
       <View style={styles.barChartContainerWrapper}>
+        <Text style={styles.chartTitle}>Maximum Emotion Percentages</Text>
         <View style={styles.barChartContainer}>
           <View style = {styles.barChartSmallContainer}>
-          <BarChartComponent/>
+            <BarChartComponent/>
           </View>
         </View>
       </View>
     </ScrollView>
   );
 }
-
-

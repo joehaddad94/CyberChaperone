@@ -20,7 +20,7 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
       alignItems: 'center',
       width: '100%',
-      marginBottom: 100,
+      marginBottom: 80,
     },
     barChartContainer: {
       width: 350,
@@ -32,5 +32,10 @@ export const styles = StyleSheet.create({
     },
     barChartSmallContainer: {
       width: 300,
+    },
+    chartTitle: {
+      color: 'white',
+      fontSize: 18,
+      paddingVertical:10,
     }
   });
