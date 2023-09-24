@@ -1,5 +1,6 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet, StyleProp, ViewStyle } from 'react-native';
+import { TouchableOpacity, Text, StyleProp, ViewStyle } from 'react-native';
+import { styles } from './styles';
 
 interface PressableTitle {
   title: string;
@@ -18,21 +19,5 @@ const PressableTitle: React.FC<PressableTitle> = ({ title, onPress, style, isRed
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  menuItem: {
-    backgroundColor: '#FFFFFF',
-    width: 300,
-    padding: 15,
-    marginBottom: 15,
-    borderRadius: 10,
-    alignItems: 'center',
-  },
-  menuText: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    color: '#00B69B',
-  },
-});
 
 export default PressableTitle;

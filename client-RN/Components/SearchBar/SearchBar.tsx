@@ -1,6 +1,6 @@
 import {useState} from 'react';
-import { View, StyleSheet } from 'react-native';
 import { Searchbar, DefaultTheme, Provider as PaperProvider } from 'react-native-paper';
+import { styles } from './styles';
 
 const SearchBar = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -9,17 +9,14 @@ const SearchBar = () => {
     ...DefaultTheme,
     colors: {
       ...DefaultTheme.colors,
-      primary: '#00BFA4', // Customize the primary color
+      primary: '#00BFA4',
     },
   };
-//   const onChangeSearch = query => setSearchQuery(query);
 
 return (
     
         <Searchbar theme={{
             colors: {
-                // primary:'#00BFA4',
-                // elevation:'#00BFA4'
                 outline: '#00BFA4'
             }
         }}
@@ -31,18 +28,5 @@ return (
         />
   );
 };
-
-const styles = StyleSheet.create({
-    container: {
-       
-    },
-    searchBar: {
-      justifyContent: 'center',
-      alignItems: 'center', 
-      width: '90%',
-      height: 50,
-
-    },
-  });
 
 export default SearchBar;
