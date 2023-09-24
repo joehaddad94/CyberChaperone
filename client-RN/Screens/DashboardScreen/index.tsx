@@ -79,7 +79,7 @@ export default function DashboardScreen() {
   }
 
   return (
-    <ScrollView style={[globalStyles.backgroundImage, globalStyles.primaryColor]}>
+    <View style={[globalStyles.backgroundImage, globalStyles.primaryColor]}>
       <Header headerTitle={"Dashboard"} backgroundColor="#00B69B" />
       <DropdownList
         data={users.map(user => ({ key: user.id.toString(), value: user.username }))}
@@ -93,22 +93,24 @@ export default function DashboardScreen() {
         selectedDate={selectedDate}
         setSelectedDate={setSelectedDate}
         />
-      <View style={styles.pieChartContainerWrapper}>
-        <Text style={styles.chartTitle}>Average Emotion Distribution</Text>
-        <View style={styles.pieChartContainer}>
-          <PieChartComponent
-            emotionAverages={emotionAverages}
-          />
-        </View>
-      </View>
-      <View style={styles.barChartContainerWrapper}>
-        <Text style={styles.chartTitle}>Maximum Emotion Percentages</Text>
-        <View style={styles.barChartContainer}>
-          <View style = {styles.barChartSmallContainer}>
-            <BarChartComponent/>
+      <ScrollView>
+        <View style={styles.pieChartContainerWrapper}>
+          <Text style={styles.chartTitle}>Average Emotion Distribution</Text>
+          <View style={styles.pieChartContainer}>
+            <PieChartComponent
+              emotionAverages={emotionAverages}
+            />
           </View>
         </View>
-      </View>
-    </ScrollView>
+        <View style={styles.barChartContainerWrapper}>
+          <Text style={styles.chartTitle}>Maximum Emotion Percentages</Text>
+          <View style={styles.barChartContainer}>
+            <View style = {styles.barChartSmallContainer}>
+              <BarChartComponent/>
+            </View>
+          </View>
+        </View>
+      </ScrollView>
+    </View>
   );
 }
