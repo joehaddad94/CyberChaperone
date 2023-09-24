@@ -1,13 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
 import { View, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
-import globalStyles from '../styles';
-import CameraScreen from '../Screens/CameraScreen'; 
-import InfoScreen from '../Screens/InfoScreen'; 
-import DashboardScreen from '../Screens/DashboardScreen'; 
-import ProfileScreen from '../Screens/ProfileScreen';
+import globalStyles from '../../styles';
+import CameraScreen from '../../Screens/CameraScreen'; 
+import InfoScreen from '../../Screens/InfoScreen'; 
+import DashboardScreen from '../../Screens/DashboardScreen'; 
+import ProfileScreen from '../../Screens/ProfileScreen';
 import { FontAwesome, Ionicons, Entypo } from '@expo/vector-icons';
-import Header from './Header';
+import { styles } from './styles';
+import Header from '../Header';
 
 const Tab = createBottomTabNavigator();
 
@@ -80,14 +81,6 @@ function BottomTabsNavigator() {
     </ImageBackground>
   );
 }
-
-const styles = StyleSheet.create({
-  customTabBarButton: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default BottomTabsNavigator;
 

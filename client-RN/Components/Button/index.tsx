@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Button } from 'react-native-paper';
-import { View, StyleSheet } from 'react-native';
+import {styles} from './styles';
 
 interface ButtonComponentProps {
   handleSubmit: () => void;
@@ -17,15 +17,5 @@ const ButtonComponent: React.FC<ButtonComponentProps> = ({ handleSubmit, title }
             {title}
         </Button>
 );
-
-const styles = StyleSheet.create({
-    buttonContainer: {
-      alignItems: 'center',
-    },
-    button: {
-      width: 300,
-      borderRadius: 10,
-    },
-  });
 
 export default ButtonComponent;
