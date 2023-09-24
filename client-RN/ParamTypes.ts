@@ -39,6 +39,16 @@ export type StackParamList = {
     Surprised: number;
   }
 
+  export interface MaxEmotions {
+    Neutral: number;
+    Happy: number;
+    Sad: number;
+    Angry: number;
+    Fearful: number;
+    Disgusted: number;
+    Surprised: number;
+  }
+
   export interface User {
     username: string;
     id: number;

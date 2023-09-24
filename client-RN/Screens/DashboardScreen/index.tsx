@@ -16,6 +16,7 @@ export default function DashboardScreen() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [emotionAverages, setEmotionAverages] = useState<EmotionAverages | null>(null);
+  const [maxEmotions, setMaxEmotions] = useState<EmotionAverages | null>(null);
   const [users, setUsers] = useState<User[]>([]);
   const user = useAuth();
 
@@ -73,6 +74,8 @@ export default function DashboardScreen() {
 
       console.log (response.data.averageEmotions)
       setEmotionAverages(response.data.averageEmotions);
+      console.log (response.data.maxEmotions)
+      setMaxEmotions(response.data.maxEmotions);
     } catch (error) {
       console.log(error);
     }
@@ -106,7 +109,9 @@ export default function DashboardScreen() {
           <Text style={styles.chartTitle}>Maximum Emotion Percentages</Text>
           <View style={styles.barChartContainer}>
             <View style = {styles.barChartSmallContainer}>
-              <BarChartComponent/>
+              <BarChartComponent
+                maxEmotions={maxEmotions}
+              />
             </View>
           </View>
         </View>

@@ -1,57 +1,69 @@
 import { View, Text } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
+import { MaxEmotions } from "../../ParamTypes";
 
 import { styles } from "./styles";
 
-const BarChartComponent = () => {
+interface BarChartProps {
+    maxEmotions: MaxEmotions | null;
+}
+
+const BarChartComponent: React.FC<BarChartProps> = ({maxEmotions}) => {
     const barData = [
-        {   value: 99, 
-            label: 'Disgusted', 
-            frontColor: 'green', 
+        {   
+            value: maxEmotions?.Disgusted || 0,
+            label: 'Disg',
+            frontColor: 'green',
             topLabelComponent: () => (
-            <Text style={styles.percentage}>20.12%</Text>
+                <Text style={styles.percentage}>{Math.round(maxEmotions?.Disgusted || 0)}%</Text>
             ),
         },
-        {   value: 15.75, 
-            label: 'Surprised', 
-            frontColor: 'pink', 
+        {
+            value: maxEmotions?.Surprised || 0,
+            label: 'Surp',
+            frontColor: 'pink',
             topLabelComponent: () => (
-            <Text style={styles.percentage}>15.75%</Text>
+                <Text style={styles.percentage}>{Math.round(maxEmotions?.Surprised || 0)}%</Text>
             ),
         },
-        {   value: 18.33, 
-            label: 'Anger', 
-            frontColor: 'red', 
+        {
+            value: maxEmotions?.Angry || 0,
+            label: 'Ang',
+            frontColor: 'red',
             topLabelComponent: () => (
-            <Text style={styles.percentage}>18.33%</Text>
+                <Text style={styles.percentage}>{Math.round(maxEmotions?.Angry || 0)}%</Text>
             ),
         },
-        {   value:  13.44, 
-            label: 'Sad', 
-            frontColor: 'blue', 
+        {
+            value: maxEmotions?.Sad || 0,
+            label: 'Sad',
+            frontColor: 'blue',
             topLabelComponent: () => (
-            <Text style={styles.percentage}>13.44%</Text>
+                <Text style={styles.percentage}>{Math.round(maxEmotions?.Sad || 0)}%</Text>
             ),
         },
-        {   value: 10.80, 
-            label: 'Happy', 
-            frontColor: 'yellow', 
+        {
+            value: maxEmotions?.Happy || 0,
+            label: 'Hap',
+            frontColor: 'yellow',
             topLabelComponent: () => (
-            <Text style={styles.percentage}>10.80%</Text>
+                <Text style={styles.percentage}>{Math.round(maxEmotions?.Happy || 0)}%</Text>
             ),
         },
-        {   value: 0, 
-            label: 'Neutral', 
-            frontColor: '#4ABFF4', 
+        {
+            value: maxEmotions?.Neutral || 0,
+            label: 'Neut',
+            frontColor: '#4ABFF4',
             topLabelComponent: () => (
-            <Text style={styles.percentage}>5.00%</Text>
+                <Text style={styles.percentage}>{Math.round(maxEmotions?.Neutral || 0)}%</Text>
             ),
         },
-        {   value: 20.12, 
-            label: 'Fear', 
-            frontColor: 'brown', 
+        {
+            value: maxEmotions?.Fearful || 0,
+            label: 'Fear',
+            frontColor: 'brown',
             topLabelComponent: () => (
-            <Text style={styles.percentage}>20.12%</Text>
+                <Text style={styles.percentage}>{Math.round(maxEmotions?.Fearful || 0)}%</Text>
             ),
         },
     ];
@@ -67,8 +79,11 @@ const BarChartComponent = () => {
                 yAxisThickness={0}
                 xAxisThickness={0}
                 width={280}
-                maxValue={100}
-                noOfSections={10}
+                maxValue={110}
+                noOfSections={11}
+                xAxisLabelTextStyle={{
+                    marginRight: 5,
+                }}
             />
         </View>
     );
