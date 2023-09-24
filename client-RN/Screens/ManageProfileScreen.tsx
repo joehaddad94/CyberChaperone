@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
-import NestedHeader from '../Components/NestedHeader';
+import NestedHeader from '../Components/NestedHeader/NestedHeader';
 import globalStyles from '../styles';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TextInput } from 'react-native-paper';

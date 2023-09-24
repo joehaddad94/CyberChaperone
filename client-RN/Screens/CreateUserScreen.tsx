@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import globalStyles from '../styles';
-import NestedHeader from '../Components/NestedHeader';
+import NestedHeader from '../Components/NestedHeader/NestedHeader';
 import { ImageBackground, View, Text, StyleSheet, Image } from 'react-native';
 import TextInput from '../Components/TextInput';
 import Button from '../Components/Button'

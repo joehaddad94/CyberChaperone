@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useNavigation, NavigationProp, useFocusEffect } from '@react-navigation/native';
-import NestedHeader from '../Components/NestedHeader';
+import NestedHeader from '../Components/NestedHeader/NestedHeader';
 import globalStyles from '../styles';
 import { StackParamList } from '../ParamTypes';
 import { AntDesign } from '@expo/vector-icons';

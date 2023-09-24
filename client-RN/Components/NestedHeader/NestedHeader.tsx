@@ -1,7 +1,8 @@
 import React from 'react'
 import { Text, View, StyleSheet, TouchableOpacity, Button } from 'react-native'
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import globalStyles from '../styles';
+import globalStyles from '../../styles';
+import { styles } from './styles'
 import { Ionicons } from '@expo/vector-icons';
 
 interface NestedHeaderProps {
@@ -32,8 +33,6 @@ interface NestedHeaderProps {
             title="Create User"
             onPress={onButtonPress}
             color="#292937"
-            // style={{ backgroundColor: 'white' }}
-            // titleStyle={{ color: '#00B69B' }}
           />
          )}
             
@@ -44,32 +43,3 @@ interface NestedHeaderProps {
 };
 
 export default NestedHeader
-
-const styles = StyleSheet.create({
-    headerContainer: {
-    height: 55,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    paddingHorizontal: 10,
-    },
-    leftHeader: {
-        flexDirection: 'row',
-        alignItems: 'center',
-    },
-    buttonContainer: {
-        backgroundColor: 'white',
-        padding: 5,
-        marginRight: 10,
-        borderRadius: 5,
-       
-    },
-    buttonText: {
-        color: '#00B69B',
-        fontSize: 16,
-        marginRight: 10,
-        fontWeight: 'bold',
-    },
-})

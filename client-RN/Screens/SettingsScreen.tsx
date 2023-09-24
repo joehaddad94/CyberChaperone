@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, View, Text, Switch } from 'react-native';
-import NestedHeader from '../Components/NestedHeader';
+import NestedHeader from '../Components/NestedHeader/NestedHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import globalStyles from '../styles';
 
