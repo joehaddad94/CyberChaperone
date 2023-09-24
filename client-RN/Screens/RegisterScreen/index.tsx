@@ -60,11 +60,14 @@ export default function RegisterScreen() {
             'Content-Type': 'application/json; charset=utf-8'
             }})
         
-        saveUserInfo(
-          response.data.token,
-          response.data.user.username,
-          response.data.user.email
-          )
+            saveUserInfo(
+              response.data.token,
+              response.data.user.username,
+              response.data.user.email,
+              response.data.user.first_name,
+              response.data.user.last_name,
+              response.data.user.profile_picture,
+              )
           
           navigation.dispatch(
             CommonActions.reset({

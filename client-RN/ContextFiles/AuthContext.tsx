@@ -4,11 +4,21 @@ interface User {
   token: string | null;
   username: string | null;
   email: string | null;
+  first_name: string | null;
+  last_name: string | null;
+  profile_picture: string | null;
 }
 
 interface AuthContextType {
   user: User;
-  saveUserInfo: (token: string, username: string, email: string) => void;
+  saveUserInfo: (
+    token: string, 
+    username: string, 
+    email: string, 
+    first_name: string,
+    last_name: string,
+    profile_picture: string,
+    ) => void;
   logout: () => void;
 }
 
@@ -23,14 +33,36 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     token: null,
     username: null,
     email: null,
+    first_name: null,
+    last_name: null,
+    profile_picture: null,
   });
 
-  const saveUserInfo = (token: string, username: string, email: string) => {
-    setUser({ token, username, email });
+  const saveUserInfo = (
+    token: string, 
+    username: string, 
+    email: string,
+    first_name: string,
+    last_name: string,
+    profile_picture: string,
+    ) => {
+    setUser({ 
+      token, 
+      username, email, 
+      first_name, 
+      last_name, 
+      profile_picture });
   };
 
   const logout = () => {
-    setUser({ token: null, username: null, email: null });
+    setUser({ 
+      token: null,
+    username: null,
+    email: null,
+    first_name: null,
+    last_name: null,
+    profile_picture: null, 
+  });
   };
 
   return (
