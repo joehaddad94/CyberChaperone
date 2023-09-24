@@ -99,6 +99,7 @@ const neutralEmoji = require("../../assets/images/neutral.png");
 export default function CameraScreen () {
   const [facedetected, setFaceDetected] = useState(false);
   const [permission, requestPermission] = Camera.useCameraPermissions();
+  const [cameraOpen, setCameraOpen] = useState(false);
 
   const [emoji, setEmoji] = useState(neutralEmoji);
   const [emotion, setEmotion] = useState('neutral');
@@ -109,6 +110,10 @@ export default function CameraScreen () {
     x: 0,
     y: 0,
   })
+
+  function openCamera() {
+    setCameraOpen(true);
+  }
 
   function handleFacesDetected({faces}: FaceDetectionResult) {
     // console.log(faces);
@@ -161,43 +166,65 @@ export default function CameraScreen () {
     return;
   }
 
-  return(
-    <View style = {styles.container}>
-      {facedetected && 
-        <View>
-          <Animated.View style={animatedStyle} />
-          {/* <Animated.Image style={animatedEmoji} source={emoji} /> */}
-        </View>
-      }
-        <Camera 
-          style = {styles.container}
-          type={CameraType.front}
-          ratio='16:9'
-          onFacesDetected={handleFacesDetected}
-          faceDetectorSettings={{
-            mode: FaceDetector.FaceDetectorMode.fast,
-            detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
-            runClassifications: FaceDetector.FaceDetectorClassifications.all,
-            minDetectionInterval: 100,
-            tracking: true,
-          }}
-          />
-          {/* {facedetected && (
+  if (!cameraOpen) {
+    return (
+      <View style={styles.container}>
+        <ImageBackground
+          source={bgImage}
+          style={globalStyles.backgroundImage}
+          resizeMode='cover'
+        >
+        <View style={styles.buttonContainer}>
+          <Button 
+              onPress={openCamera} 
+              title="Open Camera"
+              color="#00BFA4"
+               />
+          </View>
+        </ImageBackground>
+      </View>
+    );
+  }
+
+  return (
+    <View style={styles.container}>
+      {cameraOpen ? (
+        <>
+          {facedetected && (
             <View>
-              <View style={styles.bottomContainer}>
+              <Animated.View style={animatedStyle} />
+            </View>
+          )}
+          <Camera
+            style={styles.camera}
+            type={CameraType.front}
+            ratio="16:9"
+            onFacesDetected={handleFacesDetected}
+            faceDetectorSettings={{
+              mode: FaceDetector.FaceDetectorMode.fast,
+              detectLandmarks: FaceDetector.FaceDetectorLandmarks.all,
+              runClassifications: FaceDetector.FaceDetectorClassifications.all,
+              minDetectionInterval: 100,
+              tracking: true,
+            }}
+          />
+          <View style={[styles.bottomContainerWrapper, globalStyles.primaryColor]}>
+            <View style={styles.bottomContainer}>
+              <View style={styles.smallContainer}>
                 <Image source={emoji} style={styles.emoji} />
                 <Text style={styles.emotionText}>{emotion}</Text>
               </View>
             </View>
-      )} */}
-      <View style = {styles.bottomContainerWrapper}>
-        <View style = {[styles.bottomContainer, globalStyles.primaryColor]}>
-            <View style = {styles.smallContainer}>
-              <Image source={emoji} style={styles.emoji} />
-              <Text style={styles.emotionText}>{emotion}</Text>
-            </View>
-        </View>
-      </View>
+          </View>
+        </>
+      ) : (
+        // Render the "Open Camera" button when the camera is closed
+        <TouchableOpacity onPress={openCamera}>
+          <View>
+            <Text>Open Camera</Text>
+          </View>
+        </TouchableOpacity>
+      )}
     </View>
   );
 }

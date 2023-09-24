@@ -13,14 +13,7 @@ import { StyleSheet } from "react-native";
 //     },
 //     camera: {
 //       flex: 1,
-//     },
-//     buttonContainer: {
-//       height: '100%',
-//       flexDirection: 'row',
-//       justifyContent: 'center',
-//       alignItems: 'center',
-//       backgroundColor: 'transparent',
-//     },
+//     }
 //     button: {
 //       flex: 1,
 //       alignSelf: 'flex-end',
@@ -43,9 +36,6 @@ export const styles = StyleSheet.create({
     },
     camera: {
       flex: 1,
-    },
-    animatedView: {
-      // Add styles for the animated view here
     },
     bottomContainerWrapper:{
         position: 'absolute',
@@ -74,5 +64,11 @@ export const styles = StyleSheet.create({
       fontSize: 40,
       fontWeight: 'bold',
       color: 'white',
+    },
+    buttonContainer: {
+      height: '100%',
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
     },
   });
