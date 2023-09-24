@@ -8,7 +8,6 @@ import DashboardScreen from '../../Screens/DashboardScreen';
 import ProfileScreen from '../../Screens/ProfileScreen';
 import { FontAwesome, Ionicons, Entypo } from '@expo/vector-icons';
 import { styles } from './styles';
-import Header from '../Header';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +22,7 @@ function CustomTabBarButton({ children, onPress }: any) {
 function BottomTabsNavigator() {
   return (
     <ImageBackground
-      source={require('../assets/images/DarkBG.png')}
+      source={require('../../assets/images/DarkBG.png')}
       style={[globalStyles.backgroundImage, globalStyles.container]}
       resizeMode="cover"
     >

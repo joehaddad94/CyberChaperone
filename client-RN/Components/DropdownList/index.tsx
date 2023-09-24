@@ -1,6 +1,7 @@
 import React from "react";
-import { View, StyleSheet } from "react-native";
+import { View } from "react-native";
 import { SelectList } from 'react-native-dropdown-select-list';
+import { styles } from "./styles";
 
 interface DropdownListProps {
   data: { key: string; value: string }[];
@@ -29,15 +30,5 @@ const DropdownList: React.FC<DropdownListProps> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-    boxStyles: {
-        backgroundColor: 'white',
-        marginTop: 20,
-    },
-    dropdownStyles: {
-        backgroundColor: 'white',
-    }
-});
 
 export default DropdownList;

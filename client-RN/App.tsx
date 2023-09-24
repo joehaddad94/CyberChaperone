@@ -4,8 +4,6 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import { ImageBackground, Image, StyleSheet, Text, View } from 'react-native';
 import { useFonts } from 'expo-font';
 import { AuthProvider } from './ContextFiles/AuthContext';
-import * as SplashScreen from 'expo-splash-screen';
-
 
 import LoginScreen from './Screens/LoginScreen';
 import RegisterScreen from './Screens/RegisterScreen';
@@ -19,20 +17,11 @@ import { StackParamList } from './ParamTypes';
 
 const Stack = createNativeStackNavigator<StackParamList>();
 
-SplashScreen.preventAutoHideAsync();
-
-
 export default function App() {
 
   const [fontsLoaded] = useFonts({
     'Urbanist-Regular': require('./assets/fonts/Urbanist-Regular.ttf'),
   });
-
-  const onLayoutRootView = useCallback(async () => {
-    if (fontsLoaded) {
-      await SplashScreen.hideAsync();
-    }
-  }, [fontsLoaded]);
 
   if (!fontsLoaded) {
     console.log('not loaded')
@@ -41,9 +30,9 @@ export default function App() {
 
   return (
     <AuthProvider>
-    <NavigationContainer onReady={onLayoutRootView}>
+    <NavigationContainer>
       <Stack.Navigator>
-        {/* <Stack.Screen
+        <Stack.Screen
           name="LoginScreen"
           component={LoginScreen} 
           options={{ headerShown: false }}
@@ -52,7 +41,7 @@ export default function App() {
           name="RegisterScreen"
           component={RegisterScreen} 
           options={{ headerShown: false }}
-        /> */}
+        />
         <Stack.Screen
           name="HomeScreen"
           component={HomeScreen} 
