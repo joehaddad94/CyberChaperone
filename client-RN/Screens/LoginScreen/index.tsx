@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import { ImageBackground, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation, NavigationProp  } from '@react-navigation/native';
-import globalStyles from '../styles';
-import TextInput from '../Components/TextInput'
-import Button from '../Components/Button'
+
+import TextInput from '../../Components/TextInput'
+import Button from '../../Components/Button'
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StackParamList } from '../ParamTypes';
-import { loginCredentials } from '../ParamTypes';
+import { StackParamList } from '../../ParamTypes';
+import { loginCredentials } from '../../ParamTypes';
 import axios from 'axios';
-import { BASE_URL } from '../react-native.config';
-import { useAuth } from '../ContextFiles/AuthContext';
+import { BASE_URL } from '../../react-native.config';
+import { useAuth } from '../../ContextFiles/AuthContext';
 import { CommonActions } from '@react-navigation/native';
 
+import globalStyles from '../../styles';
+import { styles } from './styles'
 
-const bgImage = require("../assets/images/DarkBG.png");
-const Logo = require("../assets/images/Logo.png");
+
+const bgImage = require("../../assets/images/DarkBG.png");
+const Logo = require("../../assets/images/Logo.png");
 
 export default function LoginScreen() {
   const { user, saveUserInfo, logout } = useAuth();
@@ -25,7 +28,7 @@ export default function LoginScreen() {
   const [loginCredentials, setLoginCredentials] = useState<loginCredentials>({
     username: '',
     password: '',
- })
+  })
 
   const handleChange = (field: keyof loginCredentials, value: string) => {
     setLoginCredentials({
@@ -84,10 +87,6 @@ export default function LoginScreen() {
           setLoginError('An error occurred during login.');
         }
       }
-      setLoginCredentials({
-        username: '',
-        password: '',
-      })
     }
   };
 
@@ -161,51 +160,3 @@ export default function LoginScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 50,
-  },
-  inputStyle: {
-    width: 300,
-  },
-  containerGap: {
-    gap: 20,
-  },
-  footer: {
-    backgroundColor: '#787878',
-    width: '100%',
-    height: 100,
-    alignItems: 'center',
-    borderTopLeftRadius:45,
-    borderTopRightRadius:45,
-  },
-  footerText: {
-    marginTop: 10,
-    color: 'white',
-  },
-  register: {
-    fontWeight: 'bold', 
-    textDecorationLine: 'underline',
-    color: 'white',
-  },
-  InputGap: {
-    gap: 10,
-  },
-  button: {
-    marginTop: 20,
-  },
-  errorText: {
-    color: "red",
-  }
-});

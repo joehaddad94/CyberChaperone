@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import { ImageBackground, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { useNavigation, NavigationProp } from '@react-navigation/native';
-import globalStyles from '../styles';
-import TextInput from '../Components/TextInput';
-import Button from '../Components/Button';
+import { useNavigation, NavigationProp, CommonActions } from '@react-navigation/native';
+import TextInput from '../../Components/TextInput';
+import Button from '../../Components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { StackParamList } from '../ParamTypes';
+import { StackParamList } from '../../ParamTypes';
 import { Ionicons } from '@expo/vector-icons';
-import { BASE_URL } from '../react-native.config';
-import { registerCredentials } from '../ParamTypes';
-import { CommonActions } from '@react-navigation/native';
+import { BASE_URL } from '../../react-native.config';
+import { registerCredentials } from '../../ParamTypes';
 import axios from 'axios';
-import { useAuth } from '../ContextFiles/AuthContext';
+import { useAuth } from '../../ContextFiles/AuthContext';
 
-const bgImage = require('../assets/images/DarkBG.png');
-const Logo = require('../assets/images/Logo.png');
+import globalStyles from '../../styles';
+import { styles } from './styles';
+
+const bgImage = require('../../assets/images/DarkBG.png');
+const Logo = require('../../assets/images/Logo.png');
 
 export default function RegisterScreen() {
   const { user, saveUserInfo, logout } = useAuth();
@@ -72,11 +73,6 @@ export default function RegisterScreen() {
       } catch(error) {
         console.log(error)
       }
-      setRegisterCredentials({
-        username: '',
-        email: '',
-        password: '',
-      })
     }
   };
 
@@ -154,64 +150,3 @@ export default function RegisterScreen() {
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  screen: {
-    flex: 1,
-  },
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 50,
-  },
-  inputStyle: {
-    width: 300,
-  },
-  containerGap: {
-    gap: 20,
-  },
-  footer: {
-    backgroundColor: '#787878',
-    width: '100%',
-    height: 100,
-    alignItems: 'center',
-    borderTopLeftRadius: 45,
-    borderTopRightRadius: 45,
-  },
-  footerText: {
-    marginTop: 10,
-    color: 'white',
-  },
-  login: {
-    fontWeight: 'bold',
-    textDecorationLine: 'underline',
-    color: 'white',
-  },
-  InputGap: {
-    gap: 15,
-  },
-  button: {
-    marginTop: 20,
-  },
-  errorText: {
-    color: 'red',
-  },
-  headerContainer: {
-    height: 50,
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-    paddingHorizontal: 10,
-    backgroundColor: '#787878'
-  },
-  titleContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-});

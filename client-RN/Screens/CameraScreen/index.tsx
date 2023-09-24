@@ -49,10 +49,10 @@ export default function CameraScreen () {
       const happyThreshold = 0.5;
 
       if (smilingProbability > happyThreshold) {
-        setEmotion('happy');
+        setEmotion('Happy');
         setEmoji(happyEmoji);
       } else {
-        setEmotion('neutral');
+        setEmotion('Neutral');
         setEmoji(neutralEmoji);
       }
     } else {
