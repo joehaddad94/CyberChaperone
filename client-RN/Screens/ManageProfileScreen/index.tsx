@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { ImageBackground, Image, StyleSheet, View, Text } from 'react-native';
-import NestedHeader from '../Components/NestedHeader/NestedHeader';
-import globalStyles from '../styles';
+import NestedHeader from '../../Components/NestedHeader/NestedHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { TextInput } from 'react-native-paper';
-import ButtonComponent from '../Components/Button';
+import TextInput from '../../Components/TextInput'
+import ButtonComponent from '../../Components/Button';
+
+import globalStyles from '../../styles';
+import { styles } from './styles'
 
 const ManageProfileScreen: React.FC = () => {
     const [firstName, setFirstName] = useState("")
@@ -22,7 +24,7 @@ const ManageProfileScreen: React.FC = () => {
   return (
     <SafeAreaView style = {globalStyles.container}>
     <ImageBackground
-      source={require('../assets/images/DarkBG.png')}
+      source={require('../../assets/images/DarkBG.png')}
       style={globalStyles.backgroundImage}
       resizeMode="cover"
     >
@@ -35,7 +37,7 @@ const ManageProfileScreen: React.FC = () => {
       <View style={styles.container}>
         <View style={styles.topContainer}>
           <Image
-            source={require('../assets/images/user.png')}
+            source={require('../../assets/images/user.png')}
             style={styles.profilePicture}
           />
           <Text style={styles.username}>Username</Text>
@@ -46,16 +48,16 @@ const ManageProfileScreen: React.FC = () => {
                 label="First Name"
                 placeholder="Enter your First Name"
                 value={firstName}
-                onChangeText={handleFirstNameChange}
-                style={styles.inputStyle}
+                handleChange={handleFirstNameChange}
+                inputStyle={styles.inputStyle}
                 secureTextEntry={false}
               />
             <TextInput 
                 label="Last Name"
                 placeholder="Enter your Last Name"
                 value={lastName}
-                onChangeText={handleLastNameChange}
-                style={styles.inputStyle}
+                handleChange={handleLastNameChange}
+                inputStyle={styles.inputStyle}
                 secureTextEntry={false}
             />
         </View>
@@ -68,39 +70,5 @@ const ManageProfileScreen: React.FC = () => {
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  profilePicture: {
-    width: 200,
-    height: 200,
-    borderRadius: 100,
-    marginBottom: 20,
-  },
-  topContainer: {
-    marginBottom: 50,
-    alignItems: 'center',
-  },
-  botContainer: {
-    marginBottom: 20,
-    gap: 20,
-  },
-  username: {
-    color: 'white',
-    fontSize: 18,
-  },
-  email: {
-    color: 'white',
-    fontSize: 16,
-    paddingTop: 5,
-  },
-  inputStyle: {
-    width: 300,
-  },
-});
 
 export default ManageProfileScreen;

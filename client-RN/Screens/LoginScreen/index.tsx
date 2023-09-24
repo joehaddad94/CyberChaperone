@@ -53,11 +53,10 @@ export default function LoginScreen() {
   }
 
   const handleSubmit = async () => {
-    console.log('pressed')
     if (validateFOrm()) {
       try{
         const apiUrl = `${BASE_URL}/api/login`
-        console.log(apiUrl)
+        
         const response = await axios.post(apiUrl, loginCredentials, {
           headers: {
             'Accept': 'application/json',
