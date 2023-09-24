@@ -42,8 +42,8 @@ const pieData = Object.entries(emotionAverages || {}).map(([emotion, percentage]
   text: `${percentage}%`,
 }));
 
-console.log('Legends:', legends);
-console.log('Pie Data:', pieData);
+// console.log('Legends:', legends);
+// console.log('Pie Data:', pieData);
 
 return(
     <View style={styles.chartContainer}>

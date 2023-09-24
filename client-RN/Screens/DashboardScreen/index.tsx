@@ -10,6 +10,7 @@ import { useAuth } from '../../ContextFiles/AuthContext';
 import SwipeCalendar from '../../Components/SwipeCalendar';
 import { styles } from './styles'
 import { EmotionAverages, User } from '../../ParamTypes';
+import BarcChartComponent from '../../Components/BarChartComponent';
 
 export default function DashboardScreen() {
   const [selectedUser, setSelectedUser] = useState<User | null>(null);
@@ -98,6 +99,11 @@ export default function DashboardScreen() {
           <PieChartComponent
             emotionAverages={emotionAverages}
           />
+        </View>
+      </View>
+      <View>
+        <View>
+          <BarcChartComponent/>
         </View>
       </View>
     </ScrollView>
