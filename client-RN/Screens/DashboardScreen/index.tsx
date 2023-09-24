@@ -26,15 +26,15 @@ export default function DashboardScreen() {
 
   useEffect(() => {
     if (selectedUser && selectedDate) {
-      console.log('Selected User ID:', selectedUser.id);
-      console.log('Selected User Username:', selectedUser.username);
-      console.log('Selected Date:', selectedDate);
+      // console.log('Selected User ID:', selectedUser.id);
+      // console.log('Selected User Username:', selectedUser.username);
+      // console.log('Selected Date:', selectedDate);
 
       const analysisObject = {
         userId: selectedUser.id,
         timestamp: selectedDate.toISOString(),
       };
-      console.log(analysisObject)
+      // console.log(analysisObject)
   
       fetchDataAnalysis(analysisObject);
     }
@@ -72,50 +72,60 @@ export default function DashboardScreen() {
         }
       });
 
-      console.log (response.data.averageEmotions)
+      // console.log (response.data)
       setEmotionAverages(response.data.averageEmotions);
       console.log (response.data.maxEmotions)
-      setMaxEmotions(response.data.maxEmotions);
+      const MaxEmotionsData = response.data
+      setMaxEmotions(MaxEmotionsData.maxEmotions);
     } catch (error) {
       console.log(error);
     }
   }
 
+  const emptyStateView = (
+    <View style={globalStyles.container}>
+      <Text >No data available</Text>
+    </View>
+  );
+
   return (
     <View style={[globalStyles.backgroundImage, globalStyles.primaryColor]}>
       <Header headerTitle={"Dashboard"} backgroundColor="#00B69B" />
       <DropdownList
-        data={users.map(user => ({ key: user.id.toString(), value: user.username }))}
+        data={users.map((user) => ({ key: user.id.toString(), value: user.username }))}
         selectedValue={selectedUser ? selectedUser.username : null}
         setSelectedValue={(value: string | null) => {
           const selected = users.find((u) => u.username === value) || null;
           setSelectedUser(selected);
         }}
       />
-      <SwipeCalendar 
-        selectedDate={selectedDate}
-        setSelectedDate={setSelectedDate}
-        />
-      <ScrollView>
-        <View style={styles.pieChartContainerWrapper}>
-          <Text style={styles.chartTitle}>Average Emotion Distribution</Text>
-          <View style={styles.pieChartContainer}>
-            <PieChartComponent
-              emotionAverages={emotionAverages}
-            />
+      <SwipeCalendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+      {emotionAverages || maxEmotions ? (
+        <ScrollView>
+          <View style={styles.pieChartContainerWrapper}>
+            <Text style={styles.chartTitle}>Average Emotion Distribution</Text>
+            {emotionAverages ? (
+              <View style={styles.pieChartContainer}>
+                <PieChartComponent emotionAverages={emotionAverages} />
+              </View>
+            ) : (
+              emptyStateView
+            )}
           </View>
-        </View>
-        <View style={styles.barChartContainerWrapper}>
-          <Text style={styles.chartTitle}>Maximum Emotion Percentages</Text>
-          <View style={styles.barChartContainer}>
-            <View style = {styles.barChartSmallContainer}>
-              <BarChartComponent
-                maxEmotions={maxEmotions}
-              />
-            </View>
+          <View style={styles.barChartContainerWrapper}>
+            <Text style={styles.chartTitle}>Maximum Emotion Percentages</Text>
+            {maxEmotions ? (
+              <View style={styles.barChartContainer}>
+                <View style={styles.barChartSmallContainer}>
+                  <BarChartComponent maxEmotions={maxEmotions} />
+                </View>
+              </View>
+            ) : (
+              emptyStateView
+            )}
           </View>
-        </View>
-      </ScrollView>
+        </ScrollView>
+      ) : null}
     </View>
   );
 }

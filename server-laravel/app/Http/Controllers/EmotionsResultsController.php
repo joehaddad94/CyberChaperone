@@ -113,6 +113,14 @@ class emotionsResultsController extends Controller {
                 'maxEmotions' => $maxEmotions,
             ];
 
+            if (empty($averageEmotions)) {
+                $responseData['averageEmotions'] = null;
+            }
+
+            if (empty($maxEmotions)) {
+                $responseData['maxEmotions'] = null;
+            }
+
             return response()->json($responseData, 200);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
