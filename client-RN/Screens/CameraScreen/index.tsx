@@ -11,91 +11,6 @@ const bgImage = require("../../assets/images/DarkBG.png");
 const happyEmoji = require("../../assets/images/happy.png");
 const neutralEmoji = require("../../assets/images/neutral.png");
 
-// export default function CameraScreen({ navigation }) {
-//   const [cameraOpen, setCameraOpen] = useState(false); // Initialize as closed
-//   const [type] = useState(CameraType.front); // Set the camera type to front (selfie)
-//   const [permission, requestPermission] = Camera.useCameraPermissions();
-
-//   useEffect(() => {
-//     // Cleanup function when the component unmounts
-//     return () => {
-//       // Release the camera resources when the component unmounts
-//       if (cameraOpen) {
-//         setCameraOpen(false);
-//       }
-//     };
-//   }, []);
-
-//   useFocusEffect(
-//     useCallback(() => {
-//       // This callback runs when the screen is focused
-//       // If the camera is open, keep it open; otherwise, leave it closed
-//       return () => {
-//         // This callback runs when the screen is unfocused
-//         // Close the camera when the screen is unfocused
-//         if (cameraOpen) {
-//           setCameraOpen(false);
-//         }
-//       };
-//     }, [cameraOpen])
-//   );
-
-//   if (!permission) {
-//     return <View />;
-//   }
-
-//   if (!permission.granted) {
-//     return (
-//       <View style={styles.permissionContainer}>
-//         <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
-//         <Button onPress={requestPermission} title="Grant Permission" />
-//       </View>
-//     );
-//   }
-
-//   function openCamera() {
-//     setCameraOpen(true);
-//   }
-
-//   function closeCamera() {
-//     setCameraOpen(false);
-//   }
-
-//   return (
-//     <View style={styles.container}>
-//       <ImageBackground
-//         source={bgImage}
-//         style={globalStyles.backgroundImage}
-//         resizeMode='cover'
-//       >
-//         {cameraOpen ? (
-//           <View style = {styles.cameraHeight}>
-//             <Camera 
-//               style={styles.camera} 
-//               type={type}
-//               ratio= "16:9"
-//               >
-//               <View style={styles.buttonContainer}>
-//                 <TouchableOpacity style={styles.button} onPress={closeCamera}>
-//                   <Text style={styles.text}>Close Camera</Text>
-//                 </TouchableOpacity>
-//               </View>
-//             </Camera>
-//           </View>
-//         ) : (
-//           <View style={styles.buttonContainer}>
-//             <Button 
-//               onPress={openCamera} 
-//               title="Open Camera"
-//               color="#00BFA4"
-//               />
-//           </View>
-//         )}
-//       </ImageBackground>
-//     </View>
-//   );
-// }
-
 export default function CameraScreen () {
   const [facedetected, setFaceDetected] = useState(false);
   const [permission, requestPermission] = Camera.useCameraPermissions();
@@ -162,6 +77,16 @@ export default function CameraScreen () {
     requestPermission();
   },[]) 
 
+    useFocusEffect(
+    useCallback(() => {
+      return () => {
+        if (cameraOpen) {
+          setCameraOpen(false);
+        }
+      };
+    }, [cameraOpen])
+  );
+
   if (!permission?.granted) {
     return;
   }
@@ -189,7 +114,7 @@ export default function CameraScreen () {
   return (
     <View style={styles.container}>
       {cameraOpen ? (
-        <>
+        <View style={styles.cameraContainer}>
           {facedetected && (
             <View>
               <Animated.View style={animatedStyle} />
@@ -208,25 +133,26 @@ export default function CameraScreen () {
               tracking: true,
             }}
           />
-          <View style={[styles.bottomContainerWrapper, globalStyles.primaryColor]}>
-            <View style={styles.bottomContainer}>
-              <View style={styles.smallContainer}>
-                <Image source={emoji} style={styles.emoji} />
-                <Text style={styles.emotionText}>{emotion}</Text>
-              </View>
-            </View>
-          </View>
-        </>
+        </View>
       ) : (
-        // Render the "Open Camera" button when the camera is closed
         <TouchableOpacity onPress={openCamera}>
           <View>
             <Text>Open Camera</Text>
           </View>
         </TouchableOpacity>
       )}
+  
+      <View style={[styles.bottomContainerWrapper, globalStyles.primaryColor]}>
+        <View style={styles.bottomContainer}>
+          <View style={styles.smallContainer}>
+            <Image source={emoji} style={styles.emoji} />
+            <Text style={styles.emotionText}>{emotion}</Text>
+          </View>
+        </View>
+      </View>
     </View>
   );
+  
 }
 
 

@@ -1,37 +1,15 @@
 import { StyleSheet } from "react-native";
 
-// export const styles = StyleSheet.create({
-//     container: {
-//       flex: 1,
-//       justifyContent: 'center',
-//     },
-//     permissionContainer: {
-//       flex: 1,
-//       justifyContent: 'center',
-//       alignItems:'center',
-//       gap: 10
-//     },
-//     camera: {
-//       flex: 1,
-//     }
-//     button: {
-//       flex: 1,
-//       alignSelf: 'flex-end',
-//       alignItems: 'center',
-//       width: 100,
-//     },
-//     text: {
-//       fontSize: 24,
-//       fontWeight: 'bold',
-//       color: 'white',
-//     },
-//     cameraHeight: {
-//       height: 650,
-//     }
-//   });
-
 export const styles = StyleSheet.create({
     container: {
+      flex: 1,
+      // height:700,
+    },
+    cameraContainer: {
+      // flex: 1,
+      height:700,
+    },
+    closedCameraContainer: {
       flex: 1,
     },
     camera: {
@@ -39,7 +17,7 @@ export const styles = StyleSheet.create({
     },
     bottomContainerWrapper:{
         position: 'absolute',
-        bottom: 70,
+        bottom: 50,
         width: '100%',
     },
     bottomContainer: {
