@@ -39,9 +39,40 @@ import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
     container: {
-        flexGrow: 1,
+      flex: 1,
     },
-    Camera: {
-        flex:1,
-    }
-})
+    camera: {
+      flex: 1,
+    },
+    animatedView: {
+      // Add styles for the animated view here
+    },
+    bottomContainerWrapper:{
+        position: 'absolute',
+        bottom: 70,
+        width: '100%',
+    },
+    bottomContainer: {
+        width: 330,
+        height: 150,
+        marginLeft: 15,
+        borderRadius: 20,
+    },
+    smallContainer: {
+        height: '100%',
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center',
+        gap: 20,
+    },
+    emoji: {
+      width: 100,
+      height: 100,
+      marginRight: 8,
+    },
+    emotionText: {
+      fontSize: 40,
+      fontWeight: 'bold',
+      color: 'white',
+    },
+  });

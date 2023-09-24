@@ -2,14 +2,14 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Camera, CameraType, FaceDetectionResult } from 'expo-camera';
 import * as FaceDetector from 'expo-face-detector';
 import Animated, { useSharedValue, useAnimatedStyle } from 'react-native-reanimated'
-import { Button, StyleSheet, Text, TouchableOpacity, View, ImageBackground } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View, ImageBackground, Image } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
 import globalStyles from '../../styles';
 import { styles } from './styles'
 
 const bgImage = require("../../assets/images/DarkBG.png");
-const happyEmoji = require("../../assets/images/happy.png")
-const neutralEmoji = require("../../assets/images/neutral.png")
+const happyEmoji = require("../../assets/images/happy.png");
+const neutralEmoji = require("../../assets/images/neutral.png");
 
 // export default function CameraScreen({ navigation }) {
 //   const [cameraOpen, setCameraOpen] = useState(false); // Initialize as closed
@@ -97,10 +97,11 @@ const neutralEmoji = require("../../assets/images/neutral.png")
 // }
 
 export default function CameraScreen () {
-  const [facedetected, setFaceDetected] = useState(false)
+  const [facedetected, setFaceDetected] = useState(false);
   const [permission, requestPermission] = Camera.useCameraPermissions();
 
-  const [emoji, setEmoji] = useState(neutralEmoji)
+  const [emoji, setEmoji] = useState(neutralEmoji);
+  const [emotion, setEmotion] = useState('neutral');
 
   const faceValues = useSharedValue({
     width: 0,
@@ -124,10 +125,15 @@ export default function CameraScreen () {
       }
       setFaceDetected(true);
 
-      if(face.smillingProbability > 0.3 ) {
+      const smilingProbability = face.smilingProbability;
+      const happyThreshold = 0.5;
+
+      if (smilingProbability > happyThreshold) {
+        setEmotion('happy');
         setEmoji(happyEmoji);
       } else {
-        setEmoji(neutralEmoji)
+        setEmotion('neutral');
+        setEmoji(neutralEmoji);
       }
     } else {
       setFaceDetected(false);
@@ -147,17 +153,6 @@ export default function CameraScreen () {
     borderWidth: 5,
   }))
 
-  const animatedEmoji = useAnimatedStyle(() =>({
-    position: 'absolute',
-    zIndex: 1,
-    width: faceValues.value.width,
-    height: faceValues.value.height,
-    transform: [
-      {translateX: faceValues.value.x},
-      {translateY: faceValues.value.y + 300},
-    ]
-  }))
-
   useEffect(() => {
     requestPermission();
   },[]) 
@@ -171,7 +166,7 @@ export default function CameraScreen () {
       {facedetected && 
         <View>
           <Animated.View style={animatedStyle} />
-          <Animated.Image style={animatedEmoji} source={emoji} />
+          {/* <Animated.Image style={animatedEmoji} source={emoji} /> */}
         </View>
       }
         <Camera 
@@ -187,7 +182,22 @@ export default function CameraScreen () {
             tracking: true,
           }}
           />
-
+          {/* {facedetected && (
+            <View>
+              <View style={styles.bottomContainer}>
+                <Image source={emoji} style={styles.emoji} />
+                <Text style={styles.emotionText}>{emotion}</Text>
+              </View>
+            </View>
+      )} */}
+      <View style = {styles.bottomContainerWrapper}>
+        <View style = {[styles.bottomContainer, globalStyles.primaryColor]}>
+            <View style = {styles.smallContainer}>
+              <Image source={emoji} style={styles.emoji} />
+              <Text style={styles.emotionText}>{emotion}</Text>
+            </View>
+        </View>
+      </View>
     </View>
   );
 }
