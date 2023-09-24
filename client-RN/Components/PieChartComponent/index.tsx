@@ -11,7 +11,7 @@ interface PieChartProps {
 const getColorForEmotion = (emotion: string) => {
   switch (emotion) {
     case 'Neutral':
-      return 'lightblue';
+      return '#00FFFF';
     case 'Happy':
       return 'yellow';
     case 'Sad':
@@ -42,22 +42,14 @@ const pieData = Object.entries(emotionAverages || {}).map(([emotion, percentage]
   text: `${percentage}%`,
 }));
 
-// console.log('Legends:', legends);
-// console.log('Pie Data:', pieData);
-
 return(
     <View style={styles.chartContainer}>
       <View style={styles.chartWithLegends}>
         <PieChart
-          // showText
           textColor="black"
           radius={90}
-          // textSize={10}
-          // showTextBackground
           textBackgroundRadius={15}
           data={pieData}
-          // showValuesAsLabels={false}
-          // showGradient
           focusOnPress
         />
       <View style={styles.legendContainer}>

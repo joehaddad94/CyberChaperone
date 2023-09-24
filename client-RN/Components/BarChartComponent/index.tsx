@@ -1,18 +1,61 @@
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { BarChart } from "react-native-gifted-charts";
 
 import { styles } from "./styles";
 
-const BarcChartComponent = () => {
+const BarChartComponent = () => {
     const barData = [
-        { value: 20.12, label: 'Jan', frontColor: '#4ABFF4' },
-        { value: 15.75, label: 'Feb', frontColor: '#79C3DB' },
-        { value: 18.33, label: 'Mar', frontColor: '#28B2B3' },
-        { value: 13.44, label: 'Apr', frontColor: '#4ADDBA' },
-        { value: 16.56, label: 'May', frontColor: '#91E3E3' },
-        { value: 10.80, label: 'Jun', frontColor: '#91E3E3' },
-        { value: 5.00, label: 'Jul', frontColor: '#91E3E3' },
+        {   value: 99, 
+            label: 'Disgusted', 
+            frontColor: 'green', 
+            topLabelComponent: () => (
+            <Text style={styles.percentage}>20.12%</Text>
+            ),
+        },
+        {   value: 15.75, 
+            label: 'Surprised', 
+            frontColor: 'pink', 
+            topLabelComponent: () => (
+            <Text style={styles.percentage}>15.75%</Text>
+            ),
+        },
+        {   value: 18.33, 
+            label: 'Anger', 
+            frontColor: 'red', 
+            topLabelComponent: () => (
+            <Text style={styles.percentage}>18.33%</Text>
+            ),
+        },
+        {   value:  13.44, 
+            label: 'Sad', 
+            frontColor: 'blue', 
+            topLabelComponent: () => (
+            <Text style={styles.percentage}>13.44%</Text>
+            ),
+        },
+        {   value: 10.80, 
+            label: 'Happy', 
+            frontColor: 'yellow', 
+            topLabelComponent: () => (
+            <Text style={styles.percentage}>10.80%</Text>
+            ),
+        },
+        {   value: 0, 
+            label: 'Neutral', 
+            frontColor: '#4ABFF4', 
+            topLabelComponent: () => (
+            <Text style={styles.percentage}>5.00%</Text>
+            ),
+        },
+        {   value: 20.12, 
+            label: 'Fear', 
+            frontColor: 'brown', 
+            topLabelComponent: () => (
+            <Text style={styles.percentage}>20.12%</Text>
+            ),
+        },
     ];
+
         return (
         <View>
             <BarChart
@@ -31,4 +74,4 @@ const BarcChartComponent = () => {
     );
 };
 
-export default BarcChartComponent;
+export default BarChartComponent;
