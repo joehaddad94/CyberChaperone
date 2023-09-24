@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import globalStyles from '../styles';
-import NestedHeader from '../Components/NestedHeader/NestedHeader';
 import { ImageBackground, View, Text, StyleSheet, Image } from 'react-native';
-import TextInput from '../Components/TextInput';
-import Button from '../Components/Button'
-import { userCredentials } from '../ParamTypes';
-import { BASE_URL } from '../react-native.config';
+import NestedHeader from '../../Components/NestedHeader/NestedHeader';
+import TextInput from '../../Components/TextInput';
+import Button from '../../Components/Button'
+import { userCredentials } from '../../ParamTypes';
+import { BASE_URL } from '../../react-native.config';
 import { useNavigation, NavigationProp } from '@react-navigation/native';
-import { StackParamList } from '../ParamTypes';
+import { StackParamList } from '../../ParamTypes';
 import axios from 'axios';
-import { useAuth } from '../ContextFiles/AuthContext';
+import { useAuth } from '../../ContextFiles/AuthContext';
 
+import globalStyles from '../../styles';
+import { styles } from './styles';
 
 export default function CreateUserScreen() {
     const [errors, setErrors] = useState<Record<string, string>>({});
@@ -61,11 +62,6 @@ export default function CreateUserScreen() {
         } catch(error) {
             console.log(error)
         }
-        setUserCredentials({
-            username: '',
-            email: '',
-            password: '',
-        })
         }
     };
 
@@ -141,29 +137,4 @@ export default function CreateUserScreen() {
         </ImageBackground>
     </SafeAreaView>
     );
-}
-
-const styles = StyleSheet.create({
-    mainContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 40
-    },
-    inputContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        gap: 20,
-    },
-    inputStyle: {
-        width: 300,
-    },
-    profilePicture: {
-        width: 200,
-        height: 200,
-        borderRadius: 100,
-        marginBottom: 20,
-    },
-    errorText: {
-        color: 'red',
-    }
-})
+};
