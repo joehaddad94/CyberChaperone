@@ -33,21 +33,21 @@
 ### Mockups (Mobile App)
 | Login screen  | Register Screen | Camera Screen |
 | ---| ---| ---|
-| ![Login](./Mobile%20App%20Mockups/LoginScreen.png) | ![Register](./Mobile%20App%20Mockups/RegisterScreen.png) | ![Camera](./Mobile%20App%20Mockups/CameraScreen.png) |
+| ![Login](/readme/Mobile%20App%20Mockups/LoginScreen.png) | ![Register](/readme/Mobile%20App%20Mockups/RegisterScreen.png) | ![Camera](/readme/Mobile%20App%20Mockups/CameraScreen.png) |
 
 | Info screen  | Dashboard Screen | Profile Screen |
 | ---| ---| ---|
-| ![Info](./Mobile%20App%20Mockups/InfoScreen.png) | ![Dashboard](./Mobile%20App%20Mockups/DashboardScreen.png) | ![Profile](./Mobile%20App%20Mockups/ProfileScreen.png) |
+| ![Info](/readme/Mobile%20App%20Mockups/InfoScreen.png) | ![Dashboard](/readme/Mobile%20App%20Mockups/DashboardScreen.png) | ![Profile](/readme/Mobile%20App%20Mockups/ProfileScreen.png) |
 
 | Users screen  | Create Users Screen | Settings Screen |
 | ---| ---| ---|
-| ![Users](./Mobile%20App%20Mockups/UsersScreen.png) | ![CreateUsers](./Mobile%20App%20Mockups/UsersScreen.png) | ![Settings](./Mobile%20App%20Mockups/SettingsScreen.png)
+| ![Users](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![CreateUsers](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![Settings](/readme/Mobile%20App%20Mockups/SettingsScreen.png)
 
 ### Mockups (Software App)
 
 | Login Page  | Landing Page ||
 | ---| ---| ---|
-| ![Login](./Software%20App%20Mockups/LoginPage.png) | ![Landing](./Software%20App%20Mockups/LandingPage.png) 
+| ![Login](/readme/Software%20App%20Mockups/LoginPage.png) | ![Landing](/readme/Software%20App%20Mockups/LandingPage.png) 
 
 <br><br>
 
