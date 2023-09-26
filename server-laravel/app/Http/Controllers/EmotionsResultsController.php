@@ -24,10 +24,8 @@ class emotionsResultsController extends Controller {
 
             $emotionData = new DetectionResult();
             $emotionData->user_id = Auth::id();
-            // $emotionData->user_id = 1 ;
             $emotionData->emotions_percentage = json_encode($validateData['emotionAverages']);
             $emotionData->detection_time = date('Y-m-d H:i:s', strtotime($validateData['timestamp']));
-            // $emotionData->detection_time = $validateData['timestamp'];
 
             $emotionData->save();
         } catch (\Exception $e) {

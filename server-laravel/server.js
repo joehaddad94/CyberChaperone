@@ -17,37 +17,35 @@ const io = new Server(httpServer, {
       },
 });
 
+    //Socket.io Connection
     io.on("connection", (socket) => {
-        console.log('Electron App is connected');
 
+        //Receive token from electron App
         socket.on("token", (token) => {
             userToken = token;
         });
 
+        //Receive emotions from electron App
         socket.on("emotions-data", async (emotions) => {
-            // console.log(emotions)
             accumulatedEmotions.push(...emotions);
-            // console.log(accumulatedEmotions)
 
             if (!calculateAverageTimer) {
                 calculateAverageTimer = setInterval(() => {
                     averageEmotions = calculateEmotionAverages(accumulatedEmotions);
                     accumulatedEmotions = [];
-                    console.log("Average emotion data:", averageEmotions);
                 }, 20000);
             }
 
             if (averageEmotions && Object.keys(averageEmotions.emotionAverages).length > 0) {
                 try {
-                    console.log('entered')
-                    const apiUrl = 'http://127.0.0.1:8000/api/save_emotions';
+                    const apiUrl = `${baseUrl}/api/save_emotions`;
 
                     const headers = {
                         Authorization: `Bearer ${userToken}`,
                     };
 
                     const response = await axios.post(apiUrl, averageEmotions, { headers });
-                    console.log("Average emotion data sent successfully:", response.data);
+                    
                 } catch (error) {
                     console.error("Error sending average emotion data:", error);
                 }
