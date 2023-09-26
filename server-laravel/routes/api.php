@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\EmotionsResultsController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\ProfilesController;
+use App\Http\Controllers\OpenAIController;
 
 Route::group(["middleware" => "auth:api"], function () {
 
@@ -16,6 +17,7 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::delete("delete_user/{id}", [UsersController::class, "deleteUser"]);
         Route::post("fetch_dashboard_analysis", [EmotionsResultsController::class, "fetchDailyDataAnalysis"]);
         Route::post("edit_profile", [ProfilesController::class, "editProfile"]);
+        Route::get("generate_text", [OpenAIController::class, "generateText"]);
     });
 
     //General user Apis
