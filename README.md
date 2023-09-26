@@ -12,16 +12,10 @@
 ### User Stories
 - As a general user, I want to sign in to the app using my credentials to access the webcam-based emotion detection feature.
 
-- As a guardian user, I want to sign in to the app.
-- As a guardian user, I want to sign out of the app.
-- As a guardian user, I want to sign up and create an account.
-- As a guardian user, I want  to access my profile.
 - As a guardian user, I want to view detection results of my dependents.
-- As a guardian user, I want to access a settings section.
 - As a guardian user, I want to have a demo of how the detection works.
 - As a guardian user, I want to view detailed emotional analysis to gain insights into my dependents' overall well-being.
 - As a guardian user, I want to receive push notifications to stay updated on my dependents' emotional states.
-- As a guardian user, I want to have some information about the app.
 
 <br><br>
 
