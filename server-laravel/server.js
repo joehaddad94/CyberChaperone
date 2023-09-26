@@ -45,7 +45,7 @@ const io = new Server(httpServer, {
                     };
 
                     const response = await axios.post(apiUrl, averageEmotions, { headers });
-                    
+                    console.log('saved')
                 } catch (error) {
                     console.error("Error sending average emotion data:", error);
                 }
