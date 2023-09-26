@@ -73,7 +73,7 @@ Login screen  | Register Screen | Camera Screen |
 
 | Login Page  | Landing Page ||
 | ---| ---| ---|
-| ![Login](/readme/Software%20App%20Mockups/LoginPage.png) | ![Landing](/readme/Software%20App%20Mockups/LandingPage.png) 
+| ![Login](/readme/User%20Page%20Software%20App//LoginPage.png) | ![Landing](/readme//User%20Page%20Software%20App/LandingPage.gif) 
 
 <br><br>
 
