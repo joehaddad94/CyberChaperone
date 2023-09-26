@@ -54,14 +54,26 @@
 <!-- Implementation -->
 <img src="./Titles/title4.svg"/>
 
-> Using the wireframes and mockups as a guide, we implemented the Coffee Express app with the following features:
+> Using the wireframes and mockups as a guide, we implemented the CyberChaperone app with the following features:
 
 ### User Screens (Mobile)
-| Login screen  | Register screen | Landing screen | Loading screen |
-| ---| ---| ---| ---|
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
-| Home screen  | Menu Screen | Order Screen | Checkout Screen |
-| ![Landing](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) | ![fsdaf](https://placehold.co/900x1600) |
+Login screen  | Register Screen | Camera Screen |
+| ---| ---| ---|
+| ![Login](/readme/User%20Screens%20Mobile//LoginScreen.png) | ![Register](/readme/User%20Screens%20Mobile/RegisterScreen.png) | ![Camera](/readme/User%20Screens%20Mobile/CameraScreen.gif) |
+
+| Info screen  | Dashboard Screen | Profile Screen |
+| ---| ---| ---|
+| ![Info](/readme/User%20Screens%20Mobile/InfoScreen.png) | ![Dashboard](/readme/User%20Screens%20Mobile/DashboardScreen.png) | ![Profile](/readme/User%20Screens%20Mobile/ProfileScreen.png) |
+
+| Users screen  | Create Users Screen | Settings Screen |
+| ---| ---| ---|
+| ![Users](/readme/User%20Screens%20Mobile/UsersScreen.png) | ![CreateUsers](/readme/User%20Screens%20Mobile/UsersScreen.png) | ![Settings](/readme/User%20Screens%20Mobile/SettingsScreen.png)
+
+### User Screens (Software App)
+
+| Login Page  | Landing Page ||
+| ---| ---| ---|
+| ![Login](/readme/Software%20App%20Mockups/LoginPage.png) | ![Landing](/readme/Software%20App%20Mockups/LandingPage.png) 
 
 <br><br>
 
