@@ -11,11 +11,11 @@ class emotionsResultsController extends Controller {
     public function saveEmotions(Request $request) {
         try {
 
-            // $authUser = Auth::user();
+            $authUser = Auth::user();
 
-            // if (!$authUser) {
-            //     return response()->json(['error' => 'User is not authenticated.'], 401);
-            // }
+            if (!$authUser) {
+                return response()->json(['error' => 'User is not authenticated.'], 401);
+            }
 
             $validateData = $request->validate([
                 'emotionAverages' => 'required|array',
@@ -23,8 +23,8 @@ class emotionsResultsController extends Controller {
             ]);
 
             $emotionData = new DetectionResult();
-            // $emotionData->user_id = Auth::id();
-            $emotionData->user_id = 1 ;
+            $emotionData->user_id = Auth::id();
+            // $emotionData->user_id = 1 ;
             $emotionData->emotions_percentage = json_encode($validateData['emotionAverages']);
             $emotionData->detection_time = date('Y-m-d H:i:s', strtotime($validateData['timestamp']));
             // $emotionData->detection_time = $validateData['timestamp'];

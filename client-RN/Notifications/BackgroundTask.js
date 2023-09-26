@@ -1,12 +1,15 @@
-// BackgroundTask.js
-import { registerTaskAsync } from 'expo-task-manager';
+import * as TaskManager from 'expo-task-manager';
 
-const BACKGROUND_TASK_NAME = 'console-log-task';
-
-// Define the background task
-registerTaskAsync(BACKGROUND_TASK_NAME, async () => {
-  console.log('Background task executed at:', new Date());
-  return BackgroundFetchResult.NewData; // Return a result to indicate success
+const BACKGROUND_TASK_NAME = 'console-log-task'
+TaskManager.defineTask(BACKGROUND_TASK_NAME, ({ data, error }) => {
+  if (error) {
+    console.log('Background task error:', error.message);
+    return;
+  }
+  if (data) {
+    console.log('Background task executed at:', new Date());
+    // You can do something with the data captured in the background if needed.
+  }
 });
 
 export default BACKGROUND_TASK_NAME;
