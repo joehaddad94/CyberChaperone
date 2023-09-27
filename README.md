@@ -14,7 +14,7 @@
 
 - As a guardian user, I want to view detection results of my dependents.
 - As a guardian user, I want to have a demo of how the detection works.
-- As a guardian user, I want to view detailed emotional analysis to gain insights into my dependents' overall well-being using AI.
+- As a guardian user, I want to view detailed emotional analysis to gain insights into my dependents' overall well-being.
 
 <br><br>
 
