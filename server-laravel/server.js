@@ -1,10 +1,10 @@
 import { createServer } from "http";
 import express from "express";
-const app = express();
 import openAIRoute from "./nodeRoutes/openAIRoute.js";
 import { Server } from "socket.io";
 import axios from "axios";
 
+const app = express();
 const baseUrl = 'http://127.0.0.1:8000'
 
 let userToken;
