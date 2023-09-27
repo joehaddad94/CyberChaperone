@@ -52,7 +52,7 @@ export const styles = StyleSheet.create({
       alignItems: 'center'
     },
     analysisContainer: {
-      height: 150,
+      height: 250,
       alignItems: 'center',
       backgroundColor: 'white',
       width: 350,
@@ -67,5 +67,10 @@ export const styles = StyleSheet.create({
     emptyAnalysisContainer:{
       height: '100%',
       justifyContent:'center',
+    },
+    openAiAnalysis: {
+      fontWeight: 'bold',
+      fontSize: 15,
+      padding: 15,
     }
   });
