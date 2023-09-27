@@ -69,24 +69,36 @@ export default function DashboardScreen() {
           'Authorization': `Bearer ${authToken}`
         }
       });
-      console.log(response.data)
+      // console.log(response.data)
       setEmotionAverages(response.data.averageEmotions);
       const MaxEmotionsData = response.data
       setMaxEmotions(MaxEmotionsData.maxEmotions);
+      openAIAnalysis();
     } catch (error) {
       console.log(error);
     }
   }
 
-  async function openAIAnalysis (data:any) {
-    const apiUrl = 'http://127.0.01:3000/api/openai';
-
-    const response = await axios.post(apiUrl, data, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json; charset=utf-8',
-        }  
-      });
+  async function openAIAnalysis () {
+    try {
+      const apiUrl = `http://10.0.2.2:3000/api/openai`;
+      console.log(apiUrl)
+  
+      const data = {
+        'emotionAverages': emotionAverages,
+        'maxEmotions': maxEmotions
+      }
+      console.log(data)
+      const response = await axios.post(apiUrl, data, {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json; charset=utf-8',
+          }  
+        });
+        console.log('AI',response)
+    } catch (error) {
+      console.log('AI',error);
+    }
   }
 
   return (

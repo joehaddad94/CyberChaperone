@@ -7,7 +7,11 @@ const openai = new OpenAI({
 });
 
     const AICall = async (req, res) => {
-        const {prompt} = req.body
+        console.log(req.body)
+        const {prompt} = `Analyzing Emotional Data: 
+        - Average Emotions: ${JSON.stringify(req.body.averageEmotions)}
+        - Max Emotions: ${JSON.stringify(req.body.maxEmotions)}`;
+        
         const params = {
             messages: [{ role: 'user', content: prompt }],
             model: 'gpt-3.5-turbo',
