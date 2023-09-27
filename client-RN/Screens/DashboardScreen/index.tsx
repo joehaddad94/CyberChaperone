@@ -147,8 +147,12 @@ export default function DashboardScreen() {
               </View>
             </View>
             <View>
-              <Text style={styles.chartTitle}>Overall Analysis:</Text>
-              <View></View>
+              <Text style={styles.chartTitle}>Overall Analysis</Text>
+              <View style = {styles.analysisContainer}>
+                <View style={styles.emptyAnalysisContainer}>
+                  <Text style ={styles.emptyAnalysis}>No Analysis Ready</Text>
+                </View>
+              </View>
             </View>
           </View>
         </ScrollView>

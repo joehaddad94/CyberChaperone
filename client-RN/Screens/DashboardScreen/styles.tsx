@@ -37,6 +37,7 @@ export const styles = StyleSheet.create({
       color: 'white',
       fontSize: 18,
       paddingVertical:10,
+      textAlign: 'center'
     },
     emptyStateImgContainer: {
       alignItems:'center',
@@ -49,6 +50,22 @@ export const styles = StyleSheet.create({
     dropdownList: {
       justifyContent: 'center',
       alignItems: 'center'
-
+    },
+    analysisContainer: {
+      height: 150,
+      alignItems: 'center',
+      backgroundColor: 'white',
+      width: 350,
+      borderRadius: 10,
+      elevation: 5,
+      borderWidth: 2,
+    },
+    emptyAnalysis: {
+      fontWeight: 'bold',
+      fontSize: 16,
+    },
+    emptyAnalysisContainer:{
+      height: '100%',
+      justifyContent:'center',
     }
   });
