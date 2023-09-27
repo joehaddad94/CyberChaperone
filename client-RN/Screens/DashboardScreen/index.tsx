@@ -94,14 +94,14 @@ export default function DashboardScreen() {
         console.log('Emotion data is empty. Skipping API call.');
         return;
       }
-      
+
       const response = await axios.post(apiUrl, data, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json; charset=utf-8',
           }  
         });
-        console.log('AI',response)
+        console.log('AI',response.data)
     } catch (error) {
       console.log('AI',error);
     }
@@ -144,6 +144,9 @@ export default function DashboardScreen() {
               <View style={styles.barChartSmallContainer}>
                 <BarChartComponent maxEmotions={maxEmotions} />
               </View>
+            </View>
+            <View>
+              
             </View>
           </View>
         </ScrollView>
