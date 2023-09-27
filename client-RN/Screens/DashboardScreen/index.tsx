@@ -19,6 +19,7 @@ export default function DashboardScreen() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [emotionAverages, setEmotionAverages] = useState<EmotionAverages | null>(null);
   const [maxEmotions, setMaxEmotions] = useState<EmotionAverages | null>(null);
+  const [openAiAnalysis, setOpenAiAnalysis] = useState<String | null>(null)
   const [users, setUsers] = useState<User[]>([]);
   const user = useAuth();
 
@@ -101,7 +102,7 @@ export default function DashboardScreen() {
           'Content-Type': 'application/json; charset=utf-8',
           }  
         });
-        console.log('AI',response.data)
+        setOpenAiAnalysis(response.data);
     } catch (error) {
       console.log('AI',error);
     }
@@ -146,7 +147,8 @@ export default function DashboardScreen() {
               </View>
             </View>
             <View>
-              
+              <Text style={styles.chartTitle}>Overall Analysis:</Text>
+              <View></View>
             </View>
           </View>
         </ScrollView>
