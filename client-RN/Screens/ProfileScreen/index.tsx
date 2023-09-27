@@ -63,7 +63,6 @@ const  ProfileScreen: React.FC = () => {
         <View style = {styles.botContainer}>
           <PressableTitle title="Manage Account" onPress={() => handleMenuItemPress('Manage Account')} />
           <PressableTitle title="Manage Users" onPress={() => handleMenuItemPress('Manage Users')} />
-          <PressableTitle title="Settings" onPress={() => handleMenuItemPress('Settings')} />
           <PressableTitle title="Logout" onPress={() => handleMenuItemPress('Logout')} isRed={true} />
         </View>
       </View>
