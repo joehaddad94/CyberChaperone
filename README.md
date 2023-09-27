@@ -57,11 +57,11 @@ Login screen  | Register Screen | Camera Screen |
 
 | Info screen  | Dashboard Screen | Profile Screen |
 | ---| ---| ---|
-| ![Info](./User%20Screens%20Mobile/InfoScreen.png) | ![Dashboard](./User%20Screens%20Mobile/DashboardScreen.png) | ![Profile](./User%20Screens%20Mobile/ProfileScreen.png) |
+| ![Info](./User%20Screens%20Mobile/InfoScreen.gif) | ![Dashboard](./User%20Screens%20Mobile/DashboardScreen.gif) | ![Profile](./User%20Screens%20Mobile/ProfileScreen.png) |
 
 | Users screen  | Create Users Screen |  |
 | ---| ---| ---|
-| ![Users](./User%20Screens%20Mobile/UsersScreen.png) | ![CreateUsers](./User%20Screens%20Mobile/CreateUserScreen.PNG) |
+| ![Users](./User%20Screens%20Mobile/UsersScreen.png) | ![CreateUsers](./User%20Screens%20Mobile/CreateUserScreen.png) |
 
 ### User Screens (Software App)
 
