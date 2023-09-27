@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { ImageBackground, View, Text, StyleSheet, Image } from 'react-native';
 import NestedHeader from '../../Components/NestedHeader/NestedHeader';
-import TextInput from '../../Components/TextInput';
+import TextInput from '../../Components/TextInput/TextInput';
 import Button from '../../Components/Button'
 import { userCredentials } from '../../ParamTypes';
 import { BASE_URL } from '../../react-native.config';

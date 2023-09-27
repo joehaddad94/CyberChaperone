@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ImageBackground, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation, NavigationProp, CommonActions } from '@react-navigation/native';
-import TextInput from '../../Components/TextInput';
+import TextInput from '../../Components/TextInput/TextInput';
 import Button from '../../Components/Button';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { StackParamList } from '../../ParamTypes';

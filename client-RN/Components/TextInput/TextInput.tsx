@@ -1,7 +1,6 @@
-import {useState} from 'react';
 import { TextInput, DefaultTheme } from 'react-native-paper';
 import { ViewStyle } from 'react-native';
-import { registerCredentials } from '../ParamTypes';
+import { registerCredentials } from '../../ParamTypes';
 
 const customTheme = {
   ...DefaultTheme,
@@ -29,7 +28,6 @@ interface InputProps {
 const textInput: React.FC<InputProps> = ({label, placeholder, handleChange, inputStyle, secureTextEntry}) => {
   return (
     <TextInput
-      // mode='outlined'
       label={label}
       placeholder={placeholder}
       onChangeText={(text) => handleChange(label as keyof registerCredentials, text)}

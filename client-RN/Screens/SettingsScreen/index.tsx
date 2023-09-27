@@ -15,7 +15,7 @@ export default function SettingsScreen() {
   return (
     <SafeAreaView style={globalStyles.container}>
       <ImageBackground
-        source={require('../assets/images/DarkBG.png')}
+        source={require('../../assets/images/DarkBG.png')}
         style={globalStyles.backgroundImage}
         resizeMode="cover"
       >

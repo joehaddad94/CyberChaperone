@@ -3,7 +3,7 @@ import { ImageBackground, Image, View, Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import NestedHeader from '../../Components/NestedHeader/NestedHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import TextInput from '../../Components/TextInput'
+import TextInput from '../../Components/TextInput/TextInput'
 import ButtonComponent from '../../Components/Button';
 import { useAuth } from '../../ContextFiles/AuthContext';
 import { BASE_URL } from '../../react-native.config';
