@@ -70,7 +70,6 @@ export default function DashboardScreen() {
           'Authorization': `Bearer ${authToken}`
         }
       });
-      // console.log(response.data)
       setEmotionAverages(response.data.averageEmotions);
       const MaxEmotionsData = response.data
       setMaxEmotions(MaxEmotionsData.maxEmotions);

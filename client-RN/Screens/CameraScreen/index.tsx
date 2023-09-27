@@ -31,7 +31,6 @@ export default function CameraScreen () {
   }
 
   function handleFacesDetected({faces}: FaceDetectionResult) {
-    // console.log(faces);
     const face = faces[0] as any;
 
     if (face) {
