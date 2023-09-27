@@ -53,21 +53,21 @@
 ### User Screens (Mobile)
 Login screen  | Register Screen | Camera Screen |
 | ---| ---| ---|
-| ![Login](/readme/User%20Screens%20Mobile//LoginScreen.png) | ![Register](/readme/User%20Screens%20Mobile/RegisterScreen.png) | ![Camera](/readme/User%20Screens%20Mobile/CameraScreen.gif) |
+| ![Login](./User%20Screens%20Mobile/LoginScreen.png) | ![Register](./User%20Screens%20Mobile/RegisterScreen.png) | ![Camera](./User%20Screens%20Mobile/CameraScreen.gif) |
 
 | Info screen  | Dashboard Screen | Profile Screen |
 | ---| ---| ---|
-| ![Info](/readme/User%20Screens%20Mobile/InfoScreen.png) | ![Dashboard](/readme/User%20Screens%20Mobile/DashboardScreen.png) | ![Profile](/readme/User%20Screens%20Mobile/ProfileScreen.png) |
+| ![Info](./User%20Screens%20Mobile/InfoScreen.png) | ![Dashboard](./User%20Screens%20Mobile/DashboardScreen.png) | ![Profile](./User%20Screens%20Mobile/ProfileScreen.png) |
 
-| Users screen  | Create Users Screen | Settings Screen |
+| Users screen  | Create Users Screen |  |
 | ---| ---| ---|
-| ![Users](/readme/User%20Screens%20Mobile/UsersScreen.png) | ![CreateUsers](/readme/User%20Screens%20Mobile/UsersScreen.png) | ![Settings](/readme/User%20Screens%20Mobile/SettingsScreen.png)
+| ![Users](./User%20Screens%20Mobile/UsersScreen.png) | ![CreateUsers](./User%20Screens%20Mobile/CreateUserScreen.PNG) |
 
 ### User Screens (Software App)
 
 | Login Page  | Landing Page ||
 | ---| ---| ---|
-| ![Login](/readme/User%20Page%20Software%20App//LoginPage.png) | ![Landing](/readme//User%20Page%20Software%20App/LandingPage.gif) 
+| ![Login](./User%20Page%20Software%20App//LoginPage.png) | ![Landing](./User%20Page%20Software%20App/LandingPage.gif) 
 
 <br><br>
 
