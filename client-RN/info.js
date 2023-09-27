@@ -1,6 +1,6 @@
 export const info = [{
         title: 'Project Brief:',
-        Description: 'CyberChaperone CyChap is a facial emotion recognition app to prevent cyberbullying. By analyzing real-time user data, the app detects facial expressions and emotions to identify potential instances of cyberbullying. General users can utilize the app to monitor their emotions using the webcam. Guardian users, on the other hand, have access to a comprehensive set of features aimed at creating a safer online environment for their loved ones. The application boasts an intuitive interface, enabling effortless interaction, result sharing, and push notifications.',
+        Description: 'CyberChaperone CyChap is a facial emotion recognition app to prevent cyberbullying. By analyzing real-time user data, the app detects facial expressions and emotions to identify potential instances of cyberbullying. General users can utilize the app to monitor their emotions using the webcam. Guardian users, on the other hand, have access to a comprehensive set of features aimed at creating a safer online environment for their loved ones. The application boasts an intuitive interface, enabling effortless interaction, result sharing.',
     },
     {
         title: 'How it Works:',
