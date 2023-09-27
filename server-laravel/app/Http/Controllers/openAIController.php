@@ -8,14 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class OpenAIController extends Controller {
 
-    public function generateText()
-    {
+    public function generateText() {
 
         $authUser = Auth::user();
 
-            if (!$authUser) {
-                return response()->json(['error' => 'User is not authenticated.'], 401);
-            }
+        if (!$authUser) {
+            return response()->json(['error' => 'User is not authenticated.'], 401);
+        }
 
         $result = OpenAI::completions()->create([
             'model' => 'text-davinci-003',
@@ -25,5 +24,5 @@ class OpenAIController extends Controller {
         $generatedText = $result['choices'][0]['text'];
 
         return response()->json(['generatedText' => $generatedText]);
-        }
+    }
 }
