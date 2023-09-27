@@ -45,5 +45,10 @@ export const styles = StyleSheet.create({
     emptyStateImg: {
       width: 300,
       height: 300,
+    },
+    dropdownList: {
+      justifyContent: 'center',
+      alignItems: 'center'
+
     }
   });

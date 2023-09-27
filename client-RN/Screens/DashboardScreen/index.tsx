@@ -89,14 +89,16 @@ export default function DashboardScreen() {
   return (
     <View style={[globalStyles.backgroundImage, globalStyles.primaryColor]}>
       <Header headerTitle={"Dashboard"} backgroundColor="#00B69B" />
-      <DropdownList
-        data={users.map((user) => ({ key: user.id.toString(), value: user.username }))}
-        selectedValue={selectedUser ? selectedUser.username : null}
-        setSelectedValue={(value: string | null) => {
-          const selected = users.find((u) => u.username === value) || null;
-          setSelectedUser(selected);
-        }}
-      />
+      <View style = {styles.dropdownList}>
+        <DropdownList
+          data={users.map((user) => ({ key: user.id.toString(), value: user.username }))}
+          selectedValue={selectedUser ? selectedUser.username : null}
+          setSelectedValue={(value: string | null) => {
+            const selected = users.find((u) => u.username === value) || null;
+            setSelectedUser(selected);
+          }}
+        />
+      </View>
       <SwipeCalendar selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
       {emotionAverages || maxEmotions ? (
         <ScrollView>

@@ -103,12 +103,7 @@ export default function UsersScreen() {
                                         <Text style={styles.email}>{user.email}</Text>
                                     </View>
                                 </View>
-                                <View style={styles.buttonContainer} >
-                                    <TouchableOpacity
-                                        // onPress={() => handleEditUser(user.id)}
-                                    >
-                                        <AntDesign name="edit" size={24} color="#00BFA4" />
-                                    </TouchableOpacity>
+                                <View style={styles.buttonContainer}>
                                     <TouchableOpacity
                                         onPress={() => handleDeleteUser(user.id)}
                                     >
