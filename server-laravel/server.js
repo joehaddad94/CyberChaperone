@@ -1,4 +1,7 @@
 import { createServer } from "http";
+const express = require("express");
+const app = express();
+const openAIRoute = require("./nodeRoutes/openAIRoute");
 import { Server } from "socket.io";
 import axios from "axios";
 
