@@ -51,23 +51,23 @@
 > Using the wireframes and mockups as a guide, we implemented the CyberChaperone app with the following features:
 
 ### User Screens (Mobile)
-Login screen  | Register Screen | Camera Screen |
+Login screen  | | Camera Screen |
 | ---| ---| ---|
-| ![Login](./User%20Screens%20Mobile/LoginScreen.png) | ![Register](./User%20Screens%20Mobile/RegisterScreen.png) | ![Camera](./User%20Screens%20Mobile/CameraScreen.gif) |
+| ![Login](./User%20Screens%20Mobile/LoginScreen.gif) |  | ![Camera](./User%20Screens%20Mobile/CameraScreen.gif) |
 
-| Info screen  | Dashboard Screen | Profile Screen |
+| Info screen  | Dashboard Screen |  |
 | ---| ---| ---|
-| ![Info](./User%20Screens%20Mobile/InfoScreen.gif) | ![Dashboard](./User%20Screens%20Mobile/DashboardScreen.gif) | ![Profile](./User%20Screens%20Mobile/ProfileScreen.png) |
+| ![Info](./User%20Screens%20Mobile/InfoScreen.gif) | ![Dashboard](./User%20Screens%20Mobile/DashboardScreen.gif) |  |
 
-| Users screen  | Create Users Screen |  |
+| Profile Screen  | Users Screen |  |
 | ---| ---| ---|
-| ![Users](./User%20Screens%20Mobile/UsersScreen.gif) | ![CreateUsers](./User%20Screens%20Mobile/CreateUserScreen.png) |
+| ![Profile](./User%20Screens%20Mobile/ProfileScreen.gif) | ![Users](./User%20Screens%20Mobile/UsersScreen.gif) |
 
 ### User Screens (Software App)
 
-| Login Page  | Landing Page ||
+| | Landing Page ||
 | ---| ---| ---|
-| ![Login](./User%20Page%20Software%20App//LoginPage.png) | ![Landing](./User%20Page%20Software%20App/LandingPage.gif) 
+| | ![Landing](./User%20Page%20Software%20App/LandingPage.gif) 
 
 <br><br>
 
