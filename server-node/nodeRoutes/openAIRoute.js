@@ -3,15 +3,16 @@ const router = express.Router();
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
-    apiKey: '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',
+    apiKey: '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',
 });
 
     const AICall = async (req, res) => {
         console.log(req.body)
-        const {prompt} = `Analyze Emotional Data: 
+        const prompt = `Analyze Emotional Data: 
         - Average Emotions: ${JSON.stringify(req.body.averageEmotions)}
         - Max Emotions: ${JSON.stringify(req.body.maxEmotions)}`;
 
+        // const prompt = "this is a test";
         const params = {
             messages: [{ role: 'user', content: prompt }],
             model: 'gpt-3.5-turbo',

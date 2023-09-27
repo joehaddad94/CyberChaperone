@@ -89,6 +89,12 @@ export default function DashboardScreen() {
         'maxEmotions': maxEmotions
       }
       console.log(data)
+
+      if (isEmptyObject(emotionAverages) || isEmptyObject(maxEmotions)) {
+        console.log('Emotion data is empty. Skipping API call.');
+        return;
+      }
+      
       const response = await axios.post(apiUrl, data, {
         headers: {
           'Accept': 'application/json',
@@ -99,6 +105,15 @@ export default function DashboardScreen() {
     } catch (error) {
       console.log('AI',error);
     }
+  }
+
+  function isEmptyObject(obj:any) {
+    for (const key in obj) {
+      if (obj.hasOwnProperty(key)) {
+        return false;
+      }
+    }
+    return true;
   }
 
   return (
