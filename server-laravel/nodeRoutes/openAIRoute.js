@@ -4,7 +4,7 @@ import axios from "axios";
 
 router.post("/openai", async (req, res) => {
     try {
-
+            console.log('entered')
         const openaiResponse = await axios.post(
             "https://api.openai.com/v1/engines/davinci-codex/completions",
             {
