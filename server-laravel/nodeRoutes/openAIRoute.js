@@ -1,6 +1,6 @@
-const express = require("express");
+import express from "express";
 const router = express.Router();
-const axios = require("axios");
+import axios from "axios";
 
 router.post("/openai", async (req, res) => {
     try {
@@ -28,4 +28,4 @@ router.post("/openai", async (req, res) => {
     }
 });
 
-module.exports = router;
+export default router;

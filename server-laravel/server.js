@@ -1,7 +1,7 @@
 import { createServer } from "http";
-const express = require("express");
+import express from "express";
 const app = express();
-const openAIRoute = require("./nodeRoutes/openAIRoute");
+import openAIRoute from "./nodeRoutes/openAIRoute.js";
 import { Server } from "socket.io";
 import axios from "axios";
 
@@ -87,6 +87,8 @@ function calculateEmotionAverages(emotionsArray) {
 
 }
 
+//openAI route
+app.use("/api/openai", openAIRoute);
 
 httpServer.listen(3000, () => {
   console.log('Server is running on port 3000');
