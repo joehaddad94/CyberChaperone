@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { ImageBackground, StyleSheet, View, Text, Switch } from 'react-native';
-import NestedHeader from '../Components/NestedHeader/NestedHeader';
+import { ImageBackground, View, Text, Switch } from 'react-native';
+import NestedHeader from '../../Components/NestedHeader/NestedHeader';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import globalStyles from '../styles';
+import globalStyles from '../../styles';
+import {styles} from './styles'
 
 export default function SettingsScreen() {
   const [pushNotificationsEnabled, setPushNotificationsEnabled] = useState(false);
@@ -39,18 +40,4 @@ export default function SettingsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  contentContainer: {
-    padding: 16,
-  },
-  settingItem: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    marginBottom: 16,
-  },
-  settingText: {
-    color: 'white',
-    fontSize: 18,
-  },
-});
+

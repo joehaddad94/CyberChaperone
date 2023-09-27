@@ -1,7 +1,8 @@
 import { ImageBackground, Image, StyleSheet, Text, View, ScrollView } from 'react-native';
-import globalStyles from '../styles';
-import Header from '../Components/Header'
-import { info } from '../info'
+import globalStyles from '../../styles';
+import Header from '../../Components/Header'
+import { info } from '../../info'
+import { styles } from './styles'
 
 
 export default function InfoScreen() {
@@ -21,28 +22,3 @@ export default function InfoScreen() {
     </View>
     )
 }
-
-const styles = StyleSheet.create({
-    mainContainer:{
-        padding: 20,
-    },
-    scrollViewContent: {
-        marginBottom: 40,
-      },
-    subContainer: {
-        marginBottom: 20,
-        
-    },
-    title: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-    description: {
-        color: 'white',
-        fontSize: 16,
-        marginTop:10,
-        marginBottom: 20,
-    }
-    }
-)
