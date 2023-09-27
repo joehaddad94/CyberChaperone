@@ -18,7 +18,6 @@ const openai = new OpenAI({
         - Average Emotions: ${JSON.stringify(req.body.emotionAverages)}
         - Max Emotions: ${JSON.stringify(req.body.maxEmotions)}`;
 
-        // const prompt = "this is a test";
         const params = {
             messages: [{ role: 'user', content: prompt }],
             model: 'gpt-3.5-turbo',
