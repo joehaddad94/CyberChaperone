@@ -82,13 +82,11 @@ export default function DashboardScreen() {
   async function openAIAnalysis () {
     try {
       const apiUrl = `http://10.0.2.2:3000/api/openai`;
-      console.log(apiUrl)
   
       const data = {
         'emotionAverages': emotionAverages,
         'maxEmotions': maxEmotions
       }
-      console.log(data)
 
       if (isEmptyObject(emotionAverages) || isEmptyObject(maxEmotions)) {
         console.log('Emotion data is empty. Skipping API call.');
