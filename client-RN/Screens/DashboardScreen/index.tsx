@@ -150,8 +150,11 @@ export default function DashboardScreen() {
               <Text style={styles.chartTitle}>Overall Analysis</Text>
               <View style = {styles.analysisContainer}>
                 <View style={styles.emptyAnalysisContainer}>
-                  {/* <Text style ={styles.emptyAnalysis}>No Analysis Ready</Text> */}
-                  <Text style ={styles.openAiAnalysis}>${openAiAnalysisData}</Text>
+                  {openAiAnalysisData ? (
+                    <Text style={styles.openAiAnalysis}>{openAiAnalysisData}</Text>
+                  ) : (
+                    <Text style={styles.emptyAnalysis}>No Analysis Ready</Text>
+                  )}
                 </View>
               </View>
             </View>
