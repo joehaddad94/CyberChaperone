@@ -69,7 +69,7 @@ export default function DashboardScreen() {
           'Authorization': `Bearer ${authToken}`
         }
       });
-
+      console.log(response.data)
       setEmotionAverages(response.data.averageEmotions);
       const MaxEmotionsData = response.data
       setMaxEmotions(MaxEmotionsData.maxEmotions);
@@ -78,13 +78,16 @@ export default function DashboardScreen() {
     }
   }
 
-  const emptyStateView = (
-    <View style={globalStyles.container}>
-      <Image
-        source={emptyStateImg}
-      />
-    </View>
-  );
+  async function openAIAnalysis (data:any) {
+    const apiUrl = 'http://127.0.01:3000/api/openai';
+
+    const response = await axios.post(apiUrl, data, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json; charset=utf-8',
+        }  
+      });
+  }
 
   return (
     <View style={[globalStyles.backgroundImage, globalStyles.primaryColor]}>
