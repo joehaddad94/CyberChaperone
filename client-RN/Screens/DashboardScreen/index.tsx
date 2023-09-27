@@ -19,7 +19,7 @@ export default function DashboardScreen() {
   const [selectedDate, setSelectedDate] = useState<Date | null>(new Date());
   const [emotionAverages, setEmotionAverages] = useState<EmotionAverages | null>(null);
   const [maxEmotions, setMaxEmotions] = useState<EmotionAverages | null>(null);
-  const [openAiAnalysis, setOpenAiAnalysis] = useState<String | null>(null)
+  const [openAiAnalysisData, setOpenAiAnalysisData] = useState<String | null>(null)
   const [users, setUsers] = useState<User[]>([]);
   const user = useAuth();
 
@@ -102,7 +102,7 @@ export default function DashboardScreen() {
           'Content-Type': 'application/json; charset=utf-8',
           }  
         });
-        setOpenAiAnalysis(response.data);
+        setOpenAiAnalysisData(response.data);
     } catch (error) {
       console.log('AI',error);
     }
@@ -151,7 +151,7 @@ export default function DashboardScreen() {
               <View style = {styles.analysisContainer}>
                 <View style={styles.emptyAnalysisContainer}>
                   {/* <Text style ={styles.emptyAnalysis}>No Analysis Ready</Text> */}
-                  <Text style ={styles.openAiAnalysis}>The overall analysis of the emotions in the data shows a high average of neutrality (91.84%) with low levels of happiness (2.69%), sadness (4.44%), anger (0.06%), fear (0.1%), disgust (0.03%), and surprise (0.98%). The maximum emotions recorded also show a dominant presence of neutrality (99.99%) with relatively higher levels of sadness (66.79%), surprise (21.97%), happiness (36.58%), fear (5.57%), anger (0.58%), and disgust (0.62%).</Text>
+                  <Text style ={styles.openAiAnalysis}>${openAiAnalysisData}</Text>
                 </View>
               </View>
             </View>
