@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ImageBackground, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { ImageBackground, Image, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation, NavigationProp  } from '@react-navigation/native';
 
 import TextInput from '../../Components/TextInput/TextInput'

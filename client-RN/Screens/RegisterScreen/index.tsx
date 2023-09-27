@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ImageBackground, Image, StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { ImageBackground, Image, Text, View, TouchableOpacity } from 'react-native';
 import { useNavigation, NavigationProp, CommonActions } from '@react-navigation/native';
 import TextInput from '../../Components/TextInput/TextInput';
 import Button from '../../Components/Button';
@@ -26,7 +26,7 @@ export default function RegisterScreen() {
     username: '',
     email: '',
     password: '',
- })
+  })
 
   const handleChange = (field: keyof registerCredentials, value: string) => {
     setRegisterCredentials({
