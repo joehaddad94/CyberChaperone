@@ -34,7 +34,7 @@
 
 | Users screen  | Create Users Screen | |
 | ---| ---| ---|
-| ![Users](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![CreateUsers](/readme/Mobile%20App%20Mockups/UsersScreen.png) |
+| ![Users](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![CreateUsers](/readme/Mobile%20App%20Mockups/CreateUserScreen.png) |
 
 ### Mockups (Software App)
 
