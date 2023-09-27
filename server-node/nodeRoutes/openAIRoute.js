@@ -15,10 +15,10 @@ const openai = new OpenAI({
         const params = {
             messages: [{ role: 'user', content: prompt }],
             model: 'gpt-3.5-turbo',
-          };
-          const chatCompletion = await openai.chat.completions.create(params);
-        
-        res.send(chatCompletion.choices[0].message)
+        };
+        const chatCompletion = await openai.chat.completions.create(params);
+        console.log(chatCompletion.choices[0].message);
+        res.send(chatCompletion.choices[0].message);
     }
 
     router.post("/openai", AICall);
