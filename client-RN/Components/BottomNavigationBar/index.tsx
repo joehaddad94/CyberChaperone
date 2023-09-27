@@ -1,6 +1,6 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import React from 'react';
-import { View, StyleSheet, TouchableOpacity, ImageBackground } from 'react-native';
+import { TouchableOpacity, ImageBackground } from 'react-native';
 import globalStyles from '../../styles';
 import CameraScreen from '../../Screens/CameraScreen'; 
 import InfoScreen from '../../Screens/InfoScreen'; 
