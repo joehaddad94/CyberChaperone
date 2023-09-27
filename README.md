@@ -33,9 +33,9 @@
 | ---| ---| ---|
 | ![Info](/readme/Mobile%20App%20Mockups/InfoScreen.png) | ![Dashboard](/readme/Mobile%20App%20Mockups/DashboardScreen.png) | ![Profile](/readme/Mobile%20App%20Mockups/ProfileScreen.png) |
 
-| Users screen  | Create Users Screen | Settings Screen |
+| Users screen  | Create Users Screen | |
 | ---| ---| ---|
-| ![Users](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![CreateUsers](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![Settings](/readme/Mobile%20App%20Mockups/SettingsScreen.png)
+| ![Users](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![CreateUsers](/readme/Mobile%20App%20Mockups/UsersScreen.png) |
 
 ### Mockups (Software App)
 
@@ -61,7 +61,7 @@ Login screen  | Register Screen | Camera Screen |
 
 | Users screen  | Create Users Screen |  |
 | ---| ---| ---|
-| ![Users](./User%20Screens%20Mobile/UsersScreen.png) | ![CreateUsers](./User%20Screens%20Mobile/CreateUserScreen.png) |
+| ![Users](./User%20Screens%20Mobile/UsersScreen.gif) | ![CreateUsers](./User%20Screens%20Mobile/CreateUserScreen.png) |
 
 ### User Screens (Software App)
 
