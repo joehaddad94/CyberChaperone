@@ -1,10 +1,11 @@
 import express from "express";
 const router = express.Router();
 import OpenAI from 'openai';
+require('dotenv').config();
 
 const openai = new OpenAI({
     organization: "org-cktUSxa7TqUUdFSJgduFJ4a9",
-    apiKey: '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',
+    apiKey: process.env.OPENAI_API_KEY,
 });
 
     const AICall = async (req, res) => {
