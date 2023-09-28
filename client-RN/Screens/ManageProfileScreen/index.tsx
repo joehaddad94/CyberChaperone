@@ -92,7 +92,7 @@ const ManageProfileScreen: React.FC = () => {
               />
             <TextInput 
                 label="Last Name"
-                placeholder="Enter your Last Name"
+                placeholder="Edit your Last Name"
                 value={profileInfo.lastName}
                 handleChange={(field, value) => handleProfileChange('lastName', value)}
                 inputStyle={styles.inputStyle}
