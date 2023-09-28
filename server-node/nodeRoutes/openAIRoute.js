@@ -4,7 +4,7 @@ import OpenAI from 'openai';
 
 const openai = new OpenAI({
     organization: "org-cktUSxa7TqUUdFSJgduFJ4a9",
-    apiKey: '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',
+    apiKey: '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',
 });
 
     const AICall = async (req, res) => {
