@@ -75,7 +75,7 @@ function createHomeWindow() {
     }
 
     homeWindow.loadFile(path.join(__dirname, './home/index.html'));
-    
+
 }
 
 ipcMain.on('login', async (event, credentials) => {
