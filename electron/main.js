@@ -33,6 +33,7 @@ function createMainWindow() {
     loginWindow = new BrowserWindow({
         title: 'CyberChaperone',
         width: isDev ? 1000 : 450,
+        icon: path.join(__dirname, './assets/images/LogoIcon.ico'),
         height: 650,
         frame: false,
         webPreferences: {
@@ -59,6 +60,7 @@ function createHomeWindow() {
         title: 'CyberChaperone',
         width: isDev ? 1500 : 1250,
         height: 750,
+        icon: path.join(__dirname, './assets/images/LogoIcon.ico'),
         webPreferences: {
             contextIsolation: true,
             nodeIntegration: true,
