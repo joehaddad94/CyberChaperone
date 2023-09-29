@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { ImageBackground, View, Text, StyleSheet, Image } from 'react-native';
+import { ImageBackground, View, Text, StyleSheet, Image, KeyboardAvoidingView } from 'react-native';
 import NestedHeader from '../../Components/NestedHeader/NestedHeader';
 import TextInput from '../../Components/TextInput/TextInput';
 import Button from '../../Components/Button'
@@ -83,65 +83,65 @@ export default function CreateUserScreen() {
         }, [errors]);
 
     return (
-    <SafeAreaView style={globalStyles.container}>
-        <ImageBackground
-            source={require('../../assets/images/DarkBG.png')}
-            style={globalStyles.backgroundImage}
-            resizeMode="cover"
-        >
-        <NestedHeader
-            headerTitle="Create User"
-            backgroundColor="#00B69B"
-            showButton={false}
-        />
-        
-        <View style={[globalStyles.container, styles.mainContainer ]}>
-            <View>
-                <Image
-                    source={require('../../assets/images/user.png')}
-                    style={styles.profilePicture}
+        <SafeAreaView style={globalStyles.container}>
+                <ImageBackground
+                    source={require('../../assets/images/DarkBG.png')}
+                    style={globalStyles.backgroundImage}
+                    resizeMode="cover"
+                >
+                <NestedHeader
+                    headerTitle="Create User"
+                    backgroundColor="#00B69B"
+                    showButton={false}
                 />
-            </View>
-            <View style= {styles.inputContainer}>
-                <TextInput
-                    label="Username"
-                    placeholder="Enter your username"
-                    value={userCredentials.username}
-                    inputStyle={styles.inputStyle}
-                    handleChange={(field, value) => handleChange('username', value)}
-                    secureTextEntry={false}
-                />
-                {errors.username ? (
-                <Text style={styles.errorText}>{errors.username}</Text>
-            ) : null}
-                <TextInput
-                    label="Email"
-                    placeholder="Enter your email"
-                    value={userCredentials.email}
-                    inputStyle={styles.inputStyle}
-                    handleChange={(field, value) => handleChange('email', value)}
-                    secureTextEntry={false}
-                />
-                {errors.email ? (
-                <Text style={styles.errorText}>{errors.email}</Text>
-            ) : null}
-                <TextInput
-                    label="Password"
-                    placeholder="Enter your password"
-                    value={userCredentials.password}
-                    inputStyle={styles.inputStyle}
-                    handleChange={(field, value) => handleChange('password', value)}
-                    secureTextEntry={true}
-                />
-                {errors.password ? (
-                <Text style={styles.errorText}>{errors.password}</Text>
-                ) : null}
-            </View>
-            <View>
-                <Button title="Save" handleSubmit={handleSubmit} />
-            </View>
-        </View>
-        </ImageBackground>
-    </SafeAreaView>
+                
+                <View style={[globalStyles.container, styles.mainContainer ]}>
+                    <View>
+                        <Image
+                            source={require('../../assets/images/user.png')}
+                            style={styles.profilePicture}
+                        />
+                    </View>
+                    <View style= {styles.inputContainer}>
+                        <TextInput
+                            label="Username"
+                            placeholder="Enter your username"
+                            value={userCredentials.username}
+                            inputStyle={styles.inputStyle}
+                            handleChange={(field, value) => handleChange('username', value)}
+                            secureTextEntry={false}
+                        />
+                        {errors.username ? (
+                        <Text style={styles.errorText}>{errors.username}</Text>
+                    ) : null}
+                        <TextInput
+                            label="Email"
+                            placeholder="Enter your email"
+                            value={userCredentials.email}
+                            inputStyle={styles.inputStyle}
+                            handleChange={(field, value) => handleChange('email', value)}
+                            secureTextEntry={false}
+                        />
+                        {errors.email ? (
+                        <Text style={styles.errorText}>{errors.email}</Text>
+                    ) : null}
+                        <TextInput
+                            label="Password"
+                            placeholder="Enter your password"
+                            value={userCredentials.password}
+                            inputStyle={styles.inputStyle}
+                            handleChange={(field, value) => handleChange('password', value)}
+                            secureTextEntry={true}
+                        />
+                        {errors.password ? (
+                        <Text style={styles.errorText}>{errors.password}</Text>
+                        ) : null}
+                    </View>
+                    <View>
+                        <Button title="Save" handleSubmit={handleSubmit} />
+                    </View>
+                </View>
+                </ImageBackground>
+        </SafeAreaView>
     );
 };
