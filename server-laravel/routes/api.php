@@ -17,7 +17,6 @@ Route::group(["middleware" => "auth:api"], function () {
         Route::delete("delete_user/{id}", [UsersController::class, "deleteUser"]);
         Route::post("fetch_dashboard_analysis", [EmotionsResultsController::class, "fetchDailyDataAnalysis"]);
         Route::post("edit_profile", [ProfilesController::class, "editProfile"]);
-        Route::get("generate_text", [OpenAIController::class, "generateText"]);
     });
 
     //General user Apis
