@@ -124,9 +124,9 @@ Login screen  | | Camera Screen |
    ```
    
 ### Node.js:
-1. Navigate to server-laravel folder.
+1. Navigate to server-node folder.
    ```sh
-   cd server-laravel
+   cd server-node
    ```
 2. Install npm packages
    ```sh
