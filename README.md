@@ -87,6 +87,10 @@ Login screen  | | Camera Screen |
 
 > To set up CyberChaperone locally, follow these steps:
 
+## Postman
+
+This is a JSON file for the postman APIs collection for this project [.postman_collection.json](). You can change the address of the APIs to test them with postman.
+
 ## Prerequisites
 
 * Github

@@ -1,0 +1,385 @@
+{
+    "collection": {
+        "info": {
+            "_postman_id": "487c2a95-9df2-47ab-bea8-0785b9952e97",
+            "name": "CyberChaperone",
+            "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+            "uid": "28094352-487c2a95-9df2-47ab-bea8-0785b9952e97",
+            "updatedAt": "2023-10-01T13:57:08.000Z"
+        },
+        "item": [
+            {
+                "id": "587c29c6-2df0-4849-bd1f-46e84b64c245",
+                "name": "Register",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "body": {
+                        "formdata": [
+                            {
+                                "key": "username",
+                                "type": "text",
+                                "value": "test"
+                            },
+                            {
+                                "key": "email",
+                                "type": "text",
+                                "value": "test@gmail.com"
+                            },
+                            {
+                                "key": "password",
+                                "type": "text",
+                                "value": "1234567890"
+                            }
+                        ],
+                        "mode": "formdata"
+                    },
+                    "header": [],
+                    "method": "POST",
+                    "url": {
+                        "host": [
+                            "127",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        "path": [
+                            "api",
+                            "register"
+                        ],
+                        "port": "8000",
+                        "protocol": "http",
+                        "raw": "http://127.0.0.1:8000/api/register"
+                    }
+                },
+                "response": [],
+                "uid": "28094352-587c29c6-2df0-4849-bd1f-46e84b64c245"
+            },
+            {
+                "id": "7b27bcbe-10f2-4e28-ba68-e1e170fa4166",
+                "name": "Login",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "body": {
+                        "formdata": [
+                            {
+                                "key": "username",
+                                "type": "text",
+                                "value": "test"
+                            },
+                            {
+                                "key": "password",
+                                "type": "text",
+                                "value": "1234567890"
+                            }
+                        ],
+                        "mode": "formdata"
+                    },
+                    "header": [],
+                    "method": "POST",
+                    "url": {
+                        "host": [
+                            "127",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        "path": [
+                            "api",
+                            "login"
+                        ],
+                        "port": "8000",
+                        "protocol": "http",
+                        "raw": "http://127.0.0.1:8000/api/login"
+                    }
+                },
+                "response": [],
+                "uid": "28094352-7b27bcbe-10f2-4e28-ba68-e1e170fa4166"
+            },
+            {
+                "id": "7a8b3aa9-f8a0-4214-abb2-9c37f16868d4",
+                "name": "App Login",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "body": {
+                        "formdata": [
+                            {
+                                "equals": true,
+                                "key": "username",
+                                "type": "text",
+                                "value": "sarahsmith"
+                            },
+                            {
+                                "equals": true,
+                                "key": "password",
+                                "type": "text",
+                                "value": "Erttre54_"
+                            }
+                        ],
+                        "mode": "formdata"
+                    },
+                    "header": [],
+                    "method": "POST",
+                    "url": {
+                        "host": [
+                            "127",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        "path": [
+                            "api",
+                            "app_login"
+                        ],
+                        "port": "8000",
+                        "protocol": "http",
+                        "query": [
+                            {
+                                "disabled": true,
+                                "key": "username",
+                                "type": "text",
+                                "value": "sarahsmith"
+                            },
+                            {
+                                "disabled": true,
+                                "key": "password",
+                                "type": "text",
+                                "value": "Erttre54_"
+                            }
+                        ],
+                        "raw": "http://127.0.0.1:8000/api/app_login"
+                    }
+                },
+                "response": [],
+                "uid": "28094352-7a8b3aa9-f8a0-4214-abb2-9c37f16868d4"
+            },
+            {
+                "id": "62e27d09-b926-4f59-bf3d-46dc669d8cae",
+                "name": "Save Emotions",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "body": {
+                        "mode": "raw",
+                        "options": {
+                            "raw": {
+                                "language": "json"
+                            }
+                        },
+                        "raw": "{\r\n    \"timestamp\": \"2023-09-21T09:21:37.786Z\",\r\n    \"emotionAverages\": {\r\n        \"Neutral\": 99.98,\r\n        \"Happy\": 0,\r\n        \"Sad\": 0,\r\n        \"Angry\": 0,\r\n        \"Fearful\": 0,\r\n        \"Disgusted\": 0,\r\n        \"Surprised\": 0\r\n    }\r\n}"
+                    },
+                    "header": [],
+                    "method": "POST",
+                    "url": {
+                        "host": [
+                            "127",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        "path": [
+                            "api",
+                            "save_emotions"
+                        ],
+                        "port": "8000",
+                        "protocol": "http",
+                        "raw": "http://127.0.0.1:8000/api/save_emotions"
+                    }
+                },
+                "response": [],
+                "uid": "28094352-62e27d09-b926-4f59-bf3d-46dc669d8cae"
+            },
+            {
+                "id": "537b1eba-4da8-4833-8005-44ff710fd796",
+                "name": "Create General User",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "auth": {
+                        "bearer": [
+                            {
+                                "key": "token",
+                                "type": "string",
+                                "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNjk2MTY5NzI0LCJleHAiOjE2OTYyNTYxMjQsIm5iZiI6MTY5NjE2OTcyNCwianRpIjoiSTZKQkZTOHBCajBNYVVVaiIsInN1YiI6IjMxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.bG-0HLNoP-UtwEGqsMtUambnSl5G82UEWxL-YcfsWCA"
+                            }
+                        ],
+                        "type": "bearer"
+                    },
+                    "body": {
+                        "formdata": [
+                            {
+                                "key": "username",
+                                "type": "text",
+                                "value": "generaluser"
+                            },
+                            {
+                                "key": "email",
+                                "type": "text",
+                                "value": "generaluser@gmail.com"
+                            },
+                            {
+                                "key": "password",
+                                "type": "text",
+                                "value": "1234567890"
+                            }
+                        ],
+                        "mode": "formdata"
+                    },
+                    "header": [],
+                    "method": "POST",
+                    "url": {
+                        "host": [
+                            "127",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        "path": [
+                            "api",
+                            "create_general_user"
+                        ],
+                        "port": "8000",
+                        "protocol": "http",
+                        "raw": "http://127.0.0.1:8000/api/create_general_user"
+                    }
+                },
+                "response": [],
+                "uid": "28094352-537b1eba-4da8-4833-8005-44ff710fd796"
+            },
+            {
+                "id": "57c13cdd-5c06-4bc6-9dbc-1023c65de386",
+                "name": "Fetch All Users",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "header": [],
+                    "method": "GET"
+                },
+                "response": [],
+                "uid": "28094352-57c13cdd-5c06-4bc6-9dbc-1023c65de386"
+            },
+            {
+                "id": "6c8e8664-170b-4df2-90fd-27c5cf14545d",
+                "name": "Delete User",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "header": [],
+                    "method": "DELETE",
+                    "url": {
+                        "host": [
+                            "127",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        "path": [
+                            "api",
+                            "delete_user"
+                        ],
+                        "port": "8000",
+                        "protocol": "http",
+                        "raw": "http://127.0.0.1:8000/api/delete_user"
+                    }
+                },
+                "response": [],
+                "uid": "28094352-6c8e8664-170b-4df2-90fd-27c5cf14545d"
+            },
+            {
+                "id": "cb2f7c7f-a857-4b94-bdef-65f95e0a8e71",
+                "name": "Fetch Dashboard Analysis",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "body": {
+                        "formdata": [
+                            {
+                                "key": "userId",
+                                "type": "text",
+                                "value": "1"
+                            },
+                            {
+                                "key": "timestamp",
+                                "type": "text",
+                                "value": "2023-09-20T21:00:00.000Z"
+                            }
+                        ],
+                        "mode": "formdata"
+                    },
+                    "header": [],
+                    "method": "POST",
+                    "url": {
+                        "host": [
+                            "127",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        "path": [
+                            "api",
+                            "fetch_dashboard_analysis"
+                        ],
+                        "port": "8000",
+                        "protocol": "http",
+                        "raw": "http://127.0.0.1:8000/api/fetch_dashboard_analysis"
+                    }
+                },
+                "response": [],
+                "uid": "28094352-cb2f7c7f-a857-4b94-bdef-65f95e0a8e71"
+            },
+            {
+                "id": "505f5a52-f6b0-43f4-9988-543be91fd978",
+                "name": "Edit Profile",
+                "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                },
+                "request": {
+                    "body": {
+                        "formdata": [
+                            {
+                                "key": "first_name",
+                                "type": "text",
+                                "value": ""
+                            },
+                            {
+                                "key": "last_name",
+                                "type": "text",
+                                "value": ""
+                            }
+                        ],
+                        "mode": "formdata"
+                    },
+                    "header": [],
+                    "method": "POST",
+                    "url": {
+                        "host": [
+                            "127",
+                            "0",
+                            "0",
+                            "1"
+                        ],
+                        "path": [
+                            "api",
+                            "edit_profile"
+                        ],
+                        "port": "8000",
+                        "protocol": "http",
+                        "raw": "http://127.0.0.1:8000/api/edit_profile"
+                    }
+                },
+                "response": [],
+                "uid": "28094352-505f5a52-f6b0-43f4-9988-543be91fd978"
+            }
+        ]
+    }
+}
