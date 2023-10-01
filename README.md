@@ -89,7 +89,7 @@ Login screen  | | Camera Screen |
 
 ## Postman
 
-This is a JSON file for the postman APIs collection for this project [.postman_collection.json](). You can change the address of the APIs to test them with postman.
+This is a JSON file for the postman APIs collection for this project [CyberChaperone.postman_collection.json](/readme/CyberChaperone_postmanCollection.json). You can change the address of the APIs to test them with postman.
 
 ## Prerequisites
 
