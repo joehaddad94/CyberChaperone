@@ -13,7 +13,7 @@ const isMac = process.platform === 'darwin';
 
 let loginWindow;
 let homeWindow;
-
+let tray;
 
 async function makeRequest(method, url, data = null) {
       let response;
@@ -66,7 +66,7 @@ function createHomeWindow() {
             nodeIntegration: true,
             enableRemoteModule: true,
             preload: path.join(__dirname, './preload.js'),
-        }
+        },
     })
 
     //Open DevTools if in dev environment
@@ -76,6 +76,9 @@ function createHomeWindow() {
 
     homeWindow.loadFile(path.join(__dirname, './home/index.html'));
 
+    homeWindow.on('minimize', () => {
+      homeWindow.hide();
+  });
 }
 
 ipcMain.on('login', async (event, credentials) => {
@@ -129,10 +132,8 @@ app.on('window-all-closed', () => {
 });
 
 app.whenReady().then(() => {
+  createTray();
   createMainWindow();
-  const icon = nativeImage.createFromPath('./assets/images/LogoIcon.ico');
-  tray = new Tray(icon);
-  tray.setToolTip('CyberChaperone');
 
   app.on('activate', () => {
       if (BrowserWindow.getAllWindows().length === 0) {
@@ -140,6 +141,41 @@ app.whenReady().then(() => {
       }
     })
 })
+
+function createTray() {
+  const trayIconPath = path.join(__dirname, './assets/images/LogoIcon.ico');
+  appTray = new Tray(trayIconPath);
+
+  const contextMenu = Menu.buildFromTemplate([
+      {
+          label: 'Open App',
+          click: () => {
+              if (homeWindow) {
+                  homeWindow.show();
+              } else {
+                  createMainWindow();
+              }
+          },
+      },
+      {
+          label: 'Quit',
+          click: () => {
+              app.quit();
+          },
+      },
+  ]);
+
+  appTray.setContextMenu(contextMenu);
+  appTray.setToolTip('CyberChaperone')
+
+  appTray.on('click', () => {
+      if (homeWindow) {
+          homeWindow.show();
+      } else {
+          createMainWindow();
+      }
+  });
+}
 
   //Socket.io Client Server Connection
   const serverURL = 'http://localhost:3000';
