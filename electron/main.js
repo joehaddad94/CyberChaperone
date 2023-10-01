@@ -130,6 +130,9 @@ app.on('window-all-closed', () => {
 
 app.whenReady().then(() => {
   createMainWindow();
+  const icon = nativeImage.createFromPath('./assets/images/LogoIcon.ico');
+  tray = new Tray(icon);
+  tray.setToolTip('CyberChaperone');
 
   app.on('activate', () => {
       if (BrowserWindow.getAllWindows().length === 0) {
