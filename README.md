@@ -1,9 +1,9 @@
-<img src="./Titles/title1.svg"/>
+<img src="./titles/title1.svg"/>
 
 <br><br>
 
 <!-- project philosophy -->
-<img src="./Titles/title2.svg"/>
+<img src="./titles/title2.svg"/>
 
 > CyberChaperone, an AI-powered facial emotion recognition application designed to prevent cyberbullying. By analyzing real-time user data, the app detects facial expressions and emotions to identify potential instances of cyberbullying.
 >
@@ -19,7 +19,7 @@
 <br><br>
 
 <!-- Prototyping -->
-<img src="./Titles/title3.svg"/>
+<img src="./titles/title3.svg"/>
 
 > We designed CyberChaperone using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
@@ -45,33 +45,29 @@
 <br><br>
 
 <!-- Implementation -->
-<img src="./Titles/title4.svg"/>
+<img src="./titles/title4.svg"/>
 
 > Using the wireframes and mockups as a guide, we implemented the CyberChaperone app with the following features:
 
 ### User Screens (Mobile)
 Login screen  | Info Screen | Camera Screen |
 | ---| ---| ---|
-| ![Login](./User%20Screens%20Mobile/LoginScreen.gif) | ![Info](./User%20Screens%20Mobile/infoScreen.gif) | ![Camera](./User%20Screens%20Mobile/CameraScreen.gif) |
+| ![Login](./user-screens-mobile/LoginScreen.gif) | ![Info](./user-screens-mobile/infoScreen.gif) | ![Camera](./user-screens-mobile/CameraScreen.gif) |
 
-| Info screen  | Dashboard Screen |  |
+| Dashboard Screen  | Profile Screen | Users Screen |
 | ---| ---| ---|
-| ![Info](./User%20Screens%20Mobile/infoScreen.gif) | ![Dashboard](./User%20Screens%20Mobile/DashboardScreen.gif) |  |
-
-| Profile Screen  | Users Screen |  |
-| ---| ---| ---|
-| ![Profile](./User%20Screens%20Mobile/ProfileScreen.gif) | ![Users](./User%20Screens%20Mobile/UsersScreen.gif) |
+| ![Dashboard](./user-screens-mobile/DashboardScreen.gif) | ![Profile](./user-screens-mobile/ProfileScreen.gif) | ![Users](./user-screens-mobile/UsersScreen.gif) |
 
 ### User Screens (Software App)
 
 | | Landing Page ||
 | ---| ---| ---|
-| | ![Landing](./User%20Page%20Software%20App/LandingPage.gif) 
+| | ![Landing](./user-page-software-app/LandingPage.gif) 
 
 <br><br>
 
 <!-- Tech stack -->
-<img src="./Titles/title5.svg"/>
+<img src="./titles/title5.svg"/>
 
 ###  CyberChaperon is built using the following technologies:
 
@@ -83,13 +79,9 @@ Login screen  | Info Screen | Camera Screen |
 <br><br>
 
 <!-- How to run -->
-<img src="./Titles/title6.svg"/>
+<img src="./titles/title6.svg"/>
 
 > To set up CyberChaperone locally, follow these steps:
-
-## Postman
-
-This is a JSON file for the postman APIs collection for this project [CyberChaperone.postman_collection.json](/readme/CyberChaperone_postmanCollection.json). You can change the address of the APIs to test them with postman.
 
 ## Prerequisites
 
@@ -175,3 +167,7 @@ This is a JSON file for the postman APIs collection for this project [CyberChape
 3. Start MySQL.
 
 Now, you should be able to run all platforms locally and explore its features.
+
+# Postman
+
+This is a JSON file for the postman APIs collection for this project [CyberChaperone.postman_collection.json](/readme/CyberChaperone_postmanCollection.json). You can change the address of the APIs to test them with postman.
