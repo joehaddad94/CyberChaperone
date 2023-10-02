@@ -50,9 +50,9 @@
 > Using the wireframes and mockups as a guide, we implemented the CyberChaperone app with the following features:
 
 ### User Screens (Mobile)
-Login screen  | | Camera Screen |
+Login screen  | Info Screen | Camera Screen |
 | ---| ---| ---|
-| ![Login](./User%20Screens%20Mobile/LoginScreen.gif) |  | ![Camera](./User%20Screens%20Mobile/CameraScreen.gif) |
+| ![Login](./User%20Screens%20Mobile/LoginScreen.gif) | ![Info](./User%20Screens%20Mobile/infoScreen.gif) | ![Camera](./User%20Screens%20Mobile/CameraScreen.gif) |
 
 | Info screen  | Dashboard Screen |  |
 | ---| ---| ---|
