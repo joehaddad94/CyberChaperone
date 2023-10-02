@@ -6,15 +6,11 @@
 
 
 - [Project Philosophy](#project-philosophy)
-- [User Stories](#user-types)
-- [Features of the App](#features-of-the-app)
+- [User Stories](#user-stories)
 - [Prototyping](#prototyping)
 - [Implementation](#implementation)
 - [Tech Stack](#tech-stack)
 - [How to Run](#how-to-run)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-
 
 <br><br>  
 
@@ -27,6 +23,7 @@
 > General users can utilize the software application to monitor their emotions using the webcam. Guardian users, on the other hand, have access to a comprehensive set of features aimed at creating a safer online environment for their loved ones. The application boasts an intuitive interface, enabling effortless interaction, result sharing.
 
 ### User Stories
+<a name="user-stories"></a>
 - As a general user, I want to sign in to the app using my credentials to access the webcam-based emotion detection feature.
 
 - As a guardian user, I want to view detection results of my dependents.
@@ -36,6 +33,7 @@
 <br><br>
 
 <!-- Prototyping -->
+<a name="prototyping"></a>
 <img src="./readme-titles/title3.svg"/>
 
 > We designed CyberChaperone using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
@@ -62,6 +60,7 @@
 <br><br>
 
 <!-- Implementation -->
+<a name="implementation"></a>
 <img src="./readme-titles/title4.svg"/>
 
 > Using the wireframes and mockups as a guide, we implemented the CyberChaperone app with the following features:
@@ -84,6 +83,7 @@ Login screen  | Info Screen | Camera Screen |
 <br><br>
 
 <!-- Tech stack -->
+<a name="tech-stack"></a>
 <img src="./readme-titles/title5.svg"/>
 
 ###  CyberChaperon is built using the following technologies:
@@ -96,6 +96,7 @@ Login screen  | Info Screen | Camera Screen |
 <br><br>
 
 <!-- How to run -->
+<a name="how-to-run"></a>
 <img src="./readme-titles/title6.svg"/>
 
 > To set up CyberChaperone locally, follow these steps:
