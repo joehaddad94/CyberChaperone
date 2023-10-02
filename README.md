@@ -1,9 +1,9 @@
-<img src="./titles/title1.svg"/>
+<img src="./readme-titles/title1.svg"/>
 
 <br><br>
 
 <!-- project philosophy -->
-<img src="./titles/title2.svg"/>
+<img src="./readme-titles/title2.svg"/>
 
 > CyberChaperone, an AI-powered facial emotion recognition application designed to prevent cyberbullying. By analyzing real-time user data, the app detects facial expressions and emotions to identify potential instances of cyberbullying.
 >
@@ -19,7 +19,7 @@
 <br><br>
 
 <!-- Prototyping -->
-<img src="./titles/title3.svg"/>
+<img src="./readme-titles/title3.svg"/>
 
 > We designed CyberChaperone using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
@@ -45,7 +45,7 @@
 <br><br>
 
 <!-- Implementation -->
-<img src="./titles/title4.svg"/>
+<img src="./readme-titles/title4.svg"/>
 
 > Using the wireframes and mockups as a guide, we implemented the CyberChaperone app with the following features:
 
@@ -67,7 +67,7 @@ Login screen  | Info Screen | Camera Screen |
 <br><br>
 
 <!-- Tech stack -->
-<img src="./titles/title5.svg"/>
+<img src="./readme-titles/title5.svg"/>
 
 ###  CyberChaperon is built using the following technologies:
 
@@ -79,7 +79,7 @@ Login screen  | Info Screen | Camera Screen |
 <br><br>
 
 <!-- How to run -->
-<img src="./titles/title6.svg"/>
+<img src="./readme-titles/title6.svg"/>
 
 > To set up CyberChaperone locally, follow these steps:
 
