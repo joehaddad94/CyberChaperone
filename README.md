@@ -2,7 +2,24 @@
 
 <br><br>
 
+<img src="./readme-titles/title7.svg"/> 
+
+
+- [Project Philosophy](#project-philosophy)
+- [User Stories](#user-types)
+- [Features of the App](#features-of-the-app)
+- [Prototyping](#prototyping)
+- [Implementation](#implementation)
+- [Tech Stack](#tech-stack)
+- [How to Run](#how-to-run)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+
+
+<br><br>  
+
 <!-- project philosophy -->
+<a name="project-philosophy"></a>
 <img src="./readme-titles/title2.svg"/>
 
 > CyberChaperone, an AI-powered facial emotion recognition application designed to prevent cyberbullying. By analyzing real-time user data, the app detects facial expressions and emotions to identify potential instances of cyberbullying.
