@@ -106,9 +106,9 @@ Login screen  | Info Screen | Camera Screen |
    npm start
    ```
 ### React Native App:
-1. Navigate to client-RN folder.
+1. Navigate to mobile folder.
    ```sh
-   cd client-RN
+   cd mobile
    ```
 2. Install NPM packages
    ```sh
