@@ -9,6 +9,7 @@
 - [Prototyping](#prototyping)
 - [Tech Stack](#tech-stack)
 - [Demo](#demo)
+- [OpenAI](#openai)
 - [Performance](#performance)
 - [How to Run](#how-to-run)
 
@@ -90,8 +91,19 @@ Login screen  | Info Screen | Camera Screen |
 | ---| 
 | ![Landing](./user-page-software-app/LandingPage.gif) 
 
+<!-- OpenAI -->
+<a name="openai"></a>
+<img src="./readme-titles/title9.svg"/>
 
-<!-- How to run -->
+| Data sent to OpenAI: |
+ ---|
+ | ![sentData](/readme/OpenAI/openai1.PNG)
+
+ | Data Received from OpenAI |
+ ---|
+ | ![realtimeDataToServer](/readme/openai/openai2.PNG)
+
+<!-- Performance -->
 <a name="performance"></a>
 <img src="./readme-titles/title8.svg"/>
 
