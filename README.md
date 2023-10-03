@@ -1,5 +1,4 @@
 <img src="./readme-titles/title1.svg"/>
-
 <br><br>
 
 <img src="./readme-titles/title7.svg"/> 
@@ -56,7 +55,6 @@
 | Login Page  | Landing Page ||
 | ---| ---| ---|
 | ![Login](/readme/Software%20App%20Mockups/LoginPage.png) | ![Landing](/readme/Software%20App%20Mockups/LandingPage.png) 
-
 <br><br>
 
 <!-- Implementation -->
@@ -79,7 +77,6 @@ Login screen  | Info Screen | Camera Screen |
 | | Landing Page ||
 | ---| ---| ---|
 | | ![Landing](./user-page-software-app/LandingPage.gif) 
-
 <br><br>
 
 <!-- Tech stack -->
@@ -92,7 +89,15 @@ Login screen  | Info Screen | Camera Screen |
 - This project uses [Electron](https://www.electronjs.org/) as a framework for building cross-platform desktop applications using web technologies like HTML, CSS, and JavaScript, allowing developers to create desktop software for Windows, macOS, and Linux from a single codebase.
 - This project uses [Laravel](https://laravel.com/), a PHP web application framework, with MySQL as the database management system. Laravel simplifies web development by providing robust tools and an expressive syntax for building secure and scalable web applications.
 - This Project uses [Node.js](https://nodejs.org/en) to handle data management while using [socket.IO](https://socket.io/), a websocket to facilitate data broadcast.
+<br><br>
 
+<!-- How to run -->
+<a name="how-to-run"></a>
+<img src="./readme-titles/title8.svg"/>
+
+### Postman
+
+This is a JSON file for the postman APIs collection for this project [CyberChaperone.postman_collection.json](/readme/CyberChaperone_postmanCollection.json). You can change the address of the APIs to test them with postman.
 <br><br>
 
 <!-- How to run -->
@@ -185,7 +190,3 @@ Login screen  | Info Screen | Camera Screen |
 3. Start MySQL.
 
 Now, you should be able to run all platforms locally and explore its features.
-
-# Postman
-
-This is a JSON file for the postman APIs collection for this project [CyberChaperone.postman_collection.json](/readme/CyberChaperone_postmanCollection.json). You can change the address of the APIs to test them with postman.
