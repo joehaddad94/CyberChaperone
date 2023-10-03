@@ -89,7 +89,7 @@ Login screen  | Info Screen | Camera Screen |
  | Landing Page |
 | ---| 
 | ![Landing](./user-page-software-app/LandingPage.gif) 
-<br><br>
+
 
 <!-- How to run -->
 <a name="performance"></a>
