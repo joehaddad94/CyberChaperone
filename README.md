@@ -90,6 +90,7 @@ Login screen  | Info Screen | Camera Screen |
 - This project uses [Electron](https://www.electronjs.org/) as a framework for building cross-platform desktop applications using web technologies like HTML, CSS, and JavaScript, allowing developers to create desktop software for Windows, macOS, and Linux from a single codebase.
 - This project uses [Laravel](https://laravel.com/), a PHP web application framework, with MySQL as the database management system. Laravel simplifies web development by providing robust tools and an expressive syntax for building secure and scalable web applications.
 - This Project uses [Node.js](https://nodejs.org/en) to handle data management while using [socket.IO](https://socket.io/), a websocket to facilitate data broadcast.
+- This project uses OpenAI for daily data analysis.
 <br><br>
 
 <!-- How to run -->
@@ -101,6 +102,23 @@ Login screen  | Info Screen | Camera Screen |
 This is a JSON file for the postman APIs collection for this project [CyberChaperone.postman_collection.json](/readme/CyberChaperone_postmanCollection.json). You can change the address of the APIs to test them with postman.
 
 ### Performance
+
+URL: /api/save_emotions
+
+```sh
+PASS: Response time is within acceptable range //161 ms
+PASS: Response status code is 200
+PASS: Verify the 'data' array is present and contains at least one element
+PASS: Response schema is valid
+```
+URL: /api/fetch_dashboard_analysis
+
+```sh
+PASS: Response time is within acceptable range //361 ms
+PASS: Response status code is 200
+PASS: Verify the 'data' array is present and contains at least one element
+PASS: Response schema is valid
+```
 
 | Data received from detection every 100ms: |
  ---|
