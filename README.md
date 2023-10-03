@@ -51,8 +51,8 @@
 
 ### Mockups (Software App)
 
-| Login Page  | Landing Page ||
-| ---| ---| ---|
+| Login Page  | Landing Page |
+| ---| ---|
 | ![Login](/readme/Software%20App%20Mockups/LoginPage.png) | ![Landing](/readme/Software%20App%20Mockups/LandingPage.png) 
 <br><br>
 
