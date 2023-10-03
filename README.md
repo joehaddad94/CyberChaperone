@@ -9,6 +9,7 @@
 - [Prototyping](#prototyping)
 - [Implementation](#implementation)
 - [Tech Stack](#tech-stack)
+- [Performance](#performance)
 - [How to Run](#how-to-run)
 
 <br><br>  
@@ -92,7 +93,7 @@ Login screen  | Info Screen | Camera Screen |
 <br><br>
 
 <!-- How to run -->
-<a name="how-to-run"></a>
+<a name="performance"></a>
 <img src="./readme-titles/title8.svg"/>
 
 ### Postman
