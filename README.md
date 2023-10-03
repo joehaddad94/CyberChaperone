@@ -101,7 +101,7 @@ Login screen  | Info Screen | Camera Screen |
 
  | Data Received from OpenAI |
  ---|
- | ![dataReveived](/readme/openai/openai2.PNG)
+ | ![dataReveived](./user-page-software-app/openai2.PNG)
 
 <!-- Performance -->
 <a name="performance"></a>
