@@ -54,7 +54,7 @@
 | Login Page  | Landing Page |
 | ---| ---|
 | ![Login](/readme/Software%20App%20Mockups/LoginPage.png) | ![Landing](/readme/Software%20App%20Mockups/LandingPage.png) 
-<br><br>
+<!-- <br><br> -->
 
 <!-- Tech stack -->
 <a name="tech-stack"></a>
