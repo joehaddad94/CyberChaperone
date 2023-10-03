@@ -75,9 +75,9 @@ Login screen  | Info Screen | Camera Screen |
 
 ### User Screens (Software App)
 
-| | Landing Page ||
-| ---| ---| ---|
-| | ![Landing](./user-page-software-app/LandingPage.gif) 
+ | Landing Page |
+| ---| 
+| ![Landing](./user-page-software-app/LandingPage.gif) 
 <br><br>
 
 <!-- Tech stack -->
