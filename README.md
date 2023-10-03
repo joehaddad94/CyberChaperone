@@ -101,7 +101,7 @@ Login screen  | Info Screen | Camera Screen |
 
  | Data Received from OpenAI |
  ---|
- | ![realtimeDataToServer](/readme/openai/openai2.PNG)
+ | ![dataReveived](/readme/openai/openai2.PNG)
 
 <!-- Performance -->
 <a name="performance"></a>
