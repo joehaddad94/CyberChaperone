@@ -7,8 +7,8 @@
 - [Project Philosophy](#project-philosophy)
 - [User Stories](#user-stories)
 - [Prototyping](#prototyping)
-- [Implementation](#implementation)
 - [Tech Stack](#tech-stack)
+- [Demo](#demo)
 - [Performance](#performance)
 - [How to Run](#how-to-run)
 
@@ -24,8 +24,10 @@
 
 ### User Stories
 <a name="user-stories"></a>
+#### General User:
 - As a general user, I want to sign in to the app using my credentials to access the webcam-based emotion detection feature.
 
+#### Guardian User:
 - As a guardian user, I want to view detection results of my dependents.
 - As a guardian user, I want to have a demo of how the detection works.
 - As a guardian user, I want to view detailed emotional analysis to gain insights into my dependents' overall well-being using AI.
@@ -39,17 +41,13 @@
 > We designed CyberChaperone using wireframes and mockups, iterating on the design until we reached the ideal layout for easy navigation and a seamless user experience.
 
 ### Mockups (Mobile App)
-| Login screen  | Register Screen | Camera Screen |
-| ---| ---| ---|
-| ![Login](/readme/Mobile%20App%20Mockups/LoginScreen.png) | ![Register](/readme/Mobile%20App%20Mockups/RegisterScreen.png) | ![Camera](/readme/Mobile%20App%20Mockups/CameraScreen.png) |
+| Login screen  | Register Screen | Camera Screen | Info Screen |
+| ---| ---| ---| ---|
+| ![Login](/readme/Mobile%20App%20Mockups/LoginScreen.png) | ![Register](/readme/Mobile%20App%20Mockups/RegisterScreen.png) | ![Camera](/readme/Mobile%20App%20Mockups/CameraScreen.png) | ![Info](/readme/Mobile%20App%20Mockups/InfoScreen.png) |
 
-| Info screen  | Dashboard Screen | Profile Screen |
-| ---| ---| ---|
-| ![Info](/readme/Mobile%20App%20Mockups/InfoScreen.png) | ![Dashboard](/readme/Mobile%20App%20Mockups/DashboardScreen.png) | ![Profile](/readme/Mobile%20App%20Mockups/ProfileScreen.png) |
-
-| Users screen  | Create Users Screen | |
-| ---| ---| ---|
-| ![Users](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![CreateUsers](/readme/Mobile%20App%20Mockups/CreateUserScreen.png) |
+| Dashboard Screen  | Profile Screen | Users Screen | Create Users |
+| ---| ---| ---| ---|
+| ![Dashboard](/readme/Mobile%20App%20Mockups/DashboardScreen.png) | ![Dashboard](/readme/Mobile%20App%20Mockups/ProfileScreen.png) | ![Profile](/readme/Mobile%20App%20Mockups/UsersScreen.png) | ![CreateUsers](/readme/Mobile%20App%20Mockups/CreateUserScreen.png) ||
 
 ### Mockups (Software App)
 
@@ -58,8 +56,21 @@
 | ![Login](/readme/Software%20App%20Mockups/LoginPage.png) | ![Landing](/readme/Software%20App%20Mockups/LandingPage.png) 
 <br><br>
 
-<!-- Implementation -->
-<a name="implementation"></a>
+<!-- Tech stack -->
+<a name="tech-stack"></a>
+<img src="./readme-titles/title5.svg"/>
+
+###  CyberChaperon is built using the following technologies:
+
+- This project relies on [React Native](https://reactnative.dev/) with [TypeScript](https://www.typescriptlang.org/) for app development. React Native is a versatile cross-platform mobile app development framework that enables us to create applications for both iOS and Android.
+- This project uses [Electron](https://www.electronjs.org/) as a framework for building cross-platform desktop applications using web technologies like HTML, CSS, and JavaScript, allowing developers to create desktop software for Windows, macOS, and Linux from a single codebase.
+- This project uses [Laravel](https://laravel.com/), a PHP web application framework, with MySQL as the database management system. Laravel simplifies web development by providing robust tools and an expressive syntax for building secure and scalable web applications.
+- This Project uses [Node.js](https://nodejs.org/en) to handle data management while using [socket.IO](https://socket.io/), a websocket to facilitate data broadcast.
+- This project uses OpenAI for daily data analysis.
+<br><br>
+
+<!-- Demo -->
+<a name="demo"></a>
 <img src="./readme-titles/title4.svg"/>
 
 > Using the wireframes and mockups as a guide, we implemented the CyberChaperone app with the following features:
@@ -78,19 +89,6 @@ Login screen  | Info Screen | Camera Screen |
  | Landing Page |
 | ---| 
 | ![Landing](./user-page-software-app/LandingPage.gif) 
-<br><br>
-
-<!-- Tech stack -->
-<a name="tech-stack"></a>
-<img src="./readme-titles/title5.svg"/>
-
-###  CyberChaperon is built using the following technologies:
-
-- This project relies on [React Native](https://reactnative.dev/) with [TypeScript](https://www.typescriptlang.org/) for app development. React Native is a versatile cross-platform mobile app development framework that enables us to create applications for both iOS and Android.
-- This project uses [Electron](https://www.electronjs.org/) as a framework for building cross-platform desktop applications using web technologies like HTML, CSS, and JavaScript, allowing developers to create desktop software for Windows, macOS, and Linux from a single codebase.
-- This project uses [Laravel](https://laravel.com/), a PHP web application framework, with MySQL as the database management system. Laravel simplifies web development by providing robust tools and an expressive syntax for building secure and scalable web applications.
-- This Project uses [Node.js](https://nodejs.org/en) to handle data management while using [socket.IO](https://socket.io/), a websocket to facilitate data broadcast.
-- This project uses OpenAI for daily data analysis.
 <br><br>
 
 <!-- How to run -->
