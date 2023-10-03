@@ -131,7 +131,6 @@ Promise.all([
     setInterval(async () =>{
         const detections = await faceapi.detectAllFaces(video,
             new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions()
-
             if (detections.length > 0) {
                 const emotions = detections[0].expressions;
                 

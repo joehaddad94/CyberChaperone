@@ -5,8 +5,8 @@ const io = require('socket.io-client');
 
 const baseUrl = 'http://127.0.0.1:8000'
 
-process.env.NODE_ENV = 'production';
-// process.env.NODE_ENV = 'development';
+// process.env.NODE_ENV = 'production';
+process.env.NODE_ENV = 'development';
 
 const isDev = process.env.NODE_ENV !== 'production';
 const isMac = process.platform === 'darwin';

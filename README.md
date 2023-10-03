@@ -99,6 +99,16 @@ Login screen  | Info Screen | Camera Screen |
 ### Postman
 
 This is a JSON file for the postman APIs collection for this project [CyberChaperone.postman_collection.json](/readme/CyberChaperone_postmanCollection.json). You can change the address of the APIs to test them with postman.
+
+### Performance
+
+| Data received from detection every 100ms: |
+ ---|
+ | ![detectionData](/readme/Performance/DetectionData.PNG)
+
+ | Real-time data sent to server through Web Socket (Socket.io): |
+ ---|
+ | ![realtimeDataToServer](/readme/Performance/realtimeDataToServer.PNG) 
 <br><br>
 
 <!-- How to run -->

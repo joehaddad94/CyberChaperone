@@ -1,7 +1,9 @@
 import express from "express";
 const router = express.Router();
 import OpenAI from 'openai';
-require('dotenv').config();
+import { config } from 'dotenv';
+
+config();
 
 const openai = new OpenAI({
     organization: "org-cktUSxa7TqUUdFSJgduFJ4a9",
